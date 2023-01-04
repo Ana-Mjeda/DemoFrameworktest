@@ -152,4 +152,8 @@ public class RegisterPage extends TemplatePage {
         continueButton.click();
         System.out.println("Continue button is clicked");
     }
+
+    public WebElement getEmailMessage() {
+        return driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/form/div[1]"));
+    }
 }

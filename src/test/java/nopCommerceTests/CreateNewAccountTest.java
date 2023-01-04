@@ -12,8 +12,10 @@ public class CreateNewAccountTest extends TemplateTest {
 
     private final HomePage homePage = new HomePage(BrowserFactory.getDriver());
 
+    String email = "herasrp@test.com";
+
     @Test
-    public void Step1() throws InterruptedException {
+    public void step1() throws InterruptedException {
         homePage.clickRegisterButton();
 
         BrowserFactory.getDriver().getCurrentUrl();
@@ -77,7 +79,7 @@ public class CreateNewAccountTest extends TemplateTest {
 
         // pri svakom testu emaila, moram novi da unesem da bi prosao test
         registerPage.getEmailInputField().clear();
-        registerPage.emailInputFieldSetText("herasrp@test.com");
+        registerPage.emailInputFieldSetText(email);
         System.out.println("Entered Email is: " + registerPage.getEmailAttribute());
 
         registerPage.companyInputFieldSetText("Phoenix Squadron");
@@ -99,5 +101,44 @@ public class CreateNewAccountTest extends TemplateTest {
         Thread.sleep(3000);
 
         Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/");
+    }
+
+    @Test
+    public void step4() throws InterruptedException {
+        homePage.clickRegisterButton();
+
+        registerPage.genderFemale().click();
+
+        registerPage.firstNameInputFieldSetText("Hera");
+
+        registerPage.lastNameInputFieldSetText("Syndulla");
+
+        registerPage.selectDayFromDropdown("5");
+
+        registerPage.selectMonthFromDropdown("April");
+
+        registerPage.selectYearFromDropdown("1979");
+
+        // pri svakom testu emaila, moram novi da unesem da bi prosao test
+        registerPage.getEmailInputField().clear();
+        registerPage.emailInputFieldSetText(email);
+        System.out.println("Entered Email is: " + registerPage.getEmailAttribute());
+
+        registerPage.companyInputFieldSetText("Phoenix Squadron");;
+
+        registerPage.getPasswordInputField().clear();
+        registerPage.passwordInputFieldSetText("secret");
+
+        registerPage.getConfirmPasswordInputField().clear();
+        registerPage.confirmPasswordInputFieldSetText("secret");
+
+        registerPage.clickRegisterButton();
+
+
+        String text = registerPage.getEmailMessage().getText();
+        System.out.println("Message: " + text);
+        Assert.assertEquals(text, "The specified email already exists");
+
+        Thread.sleep(5000);
     }
 }
