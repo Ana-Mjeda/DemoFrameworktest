@@ -32,6 +32,9 @@ public class RegisterPage extends TemplatePage {
         return driver.findElement(By.id("FirstName-error"));
     }
 
+    public String getFirstNameAttribute(){
+        return getFirstNameInputField().getAttribute("value");
+    }
     public WebElement getLastNameInputField() {
         return driver.findElement(By.id("LastName"));
     }
@@ -45,7 +48,9 @@ public class RegisterPage extends TemplatePage {
     public WebElement getLastNameError() {
         return driver.findElement(By.id("LastName-error"));
     }
-
+    public String getLastNameAttribute(){
+        return getLastNameInputField().getAttribute("value");
+    }
     public WebElement getEmailInputField() {
         return driver.findElement(By.id("Email"));
     }
@@ -59,7 +64,9 @@ public class RegisterPage extends TemplatePage {
     public WebElement getEmailError() {
         return driver.findElement(By.id("Email-error"));
     }
-
+    public String getEmailAttribute(){
+        return getEmailInputField().getAttribute("value");
+    }
     public WebElement getPasswordInputField() {
         return driver.findElement(By.id("Password"));
     }
@@ -73,7 +80,9 @@ public class RegisterPage extends TemplatePage {
     public WebElement getPasswordError() {
         return driver.findElement(By.id("Password-error"));
     }
-
+    public String getPasswordAttribute(){
+        return getPasswordInputField().getAttribute("value");
+    }
     public WebElement getConfirmPasswordInputField() {
         return driver.findElement(By.id("ConfirmPassword"));
     }
@@ -87,7 +96,9 @@ public class RegisterPage extends TemplatePage {
     public WebElement getConfirmPasswordError() {
         return driver.findElement(By.id("ConfirmPassword-error"));
     }
-
+    public String getConfirmPasswordAttribute(){
+        return getConfirmPasswordInputField().getAttribute("value");
+    }
     public WebElement genderFemale() {
         return driver.findElement(By.id("gender-female"));
     }
@@ -129,7 +140,9 @@ public class RegisterPage extends TemplatePage {
         WebElement companyInputField = getCompanyInputField();
         companyInputField.sendKeys(text);
     }
-
+    public String getCompanyAttribute(){
+        return getCompanyInputField().getAttribute("value");
+    }
     public WebElement getRegistrationMessage() {
         return driver.findElement(By.className("result"));
     }

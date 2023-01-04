@@ -22,23 +22,23 @@ public class CreateNewAccountTest extends TemplateTest {
 
         registerPage.clickRegisterButton();
 
-        Assert.assertEquals(registerPage.getFirstNameInputField().getText(), "");
+        Assert.assertEquals(registerPage.getFirstNameAttribute(), "");
         Assert.assertEquals(registerPage.getFirstNameError().getText(), "First name is required.");
         System.out.println("Message: " + registerPage.getFirstNameError().getText());
 
-        Assert.assertEquals(registerPage.getLastNameInputField().getText(), "");
+        Assert.assertEquals(registerPage.getLastNameAttribute(), "");
         Assert.assertEquals(registerPage.getLastNameError().getText(), "Last name is required.");
         System.out.println("Message: " + registerPage.getLastNameError().getText());
 
-        Assert.assertEquals(registerPage.getEmailInputField().getText(), "");
+        Assert.assertEquals(registerPage.getEmailAttribute(), "");
         Assert.assertEquals(registerPage.getEmailError().getText(), "Email is required.");
         System.out.println("Message: " + registerPage.getEmailError().getText());
 
-        Assert.assertEquals(registerPage.getPasswordInputField().getText(), "");
+        Assert.assertEquals(registerPage.getPasswordAttribute(), "");
         Assert.assertEquals(registerPage.getPasswordError().getText(), "Password is required.");
         System.out.println("Message: " + registerPage.getPasswordError().getText());
 
-        Assert.assertEquals(registerPage.getConfirmPasswordInputField().getText(), "");
+        Assert.assertEquals(registerPage.getConfirmPasswordAttribute(), "");
         Assert.assertEquals(registerPage.getConfirmPasswordError().getText(), "Password is required.");
         System.out.println("Message: " + registerPage.getConfirmPasswordError().getText());
 
@@ -46,41 +46,42 @@ public class CreateNewAccountTest extends TemplateTest {
         System.out.println("Message: " + registerPage.getEmailError().getText());
         Assert.assertEquals(registerPage.getEmailError().getText(), "Wrong email");
 
-
         registerPage.passwordInputFieldSetText("p");
         System.out.println("Message: " + registerPage.getPasswordError().getText());
+        Assert.assertEquals(registerPage.getPasswordError().getText(), "Password must meet the following rules:\nmust have at least 6 characters");
 
         registerPage.confirmPasswordInputFieldSetText("a");
         System.out.println("Message: " + registerPage.getConfirmPasswordError().getText());
+        Assert.assertEquals(registerPage.getConfirmPasswordError().getText(), "The password and confirmation password do not match.");
 
         registerPage.genderFemale().click();
         System.out.println("Gender is clicked");
 
         registerPage.firstNameInputFieldSetText("Hera");
-        System.out.println("Entered First Name is: " + registerPage.getFirstNameInputField().getAttribute("value"));
+        System.out.println("Entered First Name is: " + registerPage.getFirstNameAttribute());
 
-        registerPage.lastNameInputFieldSetText("Syndulla");
-        System.out.println("Entered Last Name is: " + registerPage.getLastNameInputField().getAttribute("value"));
+        String lastName = "Syndulla";
+        registerPage.lastNameInputFieldSetText(lastName);
+        Assert.assertEquals(registerPage.getLastNameAttribute(), lastName);
+
+        System.out.println("Entered Last Name is: " + registerPage.getLastNameAttribute());
 
         registerPage.selectDayFromDropdown("5");
-        Thread.sleep(3000);
         System.out.println("Day is selected");
 
         registerPage.selectMonthFromDropdown("April");
-        Thread.sleep(3000);
         System.out.println("Month is selected");
 
         registerPage.selectYearFromDropdown("1979");
-        Thread.sleep(3000);
         System.out.println("Year is selected");
 
         // pri svakom testu emaila, moram novi da unesem da bi prosao test
         registerPage.getEmailInputField().clear();
-        registerPage.emailInputFieldSetText("herasy@test.com");
-        System.out.println("Entered Email is: " + registerPage.getEmailInputField().getAttribute("value"));
+        registerPage.emailInputFieldSetText("herasrp@test.com");
+        System.out.println("Entered Email is: " + registerPage.getEmailAttribute());
 
         registerPage.companyInputFieldSetText("Phoenix Squadron");
-        System.out.println("Company name is entered: " + registerPage.getCompanyInputField().getAttribute("value"));
+        System.out.println("Company name is entered: " + registerPage.getCompanyAttribute());
 
         registerPage.getPasswordInputField().clear();
         registerPage.passwordInputFieldSetText("secret");
@@ -95,7 +96,8 @@ public class CreateNewAccountTest extends TemplateTest {
         Assert.assertEquals(registerPage.getRegistrationMessage().getText(), "Your registration completed");
 
         registerPage.clickContinueButton();
+        Thread.sleep(3000);
 
-
+        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/");
     }
 }
