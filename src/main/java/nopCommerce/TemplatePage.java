@@ -15,7 +15,6 @@ public class TemplatePage extends BrowserFactory {
     public TemplatePage(WebDriver driver) {
         super(driver);
         // ui = new BaseUI(driver);
-
     }
 
     @FindBy(xpath = "")
@@ -24,11 +23,11 @@ public class TemplatePage extends BrowserFactory {
     List<WebElement> loginButtonList;
 
     /**
+     * @param userName    use param to describe parameter if function requires it
+     * @param userMessage message that will be displayed
      * @author Marko Javorina
      * @date 26.08.2022
      * @description This is a description of templateFunction
-     * @param userName use param to describe parameter if function requires it
-     * @param userMessage message that will be displayed
      */
     @Step("Clicking on Login Button {0}, {1}")
     public TemplatePage clickLoginButton(String userName, String userMessage) {
@@ -36,16 +35,17 @@ public class TemplatePage extends BrowserFactory {
 
         return this;
     }
-        public TemplatePage clickLogin() {
-            System.out.println("there");
 
-            return this;
+    public TemplatePage clickLogin() {
+        System.out.println("there");
 
-//            public TemplatePage clickLoginButton() {
+        return this;
+    }
+
+    //            public TemplatePage clickLoginButton() {
 //                System.out.println("hello");
 //                loginButton.click();
 //                //ui.click(loginButton);
 //                return this;
 //            }
-    }
 }

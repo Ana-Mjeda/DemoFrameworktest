@@ -3,28 +3,33 @@ package Base;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class BrowserFactory {
 
     protected static WebDriver driver;
     public static WebDriverWait wait;
-    public static int defaultWaitTime = 30;
-    public static int defaultImplicitWaitTime = 30;
+    public static final int defaultWaitTime = 30;
+    public static final int defaultImplicitWaitTime = 30;
     public static String browserName = "chrome";
-    public BrowserFactory(WebDriver myDriver) {
-        this.driver = myDriver;
-        PageFactory.initElements(driver, this);
+
+    public BrowserFactory(WebDriver driver) {
+        // ponudio intelliJ da se promeni this -> BrowserFactory
+        BrowserFactory.driver = driver;
+        PageFactory.initElements(BrowserFactory.driver, this);
     }
-    public static WebDriver startBrowser(String URL) {
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
+
+    public static WebDriver startBrowser(String url) {
         String browser = "";
+        // zasto imamo ovo ako smo vec gore izmenili da je default "chrome"?
         if (browserName == null) {
             browserName = "chrome";
         }
@@ -37,21 +42,22 @@ public class BrowserFactory {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
             browser = "Mozilla FireFox";
-        } else if (browserName.equalsIgnoreCase("explorer")) {
-            WebDriverManager.iedriver().setup();
-            driver = new InternetExplorerDriver();
-            browser = "Internet Explorer";
-        } else if (browserName.equalsIgnoreCase("edge")) {
-            WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver();
-            browser = "Microsoft Edge";
         }
-        System.out.println("Opening --" + URL + "-- on " + browser + " browser");
-        driver.manage().timeouts().implicitlyWait(defaultImplicitWaitTime, TimeUnit.SECONDS);
+//        else if (browserName.equalsIgnoreCase("explorer")) {
+//            WebDriverManager.iedriver().setup();
+//            driver = new InternetExplorerDriver();
+//            browser = "Internet Explorer";
+//        } else if (browserName.equalsIgnoreCase("edge")) {
+//            WebDriverManager.edgedriver().setup();
+//            driver = new EdgeDriver();
+//            browser = "Microsoft Edge";
+//        }
+        System.out.println("Opening --" + url + "-- on " + browser + " browser");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(defaultImplicitWaitTime));
         wait = new WebDriverWait(driver, Duration.ofSeconds(defaultWaitTime));
 
         driver.manage().window().maximize();
-        driver.get(URL);
+        driver.get(url);
 
         return driver;
     }
