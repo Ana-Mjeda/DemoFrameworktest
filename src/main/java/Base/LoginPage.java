@@ -24,12 +24,27 @@ public class LoginPage extends TemplatePage {
         WebElement emailInputField = getEmailInputField();
         emailInputField.sendKeys(text);
     }
-
     // Error that's shown beneath the input field if the input field is empty
     public WebElement getEmailError() {
         return driver.findElement(By.id("Email-error"));
     }
     public String getEmailAttribute(){
         return getEmailInputField().getAttribute("value");
+    }
+
+    public WebElement getPasswordInputField() {
+        return driver.findElement(By.id("Password"));
+    }
+
+    public void passwordInputFieldSetText(String text) {
+        WebElement passwordInputField = getPasswordInputField();
+        passwordInputField.sendKeys(text);
+    }
+    // Error that's shown beneath the input field if the input field is empty
+    public WebElement getPasswordError() {
+        return driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[1]/div[2]/form/div[1]"));
+    }
+    public String getPasswordAttribute(){
+        return getPasswordInputField().getAttribute("value");
     }
 }

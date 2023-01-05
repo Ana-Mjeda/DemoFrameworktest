@@ -28,6 +28,15 @@ public class LoginWithNewAccount extends TemplateTest {
         System.out.println("Message: " + loginPage.getEmailError().getText());
         Assert.assertEquals(loginPage.getEmailError().getText(), "Wrong email");
 
+        loginPage.getEmailInputField().clear();
+        loginPage.emailInputFieldSetText("test@test.com");
+        System.out.println("Entered Email is: " + loginPage.getEmailAttribute());
+
+        loginPage.passwordInputFieldSetText("t");
+        loginPage.getPasswordInputField().sendKeys(Keys.RETURN);
+        System.out.println("Message: " + loginPage.getPasswordError().getText());
+        Assert.assertEquals(loginPage.getPasswordError().getText(), "Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");
+
     }
 
 }
