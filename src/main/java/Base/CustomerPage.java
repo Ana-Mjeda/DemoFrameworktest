@@ -23,6 +23,12 @@ public class CustomerPage extends TemplatePage {
         System.out.println("Change Password Button clicked");
     }
 
+    public void clickChangePasswordButtonWhenErrorIsPresent() {
+        WebElement changePasswordButton = driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[2]/div/div[2]/form/div[3]/button"));
+        changePasswordButton.click();
+        System.out.println("Change Password Button clicked");
+    }
+
     public WebElement getOldPasswordInputField() {
         return driver.findElement(By.id("OldPassword"));
     }
@@ -78,6 +84,10 @@ public class CustomerPage extends TemplatePage {
     }
 
     public WebElement getSamePasswordError() {
+        return driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[2]/div/div[2]/form/div[1]/ul/li"));
+    }
+
+    public WebElement getOldPasswordMatchError() {
         return driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[2]/div/div[2]/form/div[1]/ul/li"));
     }
 }

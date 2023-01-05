@@ -93,5 +93,13 @@ public class LoginWithNewAccount extends TemplateTest {
         System.out.println("Message: " + customerPage.getSamePasswordError().getText());
         Assert.assertEquals(customerPage.getSamePasswordError().getText(), "You entered the password that is the same as one of the last passwords you used. Please create a new password.");
 
+        customerPage.oldPasswordInputFieldSetText("ghosty");
+        customerPage.newPasswordInputFieldSetText("ghosty");
+        customerPage.confirmNewPasswordInputFieldSetText("ghosty");
+
+        customerPage.clickChangePasswordButtonWhenErrorIsPresent();
+
+        System.out.println("Message: " + customerPage.getOldPasswordMatchError().getText());
+        Assert.assertEquals(customerPage.getOldPasswordMatchError().getText(), "Old password doesn't match");
     }
 }
