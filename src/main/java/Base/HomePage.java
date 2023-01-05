@@ -16,4 +16,10 @@ public class HomePage extends TemplatePage {
         registerButton.click();
         System.out.println("Register button clicked");
     }
+
+    public void clickLoginButton() {
+        WebElement loginButton = driver.findElement(By.className("ico-login"));
+        loginButton.click();
+        System.out.println("Login button clicked");
+    }
 }
