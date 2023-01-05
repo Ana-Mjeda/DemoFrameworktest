@@ -16,6 +16,12 @@ public class LoginPage extends TemplatePage {
         System.out.println("Login button on bottom of Returning Customer clicked");
     }
 
+    public void clickLoginButtonWhenErrorIsPresent() {
+        WebElement loginButton = driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[1]/div[2]/form/div[4]/button"));
+        loginButton.click();
+        System.out.println("Login button on bottom of Returning Customer clicked");
+    }
+
     public WebElement getEmailInputField() {
         return driver.findElement(By.id("Email"));
     }

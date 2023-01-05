@@ -22,4 +22,10 @@ public class HomePage extends TemplatePage {
         loginButton.click();
         System.out.println("Login button clicked");
     }
+
+    public void clickLogoutButton() {
+        WebElement logoutButton = driver.findElement(By.className("ico-logout"));
+        logoutButton.click();
+        System.out.println("Logout button clicked");
+    }
 }
