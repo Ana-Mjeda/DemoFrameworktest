@@ -1,7 +1,7 @@
 package nopCommerceTests;
 
 import Base.BrowserFactory;
-import Base.HomePage;
+import Base.CustomerPage;
 import Base.LoginPage;
 import Base.PageHeader;
 import org.openqa.selenium.Keys;
@@ -11,18 +11,16 @@ import org.testng.annotations.Test;
 
 public class LoginWithNewAccount extends TemplateTest {
 
-    private final HomePage homePage = new HomePage(BrowserFactory.getDriver());
-
     private final LoginPage loginPage = new LoginPage(BrowserFactory.getDriver());
 
     private final PageHeader pageHeader = new PageHeader(BrowserFactory.getDriver());
 
+    private final CustomerPage customerPage = new CustomerPage(BrowserFactory.getDriver());
+
     @Test
-    public void step2() {
+    public void step2() throws InterruptedException {
 
-        homePage.clickLoginButton();
-
-        BrowserFactory.getDriver().getCurrentUrl();
+        pageHeader.clickLoginButton();
 
         // test if it's on register page by url
         Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/login"));
@@ -59,6 +57,41 @@ public class LoginWithNewAccount extends TemplateTest {
         System.out.println(logoutButton.getText() + " is displayed");
         Assert.assertEquals(logoutButton.getText(), "Log out");
 
+        pageHeader.clickLogoutButton();
+        System.out.println("Log out button on header page is clicked");
+        Thread.sleep(3000);
+
     }
 
+    @Test
+    public void step3() {
+
+        pageHeader.clickLoginButton();
+
+        loginPage.emailInputFieldSetText("herasrp@test.com");
+        loginPage.passwordInputFieldSetText("secret");
+
+        loginPage.clickLoginButton();
+
+        pageHeader.clickMyAccountButton();
+
+        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/customer/info");
+
+        customerPage.clickChangePassword();
+
+        customerPage.oldPasswordInputFieldSetText("secret");
+        System.out.println("Old Password is entered");
+
+        customerPage.newPasswordInputFieldSetText("secret");
+        System.out.println("New Password is entered");
+
+        customerPage.confirmNewPasswordInputFieldSetText("secret");
+        System.out.println("Confirmed New Password is entered");
+
+        customerPage.clickChangePasswordButton();
+
+        System.out.println("Message: " + customerPage.getSamePasswordError().getText());
+        Assert.assertEquals(customerPage.getSamePasswordError().getText(), "You entered the password that is the same as one of the last passwords you used. Please create a new password.");
+
+    }
 }

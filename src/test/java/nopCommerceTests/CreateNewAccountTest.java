@@ -18,7 +18,6 @@ public class CreateNewAccountTest extends TemplateTest {
     public void step1() throws InterruptedException {
         homePage.clickRegisterButton();
 
-        BrowserFactory.getDriver().getCurrentUrl();
         // test if it's on register page by url
         Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/register"));
 

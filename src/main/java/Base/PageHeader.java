@@ -19,11 +19,27 @@ public class PageHeader extends TemplatePage {
         return getRegisterButton();
     }
 
+    public void clickMyAccountButton() {
+        WebElement myAccountButton = driver.findElement(By.className("ico-account"));
+        myAccountButton.click();
+        System.out.println("My account button clicked");
+    }
+
     public WebElement getLoginButton() {
         return driver.findElement(By.xpath("/html/body/div[6]/div[1]/div[1]/div[2]/div[1]/ul/li[2]/a"));
     }
 
+    public void clickLoginButton() {
+        WebElement loginButton = driver.findElement(By.className("ico-login"));
+        loginButton.click();
+        System.out.println("Login button clicked");
+    }
+
     public WebElement getLogoutButton() {
         return getLoginButton();
+    }
+
+    public void clickLogoutButton() {
+        getLogoutButton().click();
     }
 }
