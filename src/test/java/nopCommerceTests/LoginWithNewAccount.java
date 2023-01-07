@@ -1,9 +1,6 @@
 package nopCommerceTests;
 
-import Base.BrowserFactory;
-import Base.CustomerPage;
-import Base.LoginPage;
-import Base.PageHeader;
+import Base.*;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -12,11 +9,10 @@ import org.testng.annotations.Test;
 public class LoginWithNewAccount extends TemplateTest {
 
     private final LoginPage loginPage = new LoginPage(BrowserFactory.getDriver());
-
     private final PageHeader pageHeader = new PageHeader(BrowserFactory.getDriver());
-
     private final CustomerPage customerPage = new CustomerPage(BrowserFactory.getDriver());
-
+    private final TopMenu topMenu = new TopMenu(BrowserFactory.getDriver());
+    private final CellPhonesPage cellPhonesPage = new CellPhonesPage(BrowserFactory.getDriver());
     String email = "heras@test.com";
 
     @Test
@@ -153,5 +149,30 @@ public class LoginWithNewAccount extends TemplateTest {
         loginPage.clickLoginButtonWhenErrorIsPresent();
 
         pageHeader.clickLogoutButton();
+    }
+
+    @Test
+    public void addProductStep1() throws InterruptedException {
+
+        pageHeader.clickLoginButton();
+        loginPage.emailInputFieldSetText(email);
+        loginPage.passwordInputFieldSetText("secret");
+        loginPage.clickLoginButton();
+
+        topMenu.clickElectronics();
+        cellPhonesPage.selectCellPhones();
+
+        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/cell-phones");
+
+        cellPhonesPage.clickAddToCartButton();
+
+        System.out.println("Message: " + cellPhonesPage.getBarNotification().getText());
+        Assert.assertEquals(cellPhonesPage.getBarNotification().getText(), "The product has been added to your shopping cart");
+
+        cellPhonesPage.clickShoppingCartLink();
+
+        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/cart");
+
+
     }
 }
