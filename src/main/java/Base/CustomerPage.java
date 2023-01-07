@@ -90,5 +90,17 @@ public class CustomerPage extends TemplatePage {
     public WebElement getOldPasswordMatchError() {
         return driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[2]/div/div[2]/form/div[1]/ul/li"));
     }
+
+    public WebElement getConfirmNewPasswordMatchError() {
+        return driver.findElement(By.id("ConfirmNewPassword-error"));
+    }
+
+    public WebElement getPasswordChangedSuccessfulMessage() {
+        return driver.findElement(By.xpath("//*[@id=\"bar-notification\"]/div/p"));
+    }
+
+    public WebElement getCloseButton() {
+        return driver.findElement(By.className("close"));
+    }
 }
 

@@ -12,7 +12,7 @@ public class CreateNewAccountTest extends TemplateTest {
 
     private final HomePage homePage = new HomePage(BrowserFactory.getDriver());
 
-    String email = "herasrp@test.com";
+    String email = "herasit@test.com";
 
     @Test
     public void step1() throws InterruptedException {

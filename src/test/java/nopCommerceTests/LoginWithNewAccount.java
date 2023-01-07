@@ -31,7 +31,7 @@ public class LoginWithNewAccount extends TemplateTest {
         Assert.assertEquals(loginPage.getEmailError().getText(), "Wrong email");
 
         loginPage.getEmailInputField().clear();
-        loginPage.emailInputFieldSetText("herasrp@test.com");
+        loginPage.emailInputFieldSetText("herasi@test.com");
         System.out.println("Entered Email is: " + loginPage.getEmailAttribute());
 
         loginPage.passwordInputFieldSetText("t");
@@ -47,7 +47,7 @@ public class LoginWithNewAccount extends TemplateTest {
 
         loginPage.clickLoginButtonWhenErrorIsPresent();
 
-        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/");
+        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl()., "https://demo.nopcommerce.com/");
 
         WebElement myAccountButton = pageHeader.getMyAccountButton();
         System.out.println(myAccountButton.getText() + " is displayed");
@@ -64,11 +64,11 @@ public class LoginWithNewAccount extends TemplateTest {
     }
 
     @Test
-    public void step3() {
+    public void step3() throws InterruptedException {
 
         pageHeader.clickLoginButton();
 
-        loginPage.emailInputFieldSetText("herasrp@test.com");
+        loginPage.emailInputFieldSetText("herasit@test.com");
         loginPage.passwordInputFieldSetText("secret");
 
         loginPage.clickLoginButton();
@@ -101,5 +101,48 @@ public class LoginWithNewAccount extends TemplateTest {
 
         System.out.println("Message: " + customerPage.getOldPasswordMatchError().getText());
         Assert.assertEquals(customerPage.getOldPasswordMatchError().getText(), "Old password doesn't match");
+
+        customerPage.getOldPasswordInputField().clear();
+        customerPage.oldPasswordInputFieldSetText("secret");
+        customerPage.getNewPasswordInputField().clear();
+        customerPage.newPasswordInputFieldSetText("ghosty");
+        customerPage.getConfirmNewPasswordInputField().clear();
+        customerPage.confirmNewPasswordInputFieldSetText("ghosta");
+
+        customerPage.clickChangePasswordButtonWhenErrorIsPresent();
+
+        System.out.println("Message: " + customerPage.getConfirmNewPasswordMatchError().getText());
+        Assert.assertEquals(customerPage.getConfirmNewPasswordMatchError().getText(), "The new password and confirmation password do not match.");
+
+        customerPage.getOldPasswordInputField().clear();
+        customerPage.oldPasswordInputFieldSetText("secret");
+        customerPage.getNewPasswordInputField().clear();
+        customerPage.newPasswordInputFieldSetText("ghosty");
+        customerPage.getConfirmNewPasswordInputField().clear();
+        customerPage.confirmNewPasswordInputFieldSetText("ghosty");
+
+        customerPage.clickChangePasswordButtonWhenErrorIsPresent();
+
+        System.out.println("Message: " + customerPage.getPasswordChangedSuccessfulMessage().getText());
+        Assert.assertEquals(customerPage.getPasswordChangedSuccessfulMessage().getText(), "Password was changed");
+
+        customerPage.getCloseButton().click();
+        Thread.sleep(3000);
+
+        pageHeader.clickLogoutButton();
+        pageHeader.clickLoginButton();
+
+        loginPage.emailInputFieldSetText("herasit@test.com");
+        loginPage.passwordInputFieldSetText("secret");
+
+        loginPage.clickLoginButton();
+
+        System.out.println("Message: " + customerPage.getConfirmNewPasswordMatchError().getText());
+        Assert.assertEquals(customerPage.getConfirmNewPasswordMatchError().getText(), "Login was unsuccessful. /nPlease correct the errors and try again.");
+
+        loginPage.getPasswordInputField().clear();
+        loginPage.passwordInputFieldSetText("ghostly");
+
+        loginPage.clickLoginButtonWhenErrorIsPresent();
     }
 }
