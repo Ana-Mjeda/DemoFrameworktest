@@ -92,7 +92,7 @@ public class CustomerPage extends TemplatePage {
     }
 
     public WebElement getConfirmNewPasswordMatchError() {
-        return driver.findElement(By.id("ConfirmNewPassword-error"));
+        return driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[1]/div[2]/form/div[1]"));
     }
 
     public WebElement getPasswordChangedSuccessfulMessage() {
