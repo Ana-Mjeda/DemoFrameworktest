@@ -42,4 +42,33 @@ public class CellPhonesPage extends TemplatePage {
         shoppingCartLink.click();
         System.out.println("Shopping Cart link clicked");
     }
+
+    public void clickHTCOneMiniBlue() {
+        WebElement htcOneMiniBlue = driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[3]/div/div[2]/div[2]/div[2]/div/div/div[2]/div/div[2]/h2/a"));
+        htcOneMiniBlue.click();
+        System.out.println("HTC One Mini Blue clicked");
+    }
+
+    public WebElement getNumberInputField() {
+        return driver.findElement(By.xpath("//*[@id=\"product_enteredQuantity_19\"]"));
+    }
+
+    public void numberInputFieldSetText(String text) {
+        WebElement numberInputField = getNumberInputField();
+        numberInputField.sendKeys(text);
+    }
+
+    public void clickAddToCartButtonInSelectedPhone() {
+        WebElement addToCart = driver.findElement(By.xpath("//*[@id=\"add-to-cart-button-19\"]"));
+        addToCart.click();
+        System.out.println("Add To Cart Button clicked");
+    }
+
+    public WebElement getQtyInputField() {
+        return driver.findElement(By.className("qty-input"));
+    }
+
+    public String getQtyAttribute() {
+        return getQtyInputField().getAttribute("value");
+    }
 }

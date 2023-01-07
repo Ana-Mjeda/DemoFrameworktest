@@ -42,4 +42,18 @@ public class PageHeader extends TemplatePage {
     public void clickLogoutButton() {
         getLogoutButton().click();
     }
+
+    public void clickShoppingCart() {
+        WebElement shoppingCart = driver.findElement(By.xpath("//*[@id=\"topcartlink\"]/a"));
+        shoppingCart.click();
+        System.out.println("Shopping cart clicked");
+    }
+
+    public WebElement getShoppingCartQty() {
+        return driver.findElement(By.xpath("//*[@id=\"topcartlink\"]/a/span[2]"));
+    }
+
+    public String getShoppingCartAttribute() {
+        return getShoppingCartQty().getText();
+    }
 }
