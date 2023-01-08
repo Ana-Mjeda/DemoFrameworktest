@@ -227,6 +227,8 @@ public class LoginWithNewAccount extends TemplateTest {
         System.out.println(checkoutPage.getBillingAddressAttribute() + " is displayed");
         Assert.assertEquals(checkoutPage.getBillingAddressAttribute(), "Billing address");
 
+        checkoutPage.selectCountryFromDropdown("Sweden");
+
     }
 
 
