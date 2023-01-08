@@ -229,6 +229,22 @@ public class LoginWithNewAccount extends TemplateTest {
 
         checkoutPage.selectCountryFromDropdown("Sweden");
 
+        checkoutPage.cityInputFieldSetText("Gothenburg");
+        System.out.println("City: " + checkoutPage.getCityAttribute() + " is entered");
+
+        checkoutPage.address1InputFieldSetText("Nya Bergets Vag 50");
+        System.out.println("Address 1: " + checkoutPage.getAddress1Attribute() + " is entered");
+
+        checkoutPage.postalCodeInputFieldSetText("412 76");
+        System.out.println("Postal code: " + checkoutPage.getPostalCodeAttribute() + " is entered");
+
+        checkoutPage.phoneNumberInputFieldSetText("+46 31 55 83 00");
+        System.out.println("Phone number: " + checkoutPage.getPhoneNumberAttribute() + " is entered");
+
+        checkoutPage.getCheckBoxValue("true");
+
+        //checkoutPage.clickContinueButton();
+
     }
 
 
