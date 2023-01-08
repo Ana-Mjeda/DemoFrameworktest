@@ -71,4 +71,18 @@ public class CellPhonesPage extends TemplatePage {
     public String getQtyAttribute() {
         return getQtyInputField().getAttribute("value");
     }
+
+    public void clickCheckbox() {
+        WebElement checkbox = driver.findElement(By.xpath("//*[@id=\"termsofservice\"]"));
+        checkbox.click();
+        System.out.println("Checkbox clicked");
+    }
+
+    public void clickCheckoutButton() {
+        WebElement checkoutButton = driver.findElement(By.id("checkout"));
+        checkoutButton.click();
+        System.out.println("Checkout button clicked");
+    }
 }
+
+

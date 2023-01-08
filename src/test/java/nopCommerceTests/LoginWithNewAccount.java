@@ -218,6 +218,11 @@ public class LoginWithNewAccount extends TemplateTest {
         System.out.println("Shopping cart value : " + pageHeader.getShoppingCartAttribute());
         Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
 
+        pageHeader.clickShoppingCart();
+
+        cellPhonesPage.clickCheckbox();
+        cellPhonesPage.clickCheckoutButton();
+
     }
 
 
