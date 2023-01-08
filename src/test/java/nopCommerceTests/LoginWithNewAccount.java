@@ -13,6 +13,7 @@ public class LoginWithNewAccount extends TemplateTest {
     private final CustomerPage customerPage = new CustomerPage(BrowserFactory.getDriver());
     private final TopMenu topMenu = new TopMenu(BrowserFactory.getDriver());
     private final CellPhonesPage cellPhonesPage = new CellPhonesPage(BrowserFactory.getDriver());
+    private final CheckoutPage checkoutPage = new CheckoutPage(BrowserFactory.getDriver());
     String email = "heras@test.com";
 
     @Test
@@ -222,6 +223,9 @@ public class LoginWithNewAccount extends TemplateTest {
 
         cellPhonesPage.clickCheckbox();
         cellPhonesPage.clickCheckoutButton();
+
+        System.out.println(checkoutPage.getBillingAddressAttribute() + " is displayed");
+        Assert.assertEquals(checkoutPage.getBillingAddressAttribute(), "Billing address");
 
     }
 
