@@ -277,6 +277,13 @@ public class LoginWithNewAccount extends TemplateTest {
 
         Assert.assertEquals(checkoutPage.getShippingAttribute(), "Shipping Method: Next Day Air");
 
+        Assert.assertEquals(checkoutPage.getProductQtyAttribute(), "3");
+
+        checkoutPage.clickConfirmButtonOnBottomOfPage();
+
+        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/checkout/completed");
+
+        checkoutPage.clickHereForOrdersLink();
     }
 }
 

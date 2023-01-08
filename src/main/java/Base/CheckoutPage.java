@@ -281,4 +281,32 @@ public class CheckoutPage extends TemplatePage {
     public String getShippingAttribute() {
         return getShipping().getText();
     }
+
+    public WebElement getProductName() {
+        return driver.findElement(By.xpath("//*[@id=\"shopping-cart-form\"]/div[1]/table/tbody/tr/td[3]/a"));
+    }
+
+    public String getProductNameAttribute() {
+        return getProductName().getText();
+    }
+
+    public WebElement getProductQty() {
+        return driver.findElement(By.xpath("//*[@id=\"shopping-cart-form\"]/div[1]/table/tbody/tr/td[5]"));
+    }
+
+    public String getProductQtyAttribute() {
+        return getProductQty().getText();
+    }
+
+    public void clickConfirmButtonOnBottomOfPage() {
+        WebElement confirmButtonOnBottomOfPage = driver.findElement(By.xpath("//*[@id=\"confirm-order-buttons-container\"]/button"));
+        confirmButtonOnBottomOfPage.click();
+        System.out.println("Confirm Button is clicked");
+    }
+
+    public void clickHereForOrdersLink() {
+        WebElement clickHereForOrdersLink = driver.findElement(By.xpath("//*[@id=\"confirm-order-buttons-container\"]/button"));
+        clickHereForOrdersLink.click();
+        System.out.println("Click here for orders link is clicked");
+    }
 }
