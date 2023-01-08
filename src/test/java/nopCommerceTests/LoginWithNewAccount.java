@@ -68,11 +68,9 @@ public class LoginWithNewAccount extends TemplateTest {
 
         loginPage.emailInputFieldSetText(email);
         loginPage.passwordInputFieldSetText("secret");
-
         loginPage.clickLoginButton();
 
         pageHeader.clickMyAccountButton();
-
 
         Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/customer/info");
 
@@ -113,6 +111,7 @@ public class LoginWithNewAccount extends TemplateTest {
 
         //System.out.println("Message: " + customerPage.getConfirmNewPasswordMatchError().getText());
         //Assert.assertEquals(customerPage.getConfirmNewPasswordMatchError().getText(), "The new password and confirmation password do not match.");
+        //BAG OPISAN U WORDU
 
         customerPage.getOldPasswordInputField().clear();
         Thread.sleep(1000);
@@ -207,4 +206,20 @@ public class LoginWithNewAccount extends TemplateTest {
         System.out.println("Shopping cart value : " + pageHeader.getShoppingCartAttribute());
         Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
     }
+
+    @Test
+    public void checkoutStep1() {
+
+        pageHeader.clickLoginButton();
+        loginPage.emailInputFieldSetText(email);
+        loginPage.passwordInputFieldSetText("secret");
+        loginPage.clickLoginButton();
+
+        System.out.println("Shopping cart value : " + pageHeader.getShoppingCartAttribute());
+        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
+
+    }
+
+
 }
+
