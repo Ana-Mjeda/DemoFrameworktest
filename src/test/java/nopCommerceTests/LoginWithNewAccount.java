@@ -14,7 +14,7 @@ public class LoginWithNewAccount extends TemplateTest {
     private final TopMenu topMenu = new TopMenu(BrowserFactory.getDriver());
     private final CellPhonesPage cellPhonesPage = new CellPhonesPage(BrowserFactory.getDriver());
     private final CheckoutPage checkoutPage = new CheckoutPage(BrowserFactory.getDriver());
-    String email = "heras@test.com";
+    String email = "herasi@test.com";
 
     @Test
     public void step2() throws InterruptedException {
@@ -241,12 +241,42 @@ public class LoginWithNewAccount extends TemplateTest {
         checkoutPage.phoneNumberInputFieldSetText("+46 31 55 83 00");
         System.out.println("Phone number: " + checkoutPage.getPhoneNumberAttribute() + " is entered");
 
-        checkoutPage.getCheckBoxValue("true");
+        Assert.assertTrue(checkoutPage.getCheckBoxValue());
 
-        //checkoutPage.clickContinueButton();
+        checkoutPage.clickContinueButton();
+
+        System.out.println(checkoutPage.getShippingMethodAttribute() + " is displayed");
+        Assert.assertEquals(checkoutPage.getShippingMethodAttribute(), "Shipping method");
+
+        checkoutPage.clickNextDayAirRadioButton();
+        checkoutPage.clickShippingMethodContinueButton();
+
+        System.out.println(checkoutPage.getPaymentMethodAttribute() + " is displayed");
+        Assert.assertEquals(checkoutPage.getPaymentMethodAttribute(), "Payment method");
+
+        checkoutPage.clickCheckMoneyRadioButton();
+        checkoutPage.clickPaymentMethodContinueButton();
+
+        System.out.println(checkoutPage.getPaymentInformationAttribute() + " is displayed");
+        Assert.assertEquals(checkoutPage.getPaymentInformationAttribute(), "Payment information");
+
+        checkoutPage.clickPaymentInformationContinueButton();
+
+        System.out.println(checkoutPage.getConfirmOrderAttribute() + " is displayed");
+        Assert.assertEquals(checkoutPage.getConfirmOrderAttribute(), "Confirm order");
+
+        Assert.assertEquals(checkoutPage.getBillingNameAttribute(), checkoutPage.getShippingNameAttribute());
+        Assert.assertEquals(checkoutPage.getBillingEmailAttribute(), checkoutPage.getShippingEmailAttribute());
+        Assert.assertEquals(checkoutPage.getBillingPhoneAttribute(), checkoutPage.getShippingPhoneAttribute());
+        Assert.assertEquals(checkoutPage.getBillingCompanyAttribute(), checkoutPage.getShippingCompanyAttribute());
+        Assert.assertEquals(checkoutPage.getBillingAddress1Attribute(), checkoutPage.getShippingAddress1Attribute());
+        Assert.assertEquals(checkoutPage.getBillingCityAttribute(), checkoutPage.getShippingCityAttribute());
+        Assert.assertEquals(checkoutPage.getBillingCountryAttribute(), checkoutPage.getShippingCountryAttribute());
+
+        Assert.assertEquals(checkoutPage.getBillingPaymentAttribute(), "Payment Method: Check / Money Order");
+
+        Assert.assertEquals(checkoutPage.getShippingAttribute(), "Shipping Method: Next Day Air");
 
     }
-
-
 }
 

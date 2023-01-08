@@ -83,11 +83,202 @@ public class CheckoutPage extends TemplatePage {
     public void clickContinueButton() {
         WebElement continueButton = driver.findElement(By.xpath("//*[@id=\"billing-buttons-container\"]/button[4]"));
         continueButton.click();
-        System.out.println("Continue Button is  clicked");
+        System.out.println("Continue Button is clicked");
     }
 
-    public boolean getCheckBoxValue(String text) {
+    public boolean getCheckBoxValue() {
         WebElement checkBox = driver.findElement(By.xpath("//*[@id=\"ShipToSameAddress\"]"));
         return checkBox.isSelected();
+    }
+
+    public WebElement getShippingMethod() {
+        return driver.findElement(By.xpath("//*[@id=\"opc-shipping_method\"]/div[1]/h2"));
+    }
+
+    public String getShippingMethodAttribute() {
+        return getShippingMethod().getText();
+    }
+
+    public void clickNextDayAirRadioButton() {
+        WebElement nextDayAirRadioButton = driver.findElement(By.id("shippingoption_1"));
+        nextDayAirRadioButton.click();
+        System.out.println("Next Day Air Radio Button is clicked");
+    }
+
+    public void clickShippingMethodContinueButton() {
+        WebElement shippingMethodContinueButton = driver.findElement(By.xpath("//*[@id=\"shipping-method-buttons-container\"]/button"));
+        shippingMethodContinueButton.click();
+        System.out.println("Continue Button is clicked");
+    }
+
+    public WebElement getPaymentMethod() {
+        return driver.findElement(By.xpath("//*[@id=\"opc-payment_method\"]/div[1]/h2"));
+    }
+
+    public String getPaymentMethodAttribute() {
+        return getPaymentMethod().getText();
+    }
+
+    public void clickCheckMoneyRadioButton() {
+        WebElement checkMoneyRadioButton = driver.findElement(By.xpath("//*[@id=\"paymentmethod_0\"]"));
+        checkMoneyRadioButton.click();
+        System.out.println("Check/Money radio button is clicked");
+    }
+
+    public void clickPaymentMethodContinueButton() {
+        WebElement paymentMethodContinueButton = driver.findElement(By.xpath("//*[@id=\"payment-method-buttons-container\"]/button"));
+        paymentMethodContinueButton.click();
+        System.out.println("Continue Button is clicked");
+    }
+
+    public WebElement getPaymentInformation() {
+        return driver.findElement(By.xpath("//*[@id=\"opc-payment_info\"]/div[1]/h2"));
+    }
+
+    public String getPaymentInformationAttribute() {
+        return getPaymentInformation().getText();
+    }
+
+    public void clickPaymentInformationContinueButton() {
+        WebElement paymentInformationContinueButton = driver.findElement(By.xpath("//*[@id=\"payment-info-buttons-container\"]/button"));
+        paymentInformationContinueButton.click();
+        System.out.println("Continue Button is clicked");
+    }
+
+    public WebElement getConfirmOrder() {
+        return driver.findElement(By.xpath("//*[@id=\"opc-confirm_order\"]/div[1]/h2"));
+    }
+
+    public String getConfirmOrderAttribute() {
+        return getConfirmOrder().getText();
+    }
+
+    public WebElement getBillingName() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[1]/div[1]/ul/li[1]"));
+    }
+
+    public String getBillingNameAttribute() {
+        return getBillingName().getText();
+    }
+
+    public WebElement getBillingEmail() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[1]/div[1]/ul/li[2]"));
+    }
+
+    public String getBillingEmailAttribute() {
+        return getBillingEmail().getText();
+    }
+
+    public WebElement getBillingPhone() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[1]/div[1]/ul/li[3]"));
+    }
+
+    public String getBillingPhoneAttribute() {
+        return getBillingPhone().getText();
+    }
+
+    public WebElement getBillingCompany() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[1]/div[1]/ul/li[5]"));
+    }
+
+    public String getBillingCompanyAttribute() {
+        return getBillingCompany().getText();
+    }
+
+    public WebElement getBillingAddress1() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[1]/div[1]/ul/li[6]"));
+    }
+
+    public String getBillingAddress1Attribute() {
+        return getBillingAddress1().getText();
+    }
+
+    public WebElement getBillingCity() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[1]/div[1]/ul/li[7]"));
+    }
+
+    public String getBillingCityAttribute() {
+        return getBillingCity().getText();
+    }
+
+    public WebElement getBillingCountry() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[1]/div[1]/ul/li[8]"));
+    }
+
+    public String getBillingCountryAttribute() {
+        return getBillingCountry().getText();
+    }
+
+    public WebElement getBillingPayment() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[1]/div[2]/ul/li"));
+    }
+
+    public String getBillingPaymentAttribute() {
+        return getBillingPayment().getText();
+    }
+
+
+    public WebElement getShippingName() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[2]/div[1]/ul/li[1]"));
+    }
+
+    public String getShippingNameAttribute() {
+        return getShippingName().getText();
+    }
+
+    public WebElement getShippingEmail() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[2]/div[1]/ul/li[2]"));
+    }
+
+    public String getShippingEmailAttribute() {
+        return getShippingEmail().getText();
+    }
+
+    public WebElement getShippingPhone() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[2]/div[1]/ul/li[3]"));
+    }
+
+    public String getShippingPhoneAttribute() {
+        return getShippingPhone().getText();
+    }
+
+    public WebElement getShippingCompany() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[2]/div[1]/ul/li[5]"));
+    }
+
+    public String getShippingCompanyAttribute() {
+        return getShippingCompany().getText();
+    }
+
+    public WebElement getShippingAddress1() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[2]/div[1]/ul/li[6]"));
+    }
+
+    public String getShippingAddress1Attribute() {
+        return getShippingAddress1().getText();
+    }
+
+    public WebElement getShippingCity() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[2]/div[1]/ul/li[7]"));
+    }
+
+    public String getShippingCityAttribute() {
+        return getShippingCity().getText();
+    }
+
+    public WebElement getShippingCountry() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[2]/div[1]/ul/li[8]"));
+    }
+
+    public String getShippingCountryAttribute() {
+        return getShippingCountry().getText();
+    }
+
+    public WebElement getShipping() {
+        return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[2]/div[2]/ul/li"));
+    }
+
+    public String getShippingAttribute() {
+        return getShipping().getText();
     }
 }
