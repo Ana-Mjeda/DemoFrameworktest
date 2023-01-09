@@ -2,6 +2,7 @@ package nopCommerceTests;
 
 import Base.BrowserFactory;
 import Base.HomePage;
+import Base.PageHeader;
 import Base.RegisterPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,8 +10,8 @@ import org.testng.annotations.Test;
 public class CreateNewAccountTest extends TemplateTest {
 
     private final RegisterPage registerPage = new RegisterPage(BrowserFactory.getDriver());
-
     private final HomePage homePage = new HomePage(BrowserFactory.getDriver());
+    private final PageHeader pageHeader = new PageHeader(BrowserFactory.getDriver());
 
     String email = "herasi@test.com";
 
@@ -21,7 +22,7 @@ public class CreateNewAccountTest extends TemplateTest {
         // test if it's on register page by url
         Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/register"));
 
-        registerPage.clickRegisterButton();
+        pageHeader.clickRegisterButton();
 
         Assert.assertEquals(registerPage.getFirstNameAttribute(), "");
         Assert.assertEquals(registerPage.getFirstNameError().getText(), "First name is required.");
@@ -104,7 +105,7 @@ public class CreateNewAccountTest extends TemplateTest {
 
     @Test
     public void step4() throws InterruptedException {
-        homePage.clickRegisterButton();
+        pageHeader.clickRegisterButton();
 
         registerPage.genderFemale().click();
 
@@ -133,11 +134,9 @@ public class CreateNewAccountTest extends TemplateTest {
 
         registerPage.clickRegisterButton();
 
-
         String text = registerPage.getEmailMessage().getText();
         System.out.println("Message: " + text);
         Assert.assertEquals(text, "The specified email already exists");
 
-        Thread.sleep(5000);
     }
 }

@@ -14,6 +14,7 @@ public class LoginWithNewAccount extends TemplateTest {
     private final TopMenu topMenu = new TopMenu(BrowserFactory.getDriver());
     private final CellPhonesPage cellPhonesPage = new CellPhonesPage(BrowserFactory.getDriver());
     private final CheckoutPage checkoutPage = new CheckoutPage(BrowserFactory.getDriver());
+    private final OrderDetails orderDetails = new OrderDetails(BrowserFactory.getDriver());
     String email = "herasi@test.com";
 
     @Test
@@ -209,7 +210,7 @@ public class LoginWithNewAccount extends TemplateTest {
     }
 
     @Test
-    public void checkoutStep1() {
+    public void checkoutStep1() throws InterruptedException {
 
         pageHeader.clickLoginButton();
         loginPage.emailInputFieldSetText(email);
@@ -280,10 +281,28 @@ public class LoginWithNewAccount extends TemplateTest {
         Assert.assertEquals(checkoutPage.getProductQtyAttribute(), "3");
 
         checkoutPage.clickConfirmButtonOnBottomOfPage();
+        Thread.sleep(1000);
 
         Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/checkout/completed");
 
         checkoutPage.clickHereForOrdersLink();
+
+        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "/html/body/div[6]/div[3]/div/div/div/div[2]/div/div[2]/div[2]/a");
+
+        Assert.assertEquals(orderDetails.getBillingNameAttribute(), orderDetails.getShippingNameAttribute());
+        Assert.assertEquals(orderDetails.getBillingEmailAttribute(), orderDetails.getShippingEmailAttribute());
+        Assert.assertEquals(orderDetails.getBillingPhoneAttribute(), orderDetails.getShippingPhoneAttribute());
+        Assert.assertEquals(orderDetails.getBillingCompanyAttribute(), orderDetails.getShippingCompanyAttribute());
+        Assert.assertEquals(orderDetails.getBillingAddress1Attribute(), orderDetails.getShippingAddress1Attribute());
+        Assert.assertEquals(orderDetails.getBillingCityAttribute(), orderDetails.getShippingCityAttribute());
+        Assert.assertEquals(orderDetails.getBillingCountryAttribute(), orderDetails.getShippingCountryAttribute());
+
+        Assert.assertEquals(orderDetails.getBillingPaymentAttribute(), "Payment Method: Check / Money Order");
+
+        Assert.assertEquals(orderDetails.getShippingAttribute(), "Shipping Method: Next Day Air");
+
+        Assert.assertEquals(orderDetails.getProductQtyAttribute(), "3");
+
     }
 }
 

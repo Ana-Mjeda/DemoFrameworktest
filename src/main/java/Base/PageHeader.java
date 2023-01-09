@@ -15,6 +15,12 @@ public class PageHeader extends TemplatePage {
         return driver.findElement(By.xpath("/html/body/div[6]/div[1]/div[1]/div[2]/div[1]/ul/li[1]/a"));
     }
 
+    public void clickRegisterButton() {
+        WebElement registerButton = driver.findElement(By.className("ico-register"));
+        registerButton.click();
+        System.out.println("MRegister button clicked");
+    }
+
     public WebElement getMyAccountButton() {
         return getRegisterButton();
     }

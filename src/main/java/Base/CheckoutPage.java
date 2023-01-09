@@ -305,8 +305,8 @@ public class CheckoutPage extends TemplatePage {
     }
 
     public void clickHereForOrdersLink() {
-        WebElement clickHereForOrdersLink = driver.findElement(By.xpath("//*[@id=\"confirm-order-buttons-container\"]/button"));
-        clickHereForOrdersLink.click();
+        WebElement HereForOrdersLink = driver.findElement(By.xpath("//*[@id=\"confirm-order-buttons-container\"]/button"));
+        HereForOrdersLink.click();
         System.out.println("Click here for orders link is clicked");
     }
 }

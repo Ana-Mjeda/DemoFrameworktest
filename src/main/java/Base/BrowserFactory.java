@@ -57,6 +57,7 @@ public class BrowserFactory {
         wait = new WebDriverWait(driver, Duration.ofSeconds(defaultWaitTime));
 
         driver.manage().window().maximize();
+        driver.navigate().refresh();
         driver.get(url);
 
         return driver;
