@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PageHeader extends TemplatePage {
+public class PageHeader extends BrowserFactory {
 
     public PageHeader(WebDriver driver) {
         super(driver);

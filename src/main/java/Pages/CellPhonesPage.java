@@ -1,12 +1,13 @@
-package Base;
+package Pages;
 
+import Base.BrowserFactory;
 import nopCommerce.TemplatePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-public class CellPhonesPage extends TemplatePage {
+public class CellPhonesPage extends BrowserFactory {
     public CellPhonesPage(WebDriver driver) {
         super(driver);
     }

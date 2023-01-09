@@ -1,11 +1,12 @@
-package Base;
+package Pages;
 
+import Base.BrowserFactory;
 import nopCommerce.TemplatePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LoginPage extends TemplatePage {
+public class LoginPage extends BrowserFactory {
     public LoginPage(WebDriver driver) {
         super(driver);
     }

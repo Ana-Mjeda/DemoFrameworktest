@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class TopMenu extends TemplatePage {
+public class TopMenu extends BrowserFactory {
     public TopMenu(WebDriver driver) {
         super(driver);
     }

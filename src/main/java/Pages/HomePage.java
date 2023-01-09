@@ -1,11 +1,12 @@
-package Base;
+package Pages;
 
+import Base.BrowserFactory;
 import nopCommerce.TemplatePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class HomePage extends TemplatePage {
+public class HomePage extends BrowserFactory {
 
     public HomePage(WebDriver driver) {
         super(driver);

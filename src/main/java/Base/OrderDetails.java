@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class OrderDetails extends TemplatePage {
+public class OrderDetails extends BrowserFactory {
     public OrderDetails(WebDriver driver) {
         super(driver);
     }
