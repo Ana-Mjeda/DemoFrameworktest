@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class BrowserFactory {
 
-    protected static WebDriver driver;
+    public static WebDriver driver;
     public static WebDriverWait wait;
     public static final int defaultWaitTime = 30;
     public static final int defaultImplicitWaitTime = 30;

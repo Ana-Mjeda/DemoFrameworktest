@@ -1,57 +1,73 @@
 package Base;
 
-import nopCommerce.TemplatePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class PageHeader extends TemplatePage {
+
+public class PageHeader extends BrowserFactory {
+    BaseUI baseUI;
 
     public PageHeader(WebDriver driver) {
         super(driver);
+        baseUI = new BaseUI(driver);
     }
 
-    public WebElement getRegisterButton() {
-        return driver.findElement(By.xpath("/html/body/div[6]/div[1]/div[1]/div[2]/div[1]/ul/li[1]/a"));
-    }
+    /**
+     * @Author Ana Mjeda
+     * @Description Test for getting register button
+     * @return
+     */
 
+    @FindBy(className = "ico-register")
+    WebElement registerButton;
+
+    /**
+     * @Description Click on Register link in header
+     */
     public void clickRegisterButton() {
-        WebElement registerButton = driver.findElement(By.className("ico-register"));
-        registerButton.click();
-        System.out.println("MRegister button clicked");
+        baseUI.Click(registerButton);
+        System.out.println("Register link in header clicked");
     }
 
-    public WebElement getMyAccountButton() {
-        return getRegisterButton();
-    }
+    @FindBy(className = "ico-account")
+    WebElement myAccountButton;
 
     public void clickMyAccountButton() {
-        WebElement myAccountButton = driver.findElement(By.className("ico-account"));
-        myAccountButton.click();
+        baseUI.Click(myAccountButton);
         System.out.println("My account button clicked");
     }
 
-    public WebElement getLoginButton() {
-        return driver.findElement(By.xpath("/html/body/div[6]/div[1]/div[1]/div[2]/div[1]/ul/li[2]/a"));
+    public String getMyAccountButtonAttribute() {
+        return myAccountButton.getAttribute("value");
     }
 
+    @FindBy(className = "ico-login")
+    WebElement loginButton;
+
     public void clickLoginButton() {
-        WebElement loginButton = driver.findElement(By.className("ico-login"));
-        loginButton.click();
+        baseUI.Click(loginButton);
         System.out.println("Login button clicked");
     }
 
-    public WebElement getLogoutButton() {
-        return getLoginButton();
+    public WebElement logoutButton() {
+        return loginButton;
     }
 
     public void clickLogoutButton() {
-        getLogoutButton().click();
+        baseUI.Click(logoutButton());
     }
 
+    public String getLogoutAttribute() {
+        return logoutButton().getAttribute("value");
+    }
+
+    @FindBy(xpath = "//a[@id='topcartlink']/a/span[1]")
+    WebElement shoppingCart;
+
     public void clickShoppingCart() {
-        WebElement shoppingCart = driver.findElement(By.xpath("//*[@id=\"topcartlink\"]/a"));
-        shoppingCart.click();
+        baseUI.Click(shoppingCart);
         System.out.println("Shopping cart clicked");
     }
 

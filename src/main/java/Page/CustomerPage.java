@@ -1,4 +1,4 @@
-package Base;
+package Page;
 
 import nopCommerce.TemplatePage;
 import org.openqa.selenium.By;
