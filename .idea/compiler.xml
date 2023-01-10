@@ -6,11 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="DemoFrameworktest" />
         <module name="NopCommerceTest" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="DemoFrameworktest" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>

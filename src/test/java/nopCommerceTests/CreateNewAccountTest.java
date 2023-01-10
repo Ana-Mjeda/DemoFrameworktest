@@ -1,16 +1,16 @@
 package nopCommerceTests;
 
-import Base.BrowserFactory;
-import Base.PageHeader;
-import Page.HomePage;
-import Page.RegisterPage;
+import base.BrowserFactory;
+import base.PageHeader;
+import page.HomePage;
+import page.RegisterPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static Base.BrowserFactory.driver;
+import static base.BrowserFactory.driver;
 
 public class CreateNewAccountTest {
 

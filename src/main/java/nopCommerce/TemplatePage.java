@@ -1,7 +1,7 @@
 package nopCommerce;
 
-import Base.BaseUI;
-import Base.BrowserFactory;
+import base.BaseUI;
+import base.BrowserFactory;
 import org.openqa.selenium.WebDriver;
 
 public class TemplatePage extends BrowserFactory {

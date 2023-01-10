@@ -1,6 +1,6 @@
 package nopCommerceTests;
 
-import Base.BrowserFactory;
+import base.BrowserFactory;
 import nopCommerce.TemplatePage;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;

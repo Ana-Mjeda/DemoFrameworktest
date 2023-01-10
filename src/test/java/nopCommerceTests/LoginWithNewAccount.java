@@ -1,10 +1,10 @@
 package nopCommerceTests;
 
-import Base.BrowserFactory;
-import Base.OrderDetails;
-import Base.PageHeader;
-import Base.TopMenu;
-import Page.*;
+import base.BrowserFactory;
+import base.OrderDetails;
+import base.PageHeader;
+import base.TopMenu;
+import page.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;

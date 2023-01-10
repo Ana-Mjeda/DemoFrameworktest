@@ -1,7 +1,7 @@
-package Page;
+package page;
 
-import Base.BaseUI;
-import Base.BrowserFactory;
+import base.BaseUI;
+import base.BrowserFactory;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
