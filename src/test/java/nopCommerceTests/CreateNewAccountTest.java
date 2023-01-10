@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import page.HomePage;
 import page.RegisterPage;
+import util.DateTimeGenerator;
 
 import static base.BrowserFactory.driver;
 
@@ -30,7 +31,7 @@ public class CreateNewAccountTest {
 
     String year = "1980";
 
-    String email = "heraspi@test.com";
+    String email;
 
     String company = "Phoenix";
 
@@ -50,6 +51,8 @@ public class CreateNewAccountTest {
         homePage = new HomePage(driver);
         registerPage = new RegisterPage(driver);
         pageHeader = new PageHeader(driver);
+        email = "hera" + DateTimeGenerator.getDateTime() + "@test.com";
+        System.out.println(email);
     }
 
     @Test
@@ -83,12 +86,10 @@ public class CreateNewAccountTest {
     public void changePassword() {
         pageHeader.clickLoginButton();
         Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/login/"));
-
     }
 
     @AfterTest
     public void closeDriver() {
-
         //closes the browser instance
         driver.close();
     }
