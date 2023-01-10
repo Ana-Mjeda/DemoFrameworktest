@@ -8,8 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class RegisterPage extends BrowserFactory {
-    String email = "herasi@test.com";
-
     BaseUI baseUI;
 
     public RegisterPage(WebDriver driver) {
@@ -21,7 +19,6 @@ public class RegisterPage extends BrowserFactory {
     WebElement registerButton;
     @FindBy(xpath = "//a[@class='button-1 register-continue-button']")
     WebElement continueButton;
-
 
     @FindBy(id = "FirstName")
     WebElement firstNameInputField;
