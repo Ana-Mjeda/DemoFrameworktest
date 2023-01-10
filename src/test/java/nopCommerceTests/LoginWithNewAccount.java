@@ -4,23 +4,31 @@ import base.BrowserFactory;
 import base.OrderDetails;
 import base.PageHeader;
 import base.TopMenu;
-import page.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import page.*;
 
 public class LoginWithNewAccount {
 
     private RegisterPage registerPage;
+
     private HomePage homePage;
+
     private PageHeader pageHeader;
+
     private LoginPage loginPage;
+
     private final TopMenu topMenu = new TopMenu(BrowserFactory.getDriver());
+
     private final CellPhonesPage cellPhonesPage = new CellPhonesPage(BrowserFactory.getDriver());
+
     private final CheckoutPage checkoutPage = new CheckoutPage(BrowserFactory.getDriver());
+
     private final OrderDetails orderDetails = new OrderDetails(BrowserFactory.getDriver());
+
     String email = "heraspi@test.com";
 
     @BeforeClass

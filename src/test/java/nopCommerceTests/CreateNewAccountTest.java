@@ -2,33 +2,46 @@ package nopCommerceTests;
 
 import base.BrowserFactory;
 import base.PageHeader;
-import page.HomePage;
-import page.RegisterPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import page.HomePage;
+import page.RegisterPage;
 
 import static base.BrowserFactory.driver;
 
 public class CreateNewAccountTest {
 
     private RegisterPage registerPage;
+
     private HomePage homePage;
+
     private PageHeader pageHeader;
 
     String name = "Hera";
+
     String lastName = "Syndulla";
+
     String day = "17";
+
     String month = "April";
+
     String year = "1980";
+
     String email = "heraspi@test.com";
+
     String company = "Phoenix";
+
     String password = "secret";
+
     String confirmPassword = "secret";
+
     String invalidEmail = "test.com";
+
     String invalidPassword = "test";
+
     String invalidConfirmPassword = "tost";
 
     @BeforeClass
@@ -38,7 +51,6 @@ public class CreateNewAccountTest {
         registerPage = new RegisterPage(driver);
         pageHeader = new PageHeader(driver);
     }
-
 
     @Test
     public void stepCreateAccount() {

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class OrderDetails extends TemplatePage {
+
     public OrderDetails(WebDriver driver) {
         super(driver);
     }
@@ -73,7 +74,6 @@ public class OrderDetails extends TemplatePage {
     public String getBillingPaymentAttribute() {
         return getBillingPayment().getText();
     }
-
 
     public WebElement getShippingName() {
         return driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[2]/div[2]/div[1]/ul/li[1]"));

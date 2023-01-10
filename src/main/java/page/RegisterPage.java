@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class RegisterPage extends BrowserFactory {
+
     BaseUI baseUI;
 
     @FindBy(id = "register-button")
@@ -15,39 +16,55 @@ public class RegisterPage extends BrowserFactory {
 
     @FindBy(xpath = "//a[@class='button-1 register-continue-button']")
     WebElement continueButton;
+
     @FindBy(id = "FirstName")
     WebElement firstNameInputField;
 
     @FindBy(id = "LastName")
     WebElement lastNameInputField;
+
     @FindBy(id = "Email")
     WebElement emailInputField;
+
     @FindBy(id = "Password")
     WebElement passwordInputField;
+
     @FindBy(id = "ConfirmPassword")
     WebElement confirmPasswordInputField;
+
     @FindBy(id = "Company")
     WebElement companyInputField;
+
     @FindBy(id = "FirstName-error")
     WebElement firstNameError;
+
     @FindBy(id = "LastName-error")
     WebElement lastNameError;
+
     @FindBy(id = "Email-error")
     WebElement emailError;
+
     @FindBy(id = "Password-error")
     WebElement passwordError;
+
     @FindBy(id = "ConfirmPassword")
     WebElement confirmPasswordError;
+
     @FindBy(name = "DateOfBirthDay")
     WebElement dateOfBirthDay;
+
     @FindBy(name = "DateOfBirthMonth")
     WebElement monthOfBirthDay;
+
     @FindBy(name = "DateOfBirthYear")
     WebElement yearOfBirthDay;
+
     @FindBy(id = "gender-female")
     WebElement genderFemale;
+
     @FindBy(className = "result")
     WebElement registrationMessage;
+
     @FindBy(xpath = "//li[.='The specified email already exists']")
     WebElement messageError;
 

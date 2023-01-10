@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class TopMenu extends TemplatePage {
+
     public TopMenu(WebDriver driver) {
         super(driver);
     }

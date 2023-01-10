@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class CheckoutPage extends TemplatePage {
+
     public CheckoutPage(WebDriver driver) {
         super(driver);
     }
@@ -216,7 +217,6 @@ public class CheckoutPage extends TemplatePage {
     public String getBillingPaymentAttribute() {
         return getBillingPayment().getText();
     }
-
 
     public WebElement getShippingName() {
         return driver.findElement(By.xpath("//*[@id=\"checkout-confirm-order-load\"]/div/div/div/div/div[2]/div[1]/ul/li[1]"));

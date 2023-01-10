@@ -5,6 +5,7 @@ import base.BrowserFactory;
 import org.openqa.selenium.WebDriver;
 
 public class TemplatePage extends BrowserFactory {
+
     BaseUI ui;
 
     public TemplatePage(WebDriver driver) {
