@@ -1,13 +1,12 @@
-package Pages;
+package Base;
 
-import Base.BrowserFactory;
 import nopCommerce.TemplatePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class CheckoutPage extends BrowserFactory {
+public class CheckoutPage extends TemplatePage {
     public CheckoutPage(WebDriver driver) {
         super(driver);
     }

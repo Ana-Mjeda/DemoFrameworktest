@@ -1,10 +1,6 @@
 package nopCommerceTests;
 
 import Base.*;
-import Pages.CellPhonesPage;
-import Pages.CheckoutPage;
-import Pages.CustomerPage;
-import Pages.LoginPage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;

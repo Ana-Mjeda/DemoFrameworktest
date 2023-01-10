@@ -1,9 +1,9 @@
 package nopCommerceTests;
 
 import Base.BrowserFactory;
-import Pages.HomePage;
+import Base.HomePage;
 import Base.PageHeader;
-import Pages.RegisterPage;
+import Base.RegisterPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
