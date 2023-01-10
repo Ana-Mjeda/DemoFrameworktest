@@ -26,7 +26,7 @@ public class LoginPage extends BrowserFactory {
 
     @Step("Click Login Button")
     public void clickLoginButton() {
-        baseUI.Click(LoginButton);
+        baseUI.click(LoginButton);
         System.out.println("Login button on bottom of Returning Customer clicked");
     }
 

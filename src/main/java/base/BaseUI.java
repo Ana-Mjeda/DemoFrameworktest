@@ -13,8 +13,7 @@ public class BaseUI extends BrowserFactory {
         super(driver);
     }
 
-    public void Click(WebElement element) {
-
+    public void click(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();

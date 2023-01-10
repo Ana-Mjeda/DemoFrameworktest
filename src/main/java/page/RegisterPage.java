@@ -55,13 +55,13 @@ public class RegisterPage extends BrowserFactory {
     @Step("Click Register Button")
     public void clickRegisterButton() {
         //registerButton.click();
-        baseUI.Click(registerButton);
+        baseUI.click(registerButton);
         System.out.println("Register button on bottom of the page clicked");
     }
 
     @Step("Click Continue Button")
     public void clickContinueButton() {
-        baseUI.Click(continueButton);
+        baseUI.click(continueButton);
         System.out.println("Continue button clicked");
     }
 

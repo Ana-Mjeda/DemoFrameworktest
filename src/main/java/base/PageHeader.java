@@ -27,7 +27,7 @@ public class PageHeader extends BrowserFactory {
      * @Description Click on Register link in header
      */
     public void clickRegisterButton() {
-        baseUI.Click(registerButton);
+        baseUI.click(registerButton);
         System.out.println("Register link in header clicked");
     }
 
@@ -35,7 +35,7 @@ public class PageHeader extends BrowserFactory {
     WebElement myAccountButton;
 
     public void clickMyAccountButton() {
-        baseUI.Click(myAccountButton);
+        baseUI.click(myAccountButton);
         System.out.println("My account button clicked");
     }
 
@@ -47,7 +47,7 @@ public class PageHeader extends BrowserFactory {
     WebElement loginButton;
 
     public void clickLoginButton() {
-        baseUI.Click(loginButton);
+        baseUI.click(loginButton);
         System.out.println("Login button clicked");
     }
 
@@ -56,7 +56,7 @@ public class PageHeader extends BrowserFactory {
     }
 
     public void clickLogoutButton() {
-        baseUI.Click(logoutButton());
+        baseUI.click(logoutButton());
     }
 
     public String getLogoutAttribute() {
@@ -67,7 +67,7 @@ public class PageHeader extends BrowserFactory {
     WebElement shoppingCart;
 
     public void clickShoppingCart() {
-        baseUI.Click(shoppingCart);
+        baseUI.click(shoppingCart);
         System.out.println("Shopping cart clicked");
     }
 
