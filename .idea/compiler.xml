@@ -9,5 +9,8 @@
         <module name="NopCommerceTest" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="DemoFrameworktest" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
