@@ -10,18 +10,14 @@ import org.openqa.selenium.support.FindBy;
 public class RegisterPage extends BrowserFactory {
     BaseUI baseUI;
 
-    public RegisterPage(WebDriver driver) {
-        super(driver);
-        baseUI = new BaseUI(driver);
-    }
-
     @FindBy(id = "register-button")
     WebElement registerButton;
+
     @FindBy(xpath = "//a[@class='button-1 register-continue-button']")
     WebElement continueButton;
-
     @FindBy(id = "FirstName")
     WebElement firstNameInputField;
+
     @FindBy(id = "LastName")
     WebElement lastNameInputField;
     @FindBy(id = "Email")
@@ -50,7 +46,15 @@ public class RegisterPage extends BrowserFactory {
     WebElement yearOfBirthDay;
     @FindBy(id = "gender-female")
     WebElement genderFemale;
+    @FindBy(className = "result")
+    WebElement registrationMessage;
+    @FindBy(xpath = "//li[.='The specified email already exists']")
+    WebElement messageError;
 
+    public RegisterPage(WebDriver driver) {
+        super(driver);
+        baseUI = new BaseUI(driver);
+    }
 
     @Step("Click Register Button")
     public void clickRegisterButton() {
@@ -108,7 +112,7 @@ public class RegisterPage extends BrowserFactory {
     }
 
     @Step("Fill Form with valid data")
-    public RegisterPage fillFormWithValidData(String firstName, String lastName, String day, String month, String year, String email, String company, String password, String confirmPassword) {
+    public void fillFormWithValidData(String firstName, String lastName, String day, String month, String year, String email, String company, String password, String confirmPassword) {
         baseUI.sendText(firstNameInputField, firstName);
         baseUI.sendText(lastNameInputField, lastName);
         baseUI.sendText(emailInputField, email);
@@ -119,12 +123,7 @@ public class RegisterPage extends BrowserFactory {
         dateOfBirthDay(day);
         monthOfBirthMonth(month);
         yearOfBirthYear(year);
-
-        return this;
     }
-
-    @FindBy(className = "result")
-    WebElement registrationMessage;
 
     @Step("Get Registration Message")
     public void getRegistrationMessage() {
@@ -132,13 +131,9 @@ public class RegisterPage extends BrowserFactory {
         System.out.println("Message: " + registrationMessage.getText());
     }
 
-    @FindBy(xpath = "//li[.='The specified email already exists']")
-    WebElement messageError;
-
     @Step("Get Invalid Email Message")
     public void getMessageError() {
         messageError.getText();
         System.out.println("Message: " + messageError.getText());
     }
-
 }
