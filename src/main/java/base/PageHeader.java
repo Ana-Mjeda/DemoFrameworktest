@@ -7,7 +7,20 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class PageHeader extends BrowserFactory {
+
     BaseUI baseUI;
+
+    @FindBy(className = "ico-register")
+    WebElement registerButton;
+
+    @FindBy(className = "ico-account")
+    WebElement myAccountButton;
+
+    @FindBy(className = "ico-login")
+    WebElement loginButton;
+
+    @FindBy(xpath = "//a[@id='topcartlink']/a/span[1]")
+    WebElement shoppingCart;
 
     public PageHeader(WebDriver driver) {
         super(driver);
@@ -16,23 +29,12 @@ public class PageHeader extends BrowserFactory {
 
     /**
      * @Author Ana Mjeda
-     * @Description Test for getting register button
-     * @return
-     */
-
-    @FindBy(className = "ico-register")
-    WebElement registerButton;
-
-    /**
      * @Description Click on Register link in header
      */
     public void clickRegisterButton() {
         baseUI.click(registerButton);
         System.out.println("Register link in header clicked");
     }
-
-    @FindBy(className = "ico-account")
-    WebElement myAccountButton;
 
     public void clickMyAccountButton() {
         baseUI.click(myAccountButton);
@@ -42,9 +44,6 @@ public class PageHeader extends BrowserFactory {
     public String getMyAccountButtonAttribute() {
         return myAccountButton.getAttribute("value");
     }
-
-    @FindBy(className = "ico-login")
-    WebElement loginButton;
 
     public void clickLoginButton() {
         baseUI.click(loginButton);
@@ -62,9 +61,6 @@ public class PageHeader extends BrowserFactory {
     public String getLogoutAttribute() {
         return logoutButton().getAttribute("value");
     }
-
-    @FindBy(xpath = "//a[@id='topcartlink']/a/span[1]")
-    WebElement shoppingCart;
 
     public void clickShoppingCart() {
         baseUI.click(shoppingCart);

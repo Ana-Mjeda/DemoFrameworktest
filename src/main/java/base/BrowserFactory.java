@@ -43,15 +43,6 @@ public class BrowserFactory {
             driver = new FirefoxDriver();
             browser = "Mozilla FireFox";
         }
-//        else if (browserName.equalsIgnoreCase("explorer")) {
-//            WebDriverManager.iedriver().setup();
-//            driver = new InternetExplorerDriver();
-//            browser = "Internet Explorer";
-//        } else if (browserName.equalsIgnoreCase("edge")) {
-//            WebDriverManager.edgedriver().setup();
-//            driver = new EdgeDriver();
-//            browser = "Microsoft Edge";
-//        }
         System.out.println("Opening --" + url + "-- on " + browser + " browser");
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(defaultImplicitWaitTime));
         wait = new WebDriverWait(driver, Duration.ofSeconds(defaultWaitTime));
