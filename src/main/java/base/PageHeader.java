@@ -17,6 +17,9 @@ public class PageHeader extends BrowserFactory {
     @FindBy(className = "ico-login")
     WebElement loginButton;
 
+    @FindBy(className = "ico-logout")
+    WebElement logoutButton;
+
     @FindBy(css = "a[span.cart-label]")
     WebElement shoppingCart;
 
@@ -40,7 +43,7 @@ public class PageHeader extends BrowserFactory {
     }
 
     public String getMyAccountButtonAttribute() {
-        return myAccountButton.getAttribute("value");
+        return myAccountButton.getText();
     }
 
     public void clickLoginButton() {
@@ -49,15 +52,16 @@ public class PageHeader extends BrowserFactory {
     }
 
     public WebElement logoutButton() {
-        return loginButton;
+        return logoutButton;
     }
 
     public void clickLogoutButton() {
         baseUI.click(logoutButton());
+        System.out.println("Logout button clicked");
     }
 
     public String getLogoutAttribute() {
-        return logoutButton().getAttribute("value");
+        return logoutButton().getText();
     }
 
     public void clickShoppingCart() {

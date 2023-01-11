@@ -5,15 +5,7 @@ public class derp {
 //    @Test
 //    public void step3() throws InterruptedException {
 //
-//        pageHeader.clickLoginButton();
 //
-//        loginPage.emailInputFieldSetText(email);
-//        loginPage.passwordInputFieldSetText("secret");
-//        loginPage.clickLoginButton();
-//
-//        pageHeader.clickMyAccountButton();
-//
-//        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/customer/info");
 //
 //        customerPage.clickChangePassword();
 //

@@ -1,106 +1,90 @@
 package page;
 
-import nopCommerce.TemplatePage;
-import org.openqa.selenium.By;
+import base.BaseUI;
+import base.BrowserFactory;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class CustomerPage extends TemplatePage {
+public class CustomerPage extends BrowserFactory {
+    BaseUI baseUI;
 
+    @FindBy(xpath = "//*[@class='change-password inactive'] //a")
+    WebElement changePassword;
+    @FindBy(xpath = "//button[@class='button-1 change-password-button']")
+    WebElement changePasswordButton;
+    @FindBy(id = "OldPassword")
+    WebElement oldPasswordInputField;
+    @FindBy(id = "OldPassword-error")
+    WebElement getOldPasswordError;
+    @FindBy(id = "NewPassword")
+    WebElement newPasswordInputField;
+    @FindBy(id = "NewPassword-error")
+    WebElement getNewPasswordError;
+    @FindBy(id = "ConfirmNewPassword")
+    WebElement confirmNewPasswordInputField;
+    @FindBy(id = "ConfirmNewPassword-error")
+    WebElement getConfirmNewPasswordError;
+    @FindBy(xpath = "//*[@id=\"bar-notification\"]")
+    WebElement getPasswordChangedSuccessfulMessage;
+
+    //    @FindBy(className = "close")
+//    WebElement getCloseButton();
     public CustomerPage(WebDriver driver) {
         super(driver);
+        baseUI = new BaseUI(driver);
     }
 
     public void clickChangePassword() {
-        WebElement changePassword = driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[1]/div/div[2]/ul/li[7]/a"));
-        changePassword.click();
+        baseUI.click(changePassword);
         System.out.println("Change Password link clicked");
     }
 
     public void clickChangePasswordButton() {
-        WebElement changePasswordButton = driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[2]/div/div[2]/form/div[2]/button"));
-        changePasswordButton.click();
+        baseUI.click(changePasswordButton);
         System.out.println("Change Password Button clicked");
     }
-
-    public void clickChangePasswordButtonWhenErrorIsPresent() {
-        WebElement changePasswordButton = driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[2]/div/div[2]/form/div[3]/button"));
-        changePasswordButton.click();
-        System.out.println("Change Password Button clicked");
-    }
-
-    public WebElement getOldPasswordInputField() {
-        return driver.findElement(By.id("OldPassword"));
-    }
-
     public void oldPasswordInputFieldSetText(String text) {
-        WebElement oldPasswordInputField = getOldPasswordInputField();
-        oldPasswordInputField.sendKeys(text);
+        baseUI.sendText(oldPasswordInputField, text);
     }
-
-    // Error that's shown beneath the input field if the input field is empty
-    public WebElement getOldPasswordError() {
-        return driver.findElement(By.id("OldPassword-error"));
-    }
-
     public String getOldPasswordAttribute() {
-        return getOldPasswordInputField().getAttribute("value");
+        return oldPasswordInputField.getText();
     }
-
-    public WebElement getNewPasswordInputField() {
-        return driver.findElement(By.id("NewPassword"));
-    }
-
     public void newPasswordInputFieldSetText(String text) {
-        WebElement newPasswordInputField = getNewPasswordInputField();
-        newPasswordInputField.sendKeys(text);
-    }
-
-    // Error that's shown beneath the input field if the input field is empty
-    public WebElement getNewPasswordError() {
-        return driver.findElement(By.id("NewPassword-error"));
+        baseUI.sendText(newPasswordInputField, text);
     }
 
     public String getNewPasswordAttribute() {
-        return getNewPasswordInputField().getAttribute("value");
-    }
-
-    public WebElement getConfirmNewPasswordInputField() {
-        return driver.findElement(By.id("ConfirmNewPassword"));
+        return newPasswordInputField.getText();
     }
 
     public void confirmNewPasswordInputFieldSetText(String text) {
-        WebElement confirmNewPasswordInputField = getConfirmNewPasswordInputField();
-        confirmNewPasswordInputField.sendKeys(text);
-    }
-
-    // Error that's shown beneath the input field if the input field is empty
-    public WebElement getConfirmNewPasswordError() {
-        return driver.findElement(By.id("ConfirmNewPassword-error"));
+        baseUI.sendText(confirmNewPasswordInputField, text);
     }
 
     public String getConfirmNewPasswordAttribute() {
-        return getConfirmNewPasswordInputField().getAttribute("value");
+        return confirmNewPasswordInputField.getText();
     }
 
-    public WebElement getSamePasswordError() {
-        return driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[2]/div/div[2]/form/div[1]/ul/li"));
+    @FindBy(xpath = "//*[@class='message-error validation-summary-errors']")
+    WebElement samePasswordError;
+
+    public String getSamePasswordErrorAttribute() {
+        return samePasswordError.getText();
     }
 
-    public WebElement getOldPasswordMatchError() {
-        return driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[2]/div/div[2]/form/div[1]/ul/li"));
+    public String getConfirmNewPasswordErrorAttribute() {
+        return getConfirmNewPasswordError.getText();
     }
 
-    public WebElement getConfirmNewPasswordMatchError() {
-        return driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[1]/div[2]/form/div[1]"));
-    }
 
-    public WebElement getPasswordChangedSuccessfulMessage() {
-        return driver.findElement(By.xpath("//*[@id=\"bar-notification\"]/div/p"));
-    }
-
-    public WebElement getCloseButton() {
-        return driver.findElement(By.className("close"));
+    @Step("Fill all fields with same password")
+    public void fillFieldsWithPassword(String oldP, String newP, String confirmP) {
+        oldPasswordInputFieldSetText(oldP);
+        newPasswordInputFieldSetText(newP);
+        confirmNewPasswordInputFieldSetText(confirmP);
+        clickChangePasswordButton();
     }
 }
 

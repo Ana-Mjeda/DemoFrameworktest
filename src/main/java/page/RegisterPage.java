@@ -11,6 +11,9 @@ public class RegisterPage extends BrowserFactory {
 
     BaseUI baseUI;
 
+    @FindBy(xpath = "//*[@class='page-title'")
+    WebElement h1;
+
     @FindBy(id = "register-button")
     WebElement registerButton;
 
@@ -71,6 +74,11 @@ public class RegisterPage extends BrowserFactory {
     public RegisterPage(WebDriver driver) {
         super(driver);
         baseUI = new BaseUI(driver);
+    }
+
+    @Step("Register text is displayed")
+    public void getH1() {
+        System.out.println(h1.getText());
     }
 
     @Step("Click Register Button")

@@ -36,20 +36,20 @@ public class LoginPage extends BrowserFactory {
         baseUI.click(loginButton);
         System.out.println("Login button on bottom of Returning Customer clicked");
     }
-
     public void emailInputFieldSetText(String text) {
         baseUI.sendText(emailInputField, text);
     }
-
     public String getEmailErrorAttribute() {
         return emailError.getText();
     }
-
     public void passwordInputFieldSetText(String text) {
         baseUI.sendText(passwordInputField, text);
     }
-
     public String getPasswordErrorAttribute() {
         return passwordError.getText();
     }
+
+
 }
+
+
