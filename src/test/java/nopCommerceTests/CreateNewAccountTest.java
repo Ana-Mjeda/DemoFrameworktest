@@ -30,7 +30,7 @@ public class CreateNewAccountTest {
 
     String year = "1980";
 
-    String email = "hera20230111020238@test.com";
+    String email = "hera20230111020255@test.com";
     //String email;
     String company = "Phoenix";
 
@@ -40,7 +40,8 @@ public class CreateNewAccountTest {
 
     String invalidEmail = "test.com";
 
-    String invalidPassword = "testiran";
+    String invalidPassword = "test";
+    String invalidPassword1 = "testiran";
 
     String invalidConfirmPassword = "tostiran";
 
@@ -116,32 +117,46 @@ public class CreateNewAccountTest {
     }
 
     @Test
-    public void changePassword() {
+    public void changePassword() throws InterruptedException {
         pageHeader.clickLoginButton();
-        loginPage.emailInputFieldSetText(email);
-        loginPage.passwordInputFieldSetText(password);
+        loginPage.fillLoginFields(email, password);
         loginPage.clickLoginButton();
         pageHeader.clickMyAccountButton();
 
         Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/customer/info");
 
         customerPage.clickChangePassword();
+
         customerPage.fillFieldsWithPassword(password, password, password);
         Assert.assertEquals(customerPage.getSamePasswordErrorAttribute(), "You entered the password that is the same as one of the last passwords you used. Please create a new password.");
 
         driver.get("https://demo.nopcommerce.com/customer/changepassword");
-        customerPage.fillFieldsWithPassword(invalidPassword, invalidPassword, invalidPassword);
+        customerPage.fillFieldsWithPassword(invalidPassword1, invalidPassword1, invalidPassword1);
         Assert.assertEquals(customerPage.getSamePasswordErrorAttribute(), "Old password doesn't match");
 
         driver.get("https://demo.nopcommerce.com/customer/changepassword");
-        customerPage.fillFieldsWithPassword(password, invalidPassword, invalidConfirmPassword);
+        customerPage.fillFieldsWithPassword(password, invalidPassword1, invalidConfirmPassword);
         Assert.assertEquals(customerPage.getConfirmNewPasswordErrorAttribute(), "The new password and confirmation password do not match.");
 
         driver.get("https://demo.nopcommerce.com/customer/changepassword");
         customerPage.fillFieldsWithPassword(password, newPassword, newPassword);
-        //Assert.assertEquals(customerPage.getSamePasswordErrorAttribute(), "Password was changed");
+        Assert.assertEquals(customerPage.getPasswordChangedAttribute(), "Password was changed");
 
+        customerPage.clickCloseButtonOnBar();
+        Thread.sleep(2000);
 
+        pageHeader.clickLogoutButton();
+        pageHeader.clickLoginButton();
+
+        loginPage.fillLoginFields(email, password);
+
+        loginPage.clickLoginButton();
+        Assert.assertEquals(loginPage.getPasswordErrorAttribute(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
+
+        loginPage.passwordInputFieldSetText(newPassword);
+
+        loginPage.clickLoginButton();
+        pageHeader.clickLogoutButton();
     }
 
 //    @AfterTest

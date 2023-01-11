@@ -39,17 +39,24 @@ public class LoginPage extends BrowserFactory {
     public void emailInputFieldSetText(String text) {
         baseUI.sendText(emailInputField, text);
     }
+
     public String getEmailErrorAttribute() {
         return emailError.getText();
     }
+
     public void passwordInputFieldSetText(String text) {
         baseUI.sendText(passwordInputField, text);
     }
+
     public String getPasswordErrorAttribute() {
         return passwordError.getText();
     }
 
-
+    @Step("Fill fields for login")
+    public void fillLoginFields(String email, String password) {
+        emailInputFieldSetText(email);
+        passwordInputFieldSetText(password);
+    }
 }
 
 

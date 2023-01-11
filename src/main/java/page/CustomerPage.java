@@ -28,9 +28,9 @@ public class CustomerPage extends BrowserFactory {
     WebElement getConfirmNewPasswordError;
     @FindBy(xpath = "//*[@id=\"bar-notification\"]")
     WebElement getPasswordChangedSuccessfulMessage;
+    @FindBy(xpath = "//span[@class='close']")
+    WebElement getCloseButtonOnBar;
 
-    //    @FindBy(className = "close")
-//    WebElement getCloseButton();
     public CustomerPage(WebDriver driver) {
         super(driver);
         baseUI = new BaseUI(driver);
@@ -78,6 +78,9 @@ public class CustomerPage extends BrowserFactory {
         return getConfirmNewPasswordError.getText();
     }
 
+    public String getPasswordChangedAttribute() {
+        return getPasswordChangedSuccessfulMessage.getText();
+    }
 
     @Step("Fill all fields with same password")
     public void fillFieldsWithPassword(String oldP, String newP, String confirmP) {
@@ -85,6 +88,10 @@ public class CustomerPage extends BrowserFactory {
         newPasswordInputFieldSetText(newP);
         confirmNewPasswordInputFieldSetText(confirmP);
         clickChangePasswordButton();
+    }
+
+    public void clickCloseButtonOnBar() {
+        baseUI.click(getCloseButtonOnBar);
     }
 }
 
