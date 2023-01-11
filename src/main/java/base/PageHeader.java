@@ -1,6 +1,5 @@
 package base;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,7 +17,7 @@ public class PageHeader extends BrowserFactory {
     @FindBy(className = "ico-login")
     WebElement loginButton;
 
-    @FindBy(xpath = "//a[@id='topcartlink']/a/span[1]")
+    @FindBy(css = "a[span.cart-label]")
     WebElement shoppingCart;
 
     public PageHeader(WebDriver driver) {
@@ -66,11 +65,10 @@ public class PageHeader extends BrowserFactory {
         System.out.println("Shopping cart clicked");
     }
 
-    public WebElement getShoppingCartQty() {
-        return driver.findElement(By.xpath("//*[@id=\"topcartlink\"]/a/span[2]"));
-    }
+    @FindBy(xpath = "a.span.cart-qty")
+    WebElement shoppingCartQty;
 
     public String getShoppingCartAttribute() {
-        return getShoppingCartQty().getText();
+        return shoppingCartQty.getText();
     }
 }

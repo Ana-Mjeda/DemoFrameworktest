@@ -50,18 +50,18 @@ public class LoginWithNewAccount {
 
         loginPage.emailInputFieldSetText("test.com");
         loginPage.passwordInputFieldSetText("");
-        loginPage.getEmailAttribute();
-        System.out.println("Message: " + loginPage.getEmailAttribute());
-        Assert.assertEquals(loginPage.getEmailAttribute(), "Wrong email");
+        loginPage.getEmailErrorAttribute();
+        System.out.println("Message: " + loginPage.getEmailErrorAttribute());
+        Assert.assertEquals(loginPage.getEmailErrorAttribute(), "Wrong email");
 
         loginPage.emailInputFieldSetText(email);
-        System.out.println("Entered Email is: " + loginPage.getEmailAttribute());
+        System.out.println("Entered Email is: " + loginPage.getEmailErrorAttribute());
 
         loginPage.passwordInputFieldSetText("t");
         loginPage.clickLoginButton();
 
-        System.out.println("Message: " + loginPage.getPasswordAttribute());
-        Assert.assertEquals(loginPage.getPasswordAttribute(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
+        System.out.println("Message: " + loginPage.getPasswordErrorAttribute());
+        Assert.assertEquals(loginPage.getPasswordErrorAttribute(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 
         loginPage.passwordInputFieldSetText("secret");
         System.out.println("Password is entered");

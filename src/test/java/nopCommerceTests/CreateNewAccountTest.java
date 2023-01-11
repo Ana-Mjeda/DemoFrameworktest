@@ -8,8 +8,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import page.HomePage;
+import page.LoginPage;
 import page.RegisterPage;
-import util.DateTimeGenerator;
 
 import static base.BrowserFactory.driver;
 
@@ -20,6 +20,7 @@ public class CreateNewAccountTest {
     private HomePage homePage;
 
     private PageHeader pageHeader;
+    private LoginPage loginPage;
 
     String name = "Hera";
 
@@ -31,7 +32,7 @@ public class CreateNewAccountTest {
 
     String year = "1980";
 
-    String email;
+    String email = "hera20230111124104@test.com";
 
     String company = "Phoenix";
 
@@ -51,8 +52,10 @@ public class CreateNewAccountTest {
         homePage = new HomePage(driver);
         registerPage = new RegisterPage(driver);
         pageHeader = new PageHeader(driver);
-        email = "hera" + DateTimeGenerator.getDateTime() + "@test.com";
-        System.out.println(email);
+        loginPage = new LoginPage(driver);
+
+        //email = "hera" + DateTimeGenerator.getDateTime() + "@test.com";
+        //System.out.println(email);
     }
 
     @Test
@@ -83,9 +86,28 @@ public class CreateNewAccountTest {
     }
 
     @Test
+    public void loginWithNewAccount() {
+        pageHeader.clickLoginButton();
+        Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/login"));
+
+        loginPage.emailInputFieldSetText(invalidEmail);
+        loginPage.clickLoginButton();
+
+        Assert.assertEquals(loginPage.getEmailErrorAttribute(), "Wrong email");
+
+        loginPage.emailInputFieldSetText(email);
+        loginPage.passwordInputFieldSetText(invalidPassword);
+        loginPage.clickLoginButton();
+
+        Assert.assertEquals(loginPage.getPasswordErrorAttribute(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
+
+
+    }
+
+    @Test
     public void changePassword() {
         pageHeader.clickLoginButton();
-        Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/login/"));
+
     }
 
     @AfterTest

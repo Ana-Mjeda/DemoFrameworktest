@@ -11,19 +11,19 @@ public class LoginPage extends BrowserFactory {
 
     BaseUI baseUI;
 
-    @FindBy(xpath = "//input[@class='email']")
-    WebElement EmailInputField;
+    @FindBy(id = "Email")
+    WebElement emailInputField;
 
-    @FindBy(xpath = "//input[@class='password']")
-    WebElement PasswordInputField;
+    @FindBy(id = "Password")
+    WebElement passwordInputField;
 
-    @FindBy(xpath = "//input[@class='button-1 login-button']")
-    WebElement LoginButton;
+    @FindBy(xpath = "//button[@class='button-1 login-button']")
+    WebElement loginButton;
 
-    @FindBy(xpath = "//*[@id='Email-error']")
+    @FindBy(xpath = "//span[@id='Email-error']")
     WebElement emailError;
 
-    @FindBy(xpath = "//a[@class='message-error validation-summary-errors']")
+    @FindBy(xpath = "//*[@class='message-error validation-summary-errors']")
     WebElement passwordError;
 
     public LoginPage(WebDriver driver) {
@@ -33,23 +33,23 @@ public class LoginPage extends BrowserFactory {
 
     @Step("Click Login Button")
     public void clickLoginButton() {
-        baseUI.click(LoginButton);
+        baseUI.click(loginButton);
         System.out.println("Login button on bottom of Returning Customer clicked");
     }
 
     public void emailInputFieldSetText(String text) {
-        baseUI.sendText(EmailInputField, text);
+        baseUI.sendText(emailInputField, text);
     }
 
-    public String getEmailAttribute() {
-        return emailError.getAttribute("value");
+    public String getEmailErrorAttribute() {
+        return emailError.getText();
     }
 
     public void passwordInputFieldSetText(String text) {
-        baseUI.sendText(PasswordInputField, text);
+        baseUI.sendText(passwordInputField, text);
     }
 
-    public String getPasswordAttribute() {
-        return passwordError.getAttribute("value");
+    public String getPasswordErrorAttribute() {
+        return passwordError.getText();
     }
 }
