@@ -4,6 +4,7 @@ import base.BrowserFactory;
 import base.PageHeader;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import page.CustomerPage;
@@ -159,9 +160,9 @@ public class CreateNewAccountTest {
         pageHeader.clickLogoutButton();
     }
 
-//    @AfterTest
-//    public void closeDriver() {
-//        //closes the browser instance
-//        driver.close();
-//    }
+    @AfterTest
+    public void closeDriver() {
+        //closes the browser instance
+        driver.close();
+    }
 }
