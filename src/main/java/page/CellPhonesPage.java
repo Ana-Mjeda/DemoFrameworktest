@@ -1,35 +1,44 @@
 package page;
 
+import base.BaseUI;
+import io.qameta.allure.Step;
 import nopCommerce.TemplatePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 
 public class CellPhonesPage extends TemplatePage {
+    BaseUI baseUI;
 
     public CellPhonesPage(WebDriver driver) {
         super(driver);
+        baseUI = new BaseUI(driver);
     }
 
-    public void clickCellPhones() {
-        WebElement cellPhones = driver.findElement(By.xpath("/html/body/div[6]/div[2]/ul[1]/li[2]/ul/li[2]/a"));
-        cellPhones.click();
-        System.out.println("Cell Phones clicked");
-    }
+    @FindBy(xpath = "//a[normalize-space()='Electronics']")
+    WebElement electronics;
 
-    public void selectCellPhones() {
+    @FindBy(xpath = "//a[normalize-space()='Cell phones']")
+    WebElement cellPhones;
+
+    public void selectCellPhonesPage() {
         Actions action = new Actions(driver);
-        WebElement electronics = driver.findElement(By.xpath("/html/body/div[6]/div[2]/ul[1]/li[2]/a"));
-        action.moveToElement(electronics).moveToElement(driver.findElement(By.xpath("/html/body/div[6]/div[2]/ul[1]/li[2]/ul/li[2]/a"))).click().build().perform();
+        action.moveToElement(electronics).moveToElement((cellPhones));
     }
+
+    String htcOne = "HTC One Mini Blue";
+
+    @FindBy(xpath = "//*[@class='button-2 product-box-add-to-cart-button']")
+    WebElement addToCart;
 
     public void clickAddToCartButton() {
-        WebElement addToCart = driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[3]/div/div[2]/div[2]/div[2]/div/div/div[2]/div/div[2]/div[3]/div[2]/button[1]"));
-        addToCart.click();
+        baseUI.click(addToCart);
         System.out.println("Add To Cart Button clicked");
     }
 
+    @Step("")
     public WebElement getBarNotification() {
         return driver.findElement(By.xpath("//*[@id=\"bar-notification\"]/div/p"));
     }

@@ -160,6 +160,15 @@ public class CreateNewAccountTest {
         pageHeader.clickLogoutButton();
     }
 
+    @Test
+    public void addProductStep1() {
+        pageHeader.clickLoginButton();
+        loginPage.fillLoginFields(email, password);
+        loginPage.clickLoginButton();
+
+        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/cell-phones");
+    }
+
     @AfterTest
     public void closeDriver() {
         //closes the browser instance
