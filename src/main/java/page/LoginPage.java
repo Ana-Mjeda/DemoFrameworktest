@@ -56,6 +56,7 @@ public class LoginPage extends BrowserFactory {
     public void fillLoginFields(String email, String password) {
         emailInputFieldSetText(email);
         passwordInputFieldSetText(password);
+        clickLoginButton();
     }
 }
 

@@ -9,6 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
+
 public class CellPhonesPage extends TemplatePage {
     BaseUI baseUI;
 
@@ -23,12 +26,18 @@ public class CellPhonesPage extends TemplatePage {
     @FindBy(xpath = "//a[normalize-space()='Cell phones']")
     WebElement cellPhones;
 
-    public void selectCellPhonesPage() {
+    public void selectCellPhonesPage() throws InterruptedException {
         Actions action = new Actions(driver);
-        action.moveToElement(electronics).moveToElement((cellPhones));
+        WebElement menu = electronics;
+        action.moveToElement(menu);
+
+        WebElement subMenu = cellPhones;
+        action.moveToElement(subMenu);
+
+        action.moveToElement(menu).moveToElement(subMenu).click().build().perform();
+
     }
 
-    String htcOne = "HTC One Mini Blue";
 
     @FindBy(xpath = "//*[@class='button-2 product-box-add-to-cart-button']")
     WebElement addToCart;
@@ -38,53 +47,90 @@ public class CellPhonesPage extends TemplatePage {
         System.out.println("Add To Cart Button clicked");
     }
 
-    @Step("")
-    public WebElement getBarNotification() {
-        return driver.findElement(By.xpath("//*[@id=\"bar-notification\"]/div/p"));
+    @Step("Select add to cart button below HTC One Mini Phone")
+    public void clickAddToCartHTC() {
+
+        List<WebElement> phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
+
+        //WebElement phone = null;
+        //for (int i=0;i< phones.size();i++)
+        for (WebElement phone : phones) {
+            String addPhone = "HTC One Mini Blue";
+
+            phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
+
+            if ("HTC One Mini Blue".equals(phone.getText())) {
+                clickAddToCartButton();
+            }
+        }
     }
 
-    public WebElement getCloseButton() {
-        return driver.findElement(By.className("close"));
+    @Step("Select add to cart button below HTC One Mini Phone")
+    public void selectHTC() {
+
+        List<WebElement> phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
+
+        for (WebElement phone : phones) {
+            String addPhone = "HTC One Mini Blue";
+
+            phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
+
+            if ("HTC One Mini Blue".equals(phone.getText())) {
+                phone.click();
+            }
+        }
     }
+
+    @FindBy(xpath = "//*[@class='bar-notification success']")
+    WebElement barNotification;
+
+    public String barNotificationAttribute() {
+        return barNotification.getText();
+    }
+
+    @FindBy(xpath = "//*[@id='bar-notification'] //a")
+    WebElement shoppingCartLink;
+
 
     public void clickShoppingCartLink() {
-        WebElement shoppingCartLink = driver.findElement(By.xpath("//*[@id=\"bar-notification\"]/div/p/a"));
         shoppingCartLink.click();
         System.out.println("Shopping Cart link clicked");
     }
 
-    public void clickHTCOneMiniBlue() {
-        WebElement htcOneMiniBlue = driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div[3]/div/div[2]/div[2]/div[2]/div/div/div[2]/div/div[2]/h2/a"));
-        htcOneMiniBlue.click();
-        System.out.println("HTC One Mini Blue clicked");
+    @FindBy(xpath = "//*[@class='close']")
+    WebElement closeButton;
+
+    public void clickCloseButton() {
+        baseUI.click(closeButton);
     }
 
-    public WebElement getNumberInputField() {
-        return driver.findElement(By.xpath("//*[@id=\"product_enteredQuantity_19\"]"));
-    }
+    @FindBy(xpath = "//*[@id='product_enteredQuantity_19']")
+    WebElement numberInputField;
 
     public void numberInputFieldSetText(String text) {
-        WebElement numberInputField = getNumberInputField();
-        numberInputField.sendKeys(text);
+        baseUI.sendText(numberInputField, text);
     }
 
+    @FindBy(xpath = "//*[@id='add-to-cart-button-19']")
+    WebElement addToCartButtonInSelectedPhone;
+
     public void clickAddToCartButtonInSelectedPhone() {
-        WebElement addToCart = driver.findElement(By.xpath("//*[@id=\"add-to-cart-button-19\"]"));
-        addToCart.click();
+        baseUI.click(addToCartButtonInSelectedPhone);
         System.out.println("Add To Cart Button clicked");
     }
 
-    public WebElement getQtyInputField() {
-        return driver.findElement(By.className("qty-input"));
-    }
+    @FindBy(xpath = "//*[@class='qty-input']")
+    WebElement qtyInputField;
 
     public String getQtyAttribute() {
-        return getQtyInputField().getAttribute("value");
+        return qtyInputField.getText();
     }
 
+    @FindBy(xpath = "//*[@id='termsofservice']")
+    WebElement checkbox;
+
     public void clickCheckbox() {
-        WebElement checkbox = driver.findElement(By.xpath("//*[@id=\"termsofservice\"]"));
-        checkbox.click();
+        baseUI.click(checkbox);
         System.out.println("Checkbox clicked");
     }
 

@@ -4,13 +4,11 @@ import base.BrowserFactory;
 import base.PageHeader;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import page.CustomerPage;
-import page.HomePage;
-import page.LoginPage;
-import page.RegisterPage;
+import page.*;
+
+import java.io.IOException;
 
 import static base.BrowserFactory.driver;
 
@@ -20,6 +18,7 @@ public class CreateNewAccountTest {
     private PageHeader pageHeader;
     private LoginPage loginPage;
     private CustomerPage customerPage;
+    private CellPhonesPage cellPhonesPage;
 
     String name = "Hera";
 
@@ -31,7 +30,8 @@ public class CreateNewAccountTest {
 
     String year = "1980";
 
-    String email = "hera20230111020255@test.com";
+    String email = "hera20230111020250@test.com";
+    //String email;
     //String email;
     String company = "Phoenix";
 
@@ -49,16 +49,20 @@ public class CreateNewAccountTest {
     String newPassword = "ghosty";
 
     @BeforeClass
-    void prepare() {
+    void prepare() throws IOException {
         WebDriver driver = BrowserFactory.startBrowser("https://demo.nopcommerce.com/");
         homePage = new HomePage(driver);
         registerPage = new RegisterPage(driver);
         pageHeader = new PageHeader(driver);
         loginPage = new LoginPage(driver);
         customerPage = new CustomerPage(driver);
+        cellPhonesPage = new CellPhonesPage(driver);
 
-//        email = "hera" + DateTimeGenerator.getDateTime() + "@test.com";
-//        System.out.println(email);
+        //DateTimeGenerator.generateRandomEmail();
+
+
+        //email = "hera" + DateTimeGenerator.getDateTime() + "@test.com";
+        //System.out.println(email);
     }
 
     @Test
@@ -104,9 +108,7 @@ public class CreateNewAccountTest {
 
         Assert.assertEquals(loginPage.getPasswordErrorAttribute(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 
-        loginPage.emailInputFieldSetText(email);
-        loginPage.passwordInputFieldSetText(password);
-        loginPage.clickLoginButton();
+        loginPage.fillLoginFields(email, password);
 
         Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/"));
 
@@ -121,7 +123,6 @@ public class CreateNewAccountTest {
     public void changePassword() throws InterruptedException {
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
-        loginPage.clickLoginButton();
         pageHeader.clickMyAccountButton();
 
         Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/customer/info");
@@ -151,7 +152,6 @@ public class CreateNewAccountTest {
 
         loginPage.fillLoginFields(email, password);
 
-        loginPage.clickLoginButton();
         Assert.assertEquals(loginPage.getPasswordErrorAttribute(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 
         loginPage.passwordInputFieldSetText(newPassword);
@@ -161,17 +161,44 @@ public class CreateNewAccountTest {
     }
 
     @Test
-    public void addProductStep1() {
+    public void addProductStep1() throws InterruptedException {
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
-        loginPage.clickLoginButton();
 
-        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/cell-phones");
+        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/");
+        cellPhonesPage.selectCellPhonesPage();
+        cellPhonesPage.clickAddToCartHTC();
+        //Thread.sleep(3000);
+        Assert.assertEquals(cellPhonesPage.barNotificationAttribute(), "The product has been added to your shopping cart");
+
+        cellPhonesPage.clickShoppingCartLink();
+        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/cart");
+        cellPhonesPage.selectCellPhonesPage();
+        cellPhonesPage.selectHTC();
+        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/htc-one-mini-blue");
+        cellPhonesPage.numberInputFieldSetText("2");
+        cellPhonesPage.clickAddToCartButtonInSelectedPhone();
+        Assert.assertEquals(cellPhonesPage.barNotificationAttribute(), "The product has been added to your shopping cart");
+        cellPhonesPage.clickCloseButton();
+
+        pageHeader.clickShoppingCart();
+        Assert.assertEquals(cellPhonesPage.getQtyAttribute(), "3");
+
+        Thread.sleep(1000);
+        pageHeader.clickLogoutButton();
+        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(0)");
+
+        pageHeader.clickLoginButton();
+        loginPage.fillLoginFields(email, password);
+        Thread.sleep(1000);
+
+        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
+
     }
 
-    @AfterTest
-    public void closeDriver() {
-        //closes the browser instance
-        driver.close();
-    }
+//    @AfterTest
+//    public void closeDriver() {
+//        //closes the browser instance
+//        driver.close();
+//    }
 }

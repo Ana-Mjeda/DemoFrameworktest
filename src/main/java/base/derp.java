@@ -4,22 +4,8 @@ public class derp {
 
 
 //    @Test
-//    public void addProductStep1() throws InterruptedException {
-//
-//        cellPhonesPage.selectCellPhones();
-//
-//        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/cell-phones");
-//
-//        cellPhonesPage.clickAddToCartButton();
-//        Thread.sleep(3000);
-//
-//        System.out.println("Message: " + cellPhonesPage.getBarNotification().getText());
-//        Assert.assertEquals(cellPhonesPage.getBarNotification().getText(), "The product has been added to your shopping cart");
-//
-//        cellPhonesPage.clickShoppingCartLink();
-//
-//        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/cart");
-//
+
+
 //        cellPhonesPage.selectCellPhones();
 //        cellPhonesPage.clickHTCOneMiniBlue();
 //        cellPhonesPage.getNumberInputField().clear();
