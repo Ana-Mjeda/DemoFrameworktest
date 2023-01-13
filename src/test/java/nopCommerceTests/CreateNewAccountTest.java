@@ -20,6 +20,8 @@ public class CreateNewAccountTest {
     private CustomerPage customerPage;
     private CellPhonesPage cellPhonesPage;
 
+    private CheckoutPage checkoutPage;
+
     String name = "Hera";
 
     String lastName = "Syndulla";
@@ -57,6 +59,7 @@ public class CreateNewAccountTest {
         loginPage = new LoginPage(driver);
         customerPage = new CustomerPage(driver);
         cellPhonesPage = new CellPhonesPage(driver);
+        checkoutPage = new CheckoutPage(driver);
 
         //DateTimeGenerator.generateRandomEmail();
 
@@ -207,6 +210,33 @@ public class CreateNewAccountTest {
         pageHeader.clickShoppingCart();
         cellPhonesPage.clickCheckbox();
         cellPhonesPage.clickCheckoutButton();
+
+        Assert.assertEquals(checkoutPage.getBillingAddressAttribute(), "Billing address");
+
+        checkoutPage.selectCountryFromDropdown("Sweden");
+        checkoutPage.cityInputFieldSetText("Gothenburg");
+        checkoutPage.address1InputFieldSetText("Nya Bergets Vag 50");
+        checkoutPage.postalCodeInputFieldSetText("412 76");
+        checkoutPage.phoneNumberInputFieldSetText("+46 31 55 83 00");
+
+        Assert.assertTrue(checkoutPage.getCheckBoxValue());
+        checkoutPage.clickContinueButton();
+
+        Assert.assertEquals(checkoutPage.getShippingMethodAttribute(), "Shipping method");
+
+        checkoutPage.clickNextDayAirRadioButton();
+        checkoutPage.clickShippingMethodContinueButton();
+
+        Assert.assertEquals(checkoutPage.getPaymentMethodAttribute(), "Payment method");
+
+        checkoutPage.clickCheckMoneyRadioButton();
+        checkoutPage.clickPaymentMethodContinueButton();
+
+        Assert.assertEquals(checkoutPage.getPaymentInformationAttribute(), "Payment information");
+        checkoutPage.clickPaymentInformationContinueButton();
+        Assert.assertEquals(checkoutPage.getConfirmOrderAttribute(), "Confirm order");
+        Assert.assertEquals(checkoutPage.getConfirmBillingAddressAttribute(), "Nya Bergets Vag 50");
+        checkoutPage.compareAddresses();
 
     }
 }

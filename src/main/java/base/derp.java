@@ -2,16 +2,7 @@ package base;
 
 public class derp {
 
-//
 
-//
-//        pageHeader.clickShoppingCart();
-//
-//        cellPhonesPage.clickCheckbox();
-//        cellPhonesPage.clickCheckoutButton();
-//
-//        System.out.println(checkoutPage.getBillingAddressAttribute() + " is displayed");
-//        Assert.assertEquals(checkoutPage.getBillingAddressAttribute(), "Billing address");
 //
 //        checkoutPage.selectCountryFromDropdown("Sweden");
 //
