@@ -1,94 +1,90 @@
 package page;
 
-import nopCommerce.TemplatePage;
+import base.BaseUI;
+import base.BrowserFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.FindBy;
 
-public class CheckoutPage extends TemplatePage {
+public class CheckoutPage extends BrowserFactory {
+    BaseUI baseUI;
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
+        baseUI = new BaseUI(driver);
     }
 
-    public WebElement getBillingAddress() {
-        return driver.findElement(By.xpath("//*[@id=\"opc-billing\"]/div[1]/h2"));
-    }
+    @FindBy(xpath = "//div //*[@class='title'][text()='Billing address']")
+    WebElement billingAddress;
 
     public String getBillingAddressAttribute() {
-        return getBillingAddress().getText();
+        return billingAddress.getText();
     }
 
-    public WebElement countryDropdown() {
-        return driver.findElement(By.name("BillingNewAddress.CountryId"));
+    @FindBy(name = "BillingNewAddress.CountryId")
+    WebElement country;
+
+    public void selectCountryFromDropdown(String text) {
+        baseUI.clickDropdown(country, text);
     }
 
-    public void selectCountryFromDropdown(String country) {
-        Select select = new Select(countryDropdown());
-        select.selectByVisibleText(country);
-    }
-
-    public WebElement getCityInputField() {
-        return driver.findElement(By.name("BillingNewAddress.City"));
-    }
+    @FindBy(name = "BillingNewAddress.City")
+    WebElement cityInputField;
 
     public void cityInputFieldSetText(String text) {
-        WebElement cityInputField = getCityInputField();
-        cityInputField.sendKeys(text);
+        baseUI.sendText(cityInputField, text);
     }
 
     public String getCityAttribute() {
-        return getCityInputField().getAttribute("value");
+        return cityInputField.getAttribute("value");
     }
 
-    public WebElement getAddress1InputField() {
-        return driver.findElement(By.name("BillingNewAddress.Address1"));
-    }
+    @FindBy(name = "BillingNewAddress.Address1")
+    WebElement address1InputField;
 
     public void address1InputFieldSetText(String text) {
-        WebElement address1InputField = getAddress1InputField();
-        address1InputField.sendKeys(text);
+        baseUI.sendText(address1InputField, text);
     }
 
     public String getAddress1Attribute() {
-        return getAddress1InputField().getAttribute("value");
+        return address1InputField.getAttribute("value");
     }
 
-    public WebElement getPostalCodeInputField() {
-        return driver.findElement(By.name("BillingNewAddress.ZipPostalCode"));
-    }
+    @FindBy(name = "BillingNewAddress.ZipPostalCode")
+    WebElement postalCodeInputField;
 
     public void postalCodeInputFieldSetText(String text) {
-        WebElement postalCodeInputField = getPostalCodeInputField();
-        postalCodeInputField.sendKeys(text);
+        baseUI.sendText(postalCodeInputField, text);
     }
 
     public String getPostalCodeAttribute() {
-        return getPostalCodeInputField().getAttribute("value");
+        return postalCodeInputField.getAttribute("value");
     }
 
-    public WebElement getPhoneNumberInputField() {
-        return driver.findElement(By.name("BillingNewAddress.PhoneNumber"));
-    }
+    @FindBy(name = "BillingNewAddress.PhoneNumber")
+    WebElement phoneNumberInputField;
 
     public void phoneNumberInputFieldSetText(String text) {
-        WebElement phoneNumberInputField = getPhoneNumberInputField();
-        phoneNumberInputField.sendKeys(text);
+        baseUI.sendText(phoneNumberInputField, text);
     }
 
     public String getPhoneNumberAttribute() {
-        return getPhoneNumberInputField().getAttribute("value");
+        return phoneNumberInputField.getAttribute("value");
     }
 
+    @FindBy(xpath = "//div //*[@name='save'][@class='button-1 new-address-next-step-button']")
+    WebElement continueButton;
+
     public void clickContinueButton() {
-        WebElement continueButton = driver.findElement(By.xpath("//*[@id=\"billing-buttons-container\"]/button[4]"));
-        continueButton.click();
+        baseUI.click(continueButton);
         System.out.println("Continue Button is clicked");
     }
 
+    @FindBy(xpath = "//*[@id=\"ShipToSameAddress\"]")
+    WebElement checkBox;
+
     public boolean getCheckBoxValue() {
-        WebElement checkBox = driver.findElement(By.xpath("//*[@id=\"ShipToSameAddress\"]"));
         return checkBox.isSelected();
     }
 

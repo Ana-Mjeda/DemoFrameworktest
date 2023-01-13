@@ -65,7 +65,7 @@ public class CreateNewAccountTest {
         //System.out.println(email);
     }
 
-    @Test
+    @Test(priority = 1)
     public void stepCreateAccount() {
         homePage.clickRegisterButton();
         registerPage.clickRegisterButton();
@@ -83,7 +83,7 @@ public class CreateNewAccountTest {
         Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/");
     }
 
-    @Test(dependsOnMethods = {"stepCreateAccount"})
+    @Test(priority = 2)
     public void createAccountWithExistingEmail() {
         pageHeader.clickRegisterButton();
         registerPage.clickGenderFemale();
@@ -92,7 +92,7 @@ public class CreateNewAccountTest {
         registerPage.getMessageError();
     }
 
-    @Test(dependsOnMethods = {"stepCreateAccount"})
+    @Test(priority = 3)
     public void loginWithNewAccount() {
         pageHeader.clickLoginButton();
         Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/login"));
@@ -119,7 +119,7 @@ public class CreateNewAccountTest {
 
     }
 
-    @Test
+    @Test(priority = 6)
     public void changePassword() throws InterruptedException {
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
@@ -160,7 +160,7 @@ public class CreateNewAccountTest {
         pageHeader.clickLogoutButton();
     }
 
-    @Test(dependsOnMethods = {"stepCreateAccount"})
+    @Test(priority = 4)
     public void addProductStep1() throws InterruptedException {
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
@@ -196,9 +196,22 @@ public class CreateNewAccountTest {
 
     }
 
+    @Test
+    public void checkoutStep1() {
+
+        pageHeader.clickLoginButton();
+        loginPage.fillLoginFields(email, newPassword);
+
+        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
+
+        pageHeader.clickShoppingCart();
+        cellPhonesPage.clickCheckbox();
+        cellPhonesPage.clickCheckoutButton();
+
+    }
+}
 //    @AfterTest
 //    public void closeDriver() {
 //        //closes the browser instance
 //        driver.close();
 //    }
-}

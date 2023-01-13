@@ -3,16 +3,7 @@ package base;
 public class derp {
 
 //
-//    @Test
-//    public void checkoutStep1() throws InterruptedException {
-//
-//        pageHeader.clickLoginButton();
-//        loginPage.emailInputFieldSetText(email);
-//        loginPage.passwordInputFieldSetText("secret");
-//        loginPage.clickLoginButton();
-//
-//        System.out.println("Shopping cart value : " + pageHeader.getShoppingCartAttribute());
-//        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
+
 //
 //        pageHeader.clickShoppingCart();
 //
