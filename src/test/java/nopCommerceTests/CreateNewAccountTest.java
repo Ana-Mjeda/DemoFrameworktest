@@ -83,7 +83,7 @@ public class CreateNewAccountTest {
         Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/");
     }
 
-    @Test
+    @Test(dependsOnMethods = {"stepCreateAccount"})
     public void createAccountWithExistingEmail() {
         pageHeader.clickRegisterButton();
         registerPage.clickGenderFemale();
@@ -92,7 +92,7 @@ public class CreateNewAccountTest {
         registerPage.getMessageError();
     }
 
-    @Test
+    @Test(dependsOnMethods = {"stepCreateAccount"})
     public void loginWithNewAccount() {
         pageHeader.clickLoginButton();
         Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/login"));
@@ -160,31 +160,31 @@ public class CreateNewAccountTest {
         pageHeader.clickLogoutButton();
     }
 
-    @Test
+    @Test(dependsOnMethods = {"stepCreateAccount"})
     public void addProductStep1() throws InterruptedException {
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
 
         Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/");
         cellPhonesPage.selectCellPhonesPage();
-        cellPhonesPage.clickAddToCartHTC();
-        //Thread.sleep(3000);
+        cellPhonesPage.addMobileToCart("HTC One Mini Blue");
         Assert.assertEquals(cellPhonesPage.barNotificationAttribute(), "The product has been added to your shopping cart");
 
         cellPhonesPage.clickShoppingCartLink();
         Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/cart");
         cellPhonesPage.selectCellPhonesPage();
-        cellPhonesPage.selectHTC();
+        cellPhonesPage.clickMobile("HTC One Mini Blue");
         Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/htc-one-mini-blue");
         cellPhonesPage.numberInputFieldSetText("2");
         cellPhonesPage.clickAddToCartButtonInSelectedPhone();
         Assert.assertEquals(cellPhonesPage.barNotificationAttribute(), "The product has been added to your shopping cart");
         cellPhonesPage.clickCloseButton();
 
+        Thread.sleep(2000);
         pageHeader.clickShoppingCart();
         Assert.assertEquals(cellPhonesPage.getQtyAttribute(), "3");
 
-        Thread.sleep(1000);
+
         pageHeader.clickLogoutButton();
         Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(0)");
 
@@ -192,7 +192,7 @@ public class CreateNewAccountTest {
         loginPage.fillLoginFields(email, password);
         Thread.sleep(1000);
 
-        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
+        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "3");
 
     }
 

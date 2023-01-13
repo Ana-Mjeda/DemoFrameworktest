@@ -2,44 +2,6 @@ package base;
 
 public class derp {
 
-
-//    @Test
-
-
-//        cellPhonesPage.selectCellPhones();
-//        cellPhonesPage.clickHTCOneMiniBlue();
-//        cellPhonesPage.getNumberInputField().clear();
-//        cellPhonesPage.numberInputFieldSetText("2");
-//        cellPhonesPage.clickAddToCartButtonInSelectedPhone();
-//
-//        System.out.println("Message: " + cellPhonesPage.getBarNotification().getText());
-//        Assert.assertEquals(cellPhonesPage.getBarNotification().getText(), "The product has been added to your shopping cart");
-//
-//        customerPage.getCloseButton().click();
-//        Thread.sleep(1000);
-//
-//        pageHeader.clickShoppingCart();
-//        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/cart");
-//
-//        System.out.println("Number of phones in shopping cart are : " + cellPhonesPage.getQtyAttribute());
-//        Assert.assertEquals(cellPhonesPage.getQtyAttribute(), "3");
-//
-//        Thread.sleep(1000);
-//        pageHeader.clickLogoutButton();
-//
-//        System.out.println("Shopping cart value : " + pageHeader.getShoppingCartAttribute());
-//        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(0)");
-//
-//        pageHeader.clickLoginButton();
-//        loginPage.emailInputFieldSetText(email);
-//        loginPage.passwordInputFieldSetText("secret");
-//        loginPage.clickLoginButton();
-//
-//        Thread.sleep(2000);
-//
-//        System.out.println("Shopping cart value : " + pageHeader.getShoppingCartAttribute());
-//        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
-//    }
 //
 //    @Test
 //    public void checkoutStep1() throws InterruptedException {

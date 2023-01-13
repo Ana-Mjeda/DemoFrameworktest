@@ -9,8 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
 
 public class CellPhonesPage extends TemplatePage {
     BaseUI baseUI;
@@ -47,38 +45,35 @@ public class CellPhonesPage extends TemplatePage {
         System.out.println("Add To Cart Button clicked");
     }
 
-    @Step("Select add to cart button below HTC One Mini Phone")
-    public void clickAddToCartHTC() {
+//    @Step("Select add to cart button below HTC One Mini Phone")
+//    public WebElement clickAddToCartHTC() {
+//
+//        List<WebElement> phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
+//        List<WebElement> buttons = driver.findElements(By.xpath("//div[@class='item-box'] //*[@class='button-2 product-box-add-to-cart-button']"));
+//        for (int i = 0; i < phones.size(); i++) {
+//            WebElement phone = phones.get(i);
+//            if (phone.getText().equals("htc-one-mini-blue")) {
+//                System.out.println("found");
+//                buttons.get(i).click();
+//            }
+//        }
+//    }
 
-        List<WebElement> phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
+    @Step("Seclect mobile")
+    public void addMobileToCart(String mobileName) {
 
-        //WebElement phone = null;
-        //for (int i=0;i< phones.size();i++)
-        for (WebElement phone : phones) {
-            String addPhone = "HTC One Mini Blue";
+        By mobileLocator = By.xpath("//h2//a[text()='" + mobileName + "']//ancestor::div//*[@class='buttons'] //*[@class='button-2 product-box-add-to-cart-button']");
 
-            phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
-
-            if ("HTC One Mini Blue".equals(phone.getText())) {
-                clickAddToCartButton();
-            }
-        }
+        driver.findElement(mobileLocator).click();
     }
 
-    @Step("Select add to cart button below HTC One Mini Phone")
-    public void selectHTC() {
+    @Step("Select mobile")
+    public void clickMobile(String mobileName) {
 
-        List<WebElement> phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
+        By mobileLocator = By.xpath("//h2//a[text()='" + mobileName + "']");
 
-        for (WebElement phone : phones) {
-            String addPhone = "HTC One Mini Blue";
+        driver.findElement(mobileLocator).click();
 
-            phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
-
-            if ("HTC One Mini Blue".equals(phone.getText())) {
-                phone.click();
-            }
-        }
     }
 
     @FindBy(xpath = "//*[@class='bar-notification success']")
@@ -123,7 +118,7 @@ public class CellPhonesPage extends TemplatePage {
     WebElement qtyInputField;
 
     public String getQtyAttribute() {
-        return qtyInputField.getText();
+        return qtyInputField.getAttribute("value");
     }
 
     @FindBy(xpath = "//*[@id='termsofservice']")
