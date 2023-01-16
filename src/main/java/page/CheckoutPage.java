@@ -2,7 +2,6 @@ package page;
 
 import base.BaseUI;
 import base.BrowserFactory;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -61,6 +60,10 @@ public class CheckoutPage extends BrowserFactory {
     private WebElement orderCompleteMsg;
     @FindBy(linkText = "Click here for order details.")
     private WebElement orderDetailsLink;
+    @FindBy(xpath = "//div[@class='billing-info'] //ul[@class='info-list'] //li[@class='address1'])")
+    private WebElement billingAddressCheckout;
+    @FindBy(xpath = "//div[@class='shipping-info'] //ul[@class='info-list'] //li[@class='address1']")
+    private WebElement shippingAddressCheckout;
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -167,9 +170,9 @@ public class CheckoutPage extends BrowserFactory {
     }
 
     public void compareAddresses() {
-        String billingAddress = driver.findElement(By.xpath("//div[@class='billing-info'] //ul[@class='info-list'] //li[@class='address1']")).getText();
-        String shippingAddress = driver.findElement(By.xpath("//div[@class='shipping-info'] //ul[@class='info-list'] //li[@class='address1']")).getText();
-        if (billingAddress.equalsIgnoreCase(shippingAddress)) {
+        billingAddressCheckout.getText();
+        shippingAddressCheckout.getText();
+        if (billingAddressCheckout.equals(shippingAddressCheckout)) {
             System.out.println("The Billing Address is same as Shipping Address ");
         }
     }
