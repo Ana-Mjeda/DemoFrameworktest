@@ -66,17 +66,21 @@ public class CellPhonesPage extends TemplatePage {
 
     @Step("Select add to cart button below HTC One Mini Phone")
     public CellPhonesPage clickAddToCartHTC(String productName) {
+        boolean productFound = false;
 
         List<WebElement> phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
         List<WebElement> buttons = driver.findElements(By.xpath("//div[@class='item-box'] //*[@class='button-2 product-box-add-to-cart-button']"));
         for (int i = 0; i < phones.size(); i++) {
             WebElement phone = phones.get(i);
             if (phone.getText().equals(productName)) {
-                System.out.println("found");
+                productFound = true;
+                System.out.println("Product name: '" + productName + " found");
                 buttons.get(i).click();
                 break;
             }
-            Assert.fail("Product name '" + productName + " not found!");
+        }
+        if (!productFound) {
+            Assert.fail("Product name: '" + productName + " not found!");
         }
         return this;
     }
@@ -98,7 +102,6 @@ public class CellPhonesPage extends TemplatePage {
 
     }
 
-
     public String barNotificationAttribute() {
         return barNotification.getText();
     }
@@ -108,7 +111,6 @@ public class CellPhonesPage extends TemplatePage {
         shoppingCartLink.click();
         System.out.println("Shopping Cart link clicked");
     }
-
 
     public void clickCloseButton() {
         baseUI.click(closeButton);

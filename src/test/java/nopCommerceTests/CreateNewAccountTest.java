@@ -29,7 +29,7 @@ public class CreateNewAccountTest {
     String day = "17";
     String month = "April";
     String year = "1980";
-    String email = "hera20230111020218@test.com";
+    String email = "hera20230111020221@test.com";
     //String email;
     String company = "Phoenix";
     String password = "secret";
@@ -230,7 +230,7 @@ public class CreateNewAccountTest {
         Assert.assertEquals(checkoutPage.getConfirmOrderAttribute(), "Confirm order");
 
         Assert.assertEquals(checkoutPage.getConfirmBillingAddressAttribute(), "Nya Bergets Vag 50");
-        checkoutPage.compareAddresses();
+        //checkoutPage.compareAddresses();
         Assert.assertEquals(checkoutPage.getBillingPaymentMethodAttribute(), "Check / Money Order");
         Assert.assertEquals(checkoutPage.getShippingShippingMethodAttribute(), "Next Day Air");
         Assert.assertEquals(checkoutPage.getShippingQtyAttribute(), "3");

@@ -61,9 +61,9 @@ public class CheckoutPage extends BrowserFactory {
     private WebElement orderCompleteMsg;
     @FindBy(linkText = "Click here for order details.")
     private WebElement orderDetailsLink;
-    @FindBy(xpath = "//div[@class='billing-info'] //ul[@class='info-list'] //li[@class='address1'])")
+    @FindBy(xpath = "//div[@class='billing-info'] //li[@class='address1'])")
     private WebElement billingAddressCheckout;
-    @FindBy(xpath = "//div[@class='shipping-info'] //ul[@class='info-list'] //li[@class='address1']")
+    @FindBy(xpath = "//div[@class='shipping-info'] //li[@class='address1']")
     private WebElement shippingAddressCheckout;
 
     public CheckoutPage(WebDriver driver) {
@@ -179,13 +179,17 @@ public class CheckoutPage extends BrowserFactory {
     }
 
     public void compareAddresses() {
-        String billing = getBillingAddressAttributeCheckout();
+        boolean addressFound = false;
+        String billing = getConfirmBillingAddressAttribute();
         String shipping = getShippingAddressAttributeCheckout();
 
         if (billing.equalsIgnoreCase(shipping)) {
+            addressFound = true;
             System.out.println("The Billing Address is same as Shipping Address ");
         }
-        Assert.fail("Billing address '" + billing + "' and shipping address '" + shipping + "' do not match.");
+        if (!addressFound) {
+            Assert.fail("Billing address '" + billing + "' and shipping address '" + shipping + "' do not match.");
+        }
     }
 
 

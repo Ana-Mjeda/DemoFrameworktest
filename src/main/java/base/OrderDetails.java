@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class OrderDetails extends BrowserFactory {
     BaseUI baseUI;
@@ -23,15 +24,18 @@ public class OrderDetails extends BrowserFactory {
 
     }
 
-
     public void compareAddresses() {
+        boolean addressFound = false;
         String billingAddress = driver.findElement(By.xpath("//div[@class='billing-info'] //li[@class='address1']")).getText();
         String shippingAddress = driver.findElement(By.xpath("//div[@class='shipping-info'] //li[@class='address1']")).getText();
         if (billingAddress.equalsIgnoreCase(shippingAddress)) {
+            addressFound = true;
             System.out.println("The Billing Address is same as Shipping Address ");
         }
+        if (!addressFound) {
+            Assert.fail("Billing address '" + billingAddress + "' and shipping address '" + shippingAddress + "' do not match.");
+        }
     }
-
 
     public void getOrderInformationAttribute() {
         orderInformation.getText();
