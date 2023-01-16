@@ -31,6 +31,9 @@ public class CustomerPage extends BrowserFactory {
     @FindBy(xpath = "//span[@class='close']")
     WebElement getCloseButtonOnBar;
 
+    @FindBy(xpath = "//*[@class='message-error validation-summary-errors']")
+    WebElement samePasswordError;
+
     public CustomerPage(WebDriver driver) {
         super(driver);
         baseUI = new BaseUI(driver);
@@ -45,12 +48,15 @@ public class CustomerPage extends BrowserFactory {
         baseUI.click(changePasswordButton);
         System.out.println("Change Password Button clicked");
     }
+
     public void oldPasswordInputFieldSetText(String text) {
         baseUI.sendText(oldPasswordInputField, text);
     }
+
     public String getOldPasswordAttribute() {
         return oldPasswordInputField.getText();
     }
+
     public void newPasswordInputFieldSetText(String text) {
         baseUI.sendText(newPasswordInputField, text);
     }
@@ -67,8 +73,6 @@ public class CustomerPage extends BrowserFactory {
         return confirmNewPasswordInputField.getText();
     }
 
-    @FindBy(xpath = "//*[@class='message-error validation-summary-errors']")
-    WebElement samePasswordError;
 
     public String getSamePasswordErrorAttribute() {
         return samePasswordError.getText();

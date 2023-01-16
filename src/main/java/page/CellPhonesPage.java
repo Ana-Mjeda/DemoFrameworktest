@@ -13,16 +13,35 @@ import org.openqa.selenium.support.FindBy;
 public class CellPhonesPage extends TemplatePage {
     BaseUI baseUI;
 
-    public CellPhonesPage(WebDriver driver) {
-        super(driver);
-        baseUI = new BaseUI(driver);
-    }
 
     @FindBy(xpath = "//a[normalize-space()='Electronics']")
     WebElement electronics;
 
     @FindBy(xpath = "//a[normalize-space()='Cell phones']")
     WebElement cellPhones;
+    @FindBy(xpath = "//*[@class='button-2 product-box-add-to-cart-button']")
+    WebElement addToCart;
+    @FindBy(xpath = "//*[@class='bar-notification success']")
+    WebElement barNotification;
+    @FindBy(xpath = "//*[@id='bar-notification'] //a")
+    WebElement shoppingCartLink;
+
+    @FindBy(xpath = "//*[@class='close']")
+    WebElement closeButton;
+    @FindBy(xpath = "//*[@id='product_enteredQuantity_19']")
+    WebElement numberInputField;
+    @FindBy(xpath = "//*[@id='add-to-cart-button-19']")
+    WebElement addToCartButtonInSelectedPhone;
+
+    @FindBy(xpath = "//*[@class='qty-input']")
+    WebElement qtyInputField;
+    @FindBy(xpath = "//*[@id='termsofservice']")
+    WebElement checkbox;
+
+    public CellPhonesPage(WebDriver driver) {
+        super(driver);
+        baseUI = new BaseUI(driver);
+    }
 
     public void selectCellPhonesPage() throws InterruptedException {
         Actions action = new Actions(driver);
@@ -36,9 +55,6 @@ public class CellPhonesPage extends TemplatePage {
 
     }
 
-
-    @FindBy(xpath = "//*[@class='button-2 product-box-add-to-cart-button']")
-    WebElement addToCart;
 
     public void clickAddToCartButton() {
         baseUI.click(addToCart);
@@ -76,15 +92,10 @@ public class CellPhonesPage extends TemplatePage {
 
     }
 
-    @FindBy(xpath = "//*[@class='bar-notification success']")
-    WebElement barNotification;
 
     public String barNotificationAttribute() {
         return barNotification.getText();
     }
-
-    @FindBy(xpath = "//*[@id='bar-notification'] //a")
-    WebElement shoppingCartLink;
 
 
     public void clickShoppingCartLink() {
@@ -92,37 +103,27 @@ public class CellPhonesPage extends TemplatePage {
         System.out.println("Shopping Cart link clicked");
     }
 
-    @FindBy(xpath = "//*[@class='close']")
-    WebElement closeButton;
 
     public void clickCloseButton() {
         baseUI.click(closeButton);
     }
 
-    @FindBy(xpath = "//*[@id='product_enteredQuantity_19']")
-    WebElement numberInputField;
 
     public void numberInputFieldSetText(String text) {
         baseUI.sendText(numberInputField, text);
     }
 
-    @FindBy(xpath = "//*[@id='add-to-cart-button-19']")
-    WebElement addToCartButtonInSelectedPhone;
 
     public void clickAddToCartButtonInSelectedPhone() {
         baseUI.click(addToCartButtonInSelectedPhone);
         System.out.println("Add To Cart Button clicked");
     }
 
-    @FindBy(xpath = "//*[@class='qty-input']")
-    WebElement qtyInputField;
 
     public String getQtyAttribute() {
         return qtyInputField.getAttribute("value");
     }
 
-    @FindBy(xpath = "//*[@id='termsofservice']")
-    WebElement checkbox;
 
     public void clickCheckbox() {
         baseUI.click(checkbox);

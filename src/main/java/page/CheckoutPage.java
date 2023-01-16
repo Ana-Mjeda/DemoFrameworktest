@@ -169,21 +169,42 @@ public class CheckoutPage extends BrowserFactory {
         if (billingAddress.equalsIgnoreCase(shippingAddress)) {
             System.out.println("The Billing Address is same as Shipping Address ");
         }
-
-
-        //@FindBy(xpath = "//*[@id=\"confirm-order-buttons-container\"]/button")
-        // WebElement confirmButtonOnBottomOfPage;
-
-//    public void clickConfirmButtonOnBottomOfPage() {
-//        baseUI.click(confirmButtonOnBottomOfPage);
-//        System.out.println("Confirm Button is clicked");
-//    }
-
-//    public void clickHereForOrdersLink() {
-//        WebElement HereForOrdersLink = driver.findElement(By.xpath("//*[@id=\"confirm-order-buttons-container\"]/button"));
-//        HereForOrdersLink.click();
-//        System.out.println("Click here for orders link is clicked");
-//    }
-
     }
+
+    @FindBy(xpath = "//li[@class='payment-method'] //span[@class='label']")
+    WebElement billingPaymentMethod;
+
+    public String getBillingPaymentMethodAttribute() {
+        return billingPaymentMethod.getText();
+    }
+
+    @FindBy(xpath = "//li[@class='shipping-method'] //span[@class='label']")
+    WebElement shippingShippingMethod;
+
+    public String getShippingShippingMethodAttribute() {
+        return shippingShippingMethod.getText();
+    }
+
+    @FindBy(xpath = "//span[@class='product-quantity'][normalize-space()='3']")
+    WebElement shippingQty;
+
+    public String getShippingQtyAttribute() {
+        return shippingQty.getText();
+    }
+
+    @FindBy(xpath = "//button[@class='button-1 confirm-order-next-step-button']")
+    WebElement confirmButtonOnBottomOfPage;
+
+    public void clickConfirmButtonOnBottomOfPage() {
+        baseUI.click(confirmButtonOnBottomOfPage);
+        System.out.println("Confirm Button is clicked");
+    }
+
+    @FindBy(css = "h1")
+    public WebElement thankYou;
+    @FindBy(css = "div.title")
+    private WebElement orderCompleteMsg;
+    @FindBy(linkText = "Click here for order details.")
+    private WebElement orderDetailsLink;
+
 }

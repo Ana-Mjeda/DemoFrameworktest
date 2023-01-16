@@ -200,7 +200,7 @@ public class CreateNewAccountTest {
     }
 
     @Test
-    public void checkoutStep1() {
+    public void checkoutStep1() throws InterruptedException {
 
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, newPassword);
@@ -235,8 +235,15 @@ public class CreateNewAccountTest {
         Assert.assertEquals(checkoutPage.getPaymentInformationAttribute(), "Payment information");
         checkoutPage.clickPaymentInformationContinueButton();
         Assert.assertEquals(checkoutPage.getConfirmOrderAttribute(), "Confirm order");
+
         Assert.assertEquals(checkoutPage.getConfirmBillingAddressAttribute(), "Nya Bergets Vag 50");
         checkoutPage.compareAddresses();
+        Assert.assertEquals(checkoutPage.getBillingPaymentMethodAttribute(), "Payment Method: Check / Money Order");
+        Assert.assertEquals(checkoutPage.getShippingShippingMethodAttribute(), "Shipping Method: Next Day Air");
+        Assert.assertEquals(checkoutPage.getShippingQtyAttribute(), "3");
+
+        checkoutPage.clickConfirmButtonOnBottomOfPage();
+        Thread.sleep(1000);
 
     }
 }
