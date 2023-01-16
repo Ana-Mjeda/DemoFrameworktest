@@ -5,6 +5,7 @@ import base.OrderDetails;
 import base.PageHeader;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import page.*;
@@ -257,9 +258,10 @@ public class CreateNewAccountTest {
         Assert.assertEquals(orderDetails.getShippingShippingMethodAttribute(), "Next Day Air");
         Assert.assertEquals(orderDetails.getShippingQtyAttribute(), "3");
     }
+
+    @AfterTest
+    public void closeDriver() {
+        //closes the browser instance
+        driver.close();
+    }
 }
-//    @AfterTest
-//    public void closeDriver() {
-//        //closes the browser instance
-//        driver.close();
-//    }
