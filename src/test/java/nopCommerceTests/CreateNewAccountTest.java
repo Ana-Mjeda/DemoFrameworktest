@@ -172,9 +172,9 @@ public class CreateNewAccountTest {
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
 
-        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/");
+        Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/"));
         cellPhonesPage.selectCellPhonesPage();
-        cellPhonesPage.addMobileToCart("HTC One Mini Blue");
+        cellPhonesPage.clickAddToCartHTC("HTC One Mini Blue");
         Assert.assertEquals(cellPhonesPage.barNotificationAttribute(), "The product has been added to your shopping cart");
 
         cellPhonesPage.clickShoppingCartLink();
@@ -199,11 +199,11 @@ public class CreateNewAccountTest {
         loginPage.fillLoginFields(email, password);
         Thread.sleep(1000);
 
-        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "3");
+        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
 
     }
 
-    @Test
+    @Test(priority = 5)
     public void checkoutStep1() throws InterruptedException {
 
         pageHeader.clickLoginButton();

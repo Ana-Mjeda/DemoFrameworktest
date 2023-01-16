@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 
 public class CellPhonesPage extends TemplatePage {
     BaseUI baseUI;
@@ -61,27 +63,29 @@ public class CellPhonesPage extends TemplatePage {
         System.out.println("Add To Cart Button clicked");
     }
 
-//    @Step("Select add to cart button below HTC One Mini Phone")
-//    public WebElement clickAddToCartHTC() {
-//
-//        List<WebElement> phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
-//        List<WebElement> buttons = driver.findElements(By.xpath("//div[@class='item-box'] //*[@class='button-2 product-box-add-to-cart-button']"));
-//        for (int i = 0; i < phones.size(); i++) {
-//            WebElement phone = phones.get(i);
-//            if (phone.getText().equals("htc-one-mini-blue")) {
-//                System.out.println("found");
-//                buttons.get(i).click();
-//            }
-//        }
-//    }
+    @Step("Select add to cart button below HTC One Mini Phone")
+    public CellPhonesPage clickAddToCartHTC(String productName) {
 
-    @Step("Seclect mobile")
-    public void addMobileToCart(String mobileName) {
-
-        By mobileLocator = By.xpath("//h2//a[text()='" + mobileName + "']//ancestor::div//*[@class='buttons'] //*[@class='button-2 product-box-add-to-cart-button']");
-
-        driver.findElement(mobileLocator).click();
+        List<WebElement> phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
+        List<WebElement> buttons = driver.findElements(By.xpath("//div[@class='item-box'] //*[@class='button-2 product-box-add-to-cart-button']"));
+        for (int i = 0; i < phones.size(); i++) {
+            WebElement phone = phones.get(i);
+            if (phone.getText().equals(productName)) {
+                System.out.println("found");
+                buttons.get(i).click();
+                break;
+            }
+        }
+        return this;
     }
+
+//    @Step("Select mobile")
+//    public void addMobileToCart(String mobileName) {
+//
+//        By mobileLocator = By.xpath("//h2[@class='product-title'] /a[contains(text()," + mobileName + ")]/parent::h2/following-sibling::div[@class='add-info']//button[@class='button-2 product-box-add-to-cart-button']");
+//
+//        driver.findElement(mobileLocator).click();
+//    }
 
     @Step("Select mobile")
     public void clickMobile(String mobileName) {
