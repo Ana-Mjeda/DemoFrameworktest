@@ -10,27 +10,70 @@ import org.openqa.selenium.support.FindBy;
 public class CheckoutPage extends BrowserFactory {
     BaseUI baseUI;
 
+
+    @FindBy(xpath = "//div //*[@class='title'][text()='Billing address']")
+    WebElement billingAddress;
+    @FindBy(name = "BillingNewAddress.CountryId")
+    WebElement country;
+    @FindBy(name = "BillingNewAddress.City")
+    WebElement cityInputField;
+    @FindBy(name = "BillingNewAddress.Address1")
+    WebElement address1InputField;
+    @FindBy(name = "BillingNewAddress.ZipPostalCode")
+    WebElement postalCodeInputField;
+    @FindBy(name = "BillingNewAddress.PhoneNumber")
+    WebElement phoneNumberInputField;
+    @FindBy(xpath = "//div //*[@name='save'][@class='button-1 new-address-next-step-button']")
+    WebElement continueButton;
+    @FindBy(xpath = "//*[@id=\"ShipToSameAddress\"]")
+    WebElement checkBox;
+    @FindBy(xpath = "//div //*[@class='title'][text()='Shipping method']")
+    WebElement shippingMethod;
+    @FindBy(id = "shippingoption_1")
+    WebElement nextDayAirRadioButton;
+    @FindBy(xpath = "//*[@id=\"shipping-method-buttons-container\"]/button")
+    WebElement shippingMethodContinueButton;
+    @FindBy(xpath = "//div //*[@class='title'][text()='Payment method']")
+    WebElement paymentMethod;
+    @FindBy(xpath = "//*[@id=\"paymentmethod_0\"]")
+    WebElement checkMoneyRadioButton;
+    @FindBy(xpath = "//*[@id=\"payment-method-buttons-container\"]/button")
+    WebElement paymentMethodContinueButton;
+    @FindBy(xpath = "//div //*[@class='title'][text()='Payment information']")
+    WebElement paymentInformation;
+    @FindBy(xpath = "//*[@id=\"payment-info-buttons-container\"]/button")
+    WebElement paymentInformationContinueButton;
+    @FindBy(xpath = "//div //*[@class='title'][text()='Confirm order']")
+    WebElement confirmOrder;
+    @FindBy(xpath = "//div[@class='billing-info'] //ul[@class='info-list'] //li[@class='address1']")
+    WebElement confirmBillingAddress;
+    @FindBy(xpath = "//li[@class='payment-method'] //span[@class='value']")
+    WebElement billingPaymentMethod;
+    @FindBy(xpath = "//li[@class='shipping-method'] //span[@class='value']")
+    WebElement shippingShippingMethod;
+    @FindBy(xpath = "//span[@class='product-quantity'][normalize-space()='3']")
+    WebElement shippingQty;
+    @FindBy(xpath = "//button[@class='button-1 confirm-order-next-step-button']")
+    WebElement confirmButtonOnBottomOfPage;
+    @FindBy(css = "h1")
+    public WebElement thankYou;
+    @FindBy(xpath = "div.title")
+    private WebElement orderCompleteMsg;
+    @FindBy(linkText = "Click here for order details.")
+    private WebElement orderDetailsLink;
+
     public CheckoutPage(WebDriver driver) {
         super(driver);
         baseUI = new BaseUI(driver);
     }
 
-    @FindBy(xpath = "//div //*[@class='title'][text()='Billing address']")
-    WebElement billingAddress;
-
     public String getBillingAddressAttribute() {
         return billingAddress.getText();
     }
 
-    @FindBy(name = "BillingNewAddress.CountryId")
-    WebElement country;
-
     public void selectCountryFromDropdown(String text) {
         baseUI.clickDropdown(country, text);
     }
-
-    @FindBy(name = "BillingNewAddress.City")
-    WebElement cityInputField;
 
     public void cityInputFieldSetText(String text) {
         baseUI.sendText(cityInputField, text);
@@ -40,9 +83,6 @@ public class CheckoutPage extends BrowserFactory {
         return cityInputField.getAttribute("value");
     }
 
-    @FindBy(name = "BillingNewAddress.Address1")
-    WebElement address1InputField;
-
     public void address1InputFieldSetText(String text) {
         baseUI.sendText(address1InputField, text);
     }
@@ -50,9 +90,6 @@ public class CheckoutPage extends BrowserFactory {
     public String getAddress1Attribute() {
         return address1InputField.getAttribute("value");
     }
-
-    @FindBy(name = "BillingNewAddress.ZipPostalCode")
-    WebElement postalCodeInputField;
 
     public void postalCodeInputFieldSetText(String text) {
         baseUI.sendText(postalCodeInputField, text);
@@ -62,9 +99,6 @@ public class CheckoutPage extends BrowserFactory {
         return postalCodeInputField.getAttribute("value");
     }
 
-    @FindBy(name = "BillingNewAddress.PhoneNumber")
-    WebElement phoneNumberInputField;
-
     public void phoneNumberInputFieldSetText(String text) {
         baseUI.sendText(phoneNumberInputField, text);
     }
@@ -73,91 +107,60 @@ public class CheckoutPage extends BrowserFactory {
         return phoneNumberInputField.getAttribute("value");
     }
 
-    @FindBy(xpath = "//div //*[@name='save'][@class='button-1 new-address-next-step-button']")
-    WebElement continueButton;
-
     public void clickContinueButton() {
         baseUI.click(continueButton);
         System.out.println("Continue Button is clicked");
     }
 
-    @FindBy(xpath = "//*[@id=\"ShipToSameAddress\"]")
-    WebElement checkBox;
-
     public boolean getCheckBoxValue() {
         return checkBox.isSelected();
     }
 
-    @FindBy(xpath = "//div //*[@class='title'][text()='Shipping method']")
-    WebElement shippingMethod;
-
     public String getShippingMethodAttribute() {
         return shippingMethod.getText();
     }
-
-    @FindBy(id = "shippingoption_1")
-    WebElement nextDayAirRadioButton;
 
     public void clickNextDayAirRadioButton() {
         baseUI.click(nextDayAirRadioButton);
         System.out.println("Next Day Air Radio Button is clicked");
     }
 
-    @FindBy(xpath = "//*[@id=\"shipping-method-buttons-container\"]/button")
-    WebElement shippingMethodContinueButton;
-
     public void clickShippingMethodContinueButton() {
         baseUI.click(shippingMethodContinueButton);
         System.out.println("Continue Button is clicked");
     }
 
-    @FindBy(xpath = "//div //*[@class='title'][text()='Payment method']")
-    WebElement paymentMethod;
 
     public String getPaymentMethodAttribute() {
         return paymentMethod.getText();
     }
-
-    @FindBy(xpath = "//*[@id=\"paymentmethod_0\"]")
-    WebElement checkMoneyRadioButton;
 
     public void clickCheckMoneyRadioButton() {
         baseUI.click(checkMoneyRadioButton);
         System.out.println("Check/Money radio button is clicked");
     }
 
-    @FindBy(xpath = "//*[@id=\"payment-method-buttons-container\"]/button")
-    WebElement paymentMethodContinueButton;
-
     public void clickPaymentMethodContinueButton() {
         baseUI.click(paymentMethodContinueButton);
         System.out.println("Continue Button is clicked");
     }
 
-    @FindBy(xpath = "//div //*[@class='title'][text()='Payment information']")
-    WebElement paymentInformation;
 
     public String getPaymentInformationAttribute() {
         return paymentInformation.getText();
     }
 
-    @FindBy(xpath = "//*[@id=\"payment-info-buttons-container\"]/button")
-    WebElement paymentInformationContinueButton;
 
     public void clickPaymentInformationContinueButton() {
         baseUI.click(paymentInformationContinueButton);
         System.out.println("Continue Button is clicked");
     }
 
-    @FindBy(xpath = "//div //*[@class='title'][text()='Confirm order']")
-    WebElement confirmOrder;
 
     public String getConfirmOrderAttribute() {
         return confirmOrder.getText();
     }
 
-    @FindBy(xpath = "//div[@class='billing-info'] //ul[@class='info-list'] //li[@class='address1']")
-    WebElement confirmBillingAddress;
 
     public String getConfirmBillingAddressAttribute() {
         return confirmBillingAddress.getText();
@@ -171,40 +174,32 @@ public class CheckoutPage extends BrowserFactory {
         }
     }
 
-    @FindBy(xpath = "//li[@class='payment-method'] //span[@class='label']")
-    WebElement billingPaymentMethod;
 
     public String getBillingPaymentMethodAttribute() {
         return billingPaymentMethod.getText();
     }
 
-    @FindBy(xpath = "//li[@class='shipping-method'] //span[@class='label']")
-    WebElement shippingShippingMethod;
 
     public String getShippingShippingMethodAttribute() {
         return shippingShippingMethod.getText();
     }
 
-    @FindBy(xpath = "//span[@class='product-quantity'][normalize-space()='3']")
-    WebElement shippingQty;
 
     public String getShippingQtyAttribute() {
         return shippingQty.getText();
     }
 
-    @FindBy(xpath = "//button[@class='button-1 confirm-order-next-step-button']")
-    WebElement confirmButtonOnBottomOfPage;
 
     public void clickConfirmButtonOnBottomOfPage() {
         baseUI.click(confirmButtonOnBottomOfPage);
         System.out.println("Confirm Button is clicked");
     }
 
-    @FindBy(css = "h1")
-    public WebElement thankYou;
-    @FindBy(css = "div.title")
-    private WebElement orderCompleteMsg;
-    @FindBy(linkText = "Click here for order details.")
-    private WebElement orderDetailsLink;
+    public String getThankYouAttribute() {
+        return thankYou.getText();
+    }
 
+    public void clickOrderDetailsLink() {
+        baseUI.click(orderDetailsLink);
+    }
 }

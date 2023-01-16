@@ -1,6 +1,7 @@
 package nopCommerceTests;
 
 import base.BrowserFactory;
+import base.OrderDetails;
 import base.PageHeader;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -21,6 +22,7 @@ public class CreateNewAccountTest {
     private CellPhonesPage cellPhonesPage;
 
     private CheckoutPage checkoutPage;
+    private OrderDetails orderDetails;
 
     String name = "Hera";
 
@@ -60,6 +62,7 @@ public class CreateNewAccountTest {
         customerPage = new CustomerPage(driver);
         cellPhonesPage = new CellPhonesPage(driver);
         checkoutPage = new CheckoutPage(driver);
+        orderDetails = new OrderDetails(driver);
 
         //DateTimeGenerator.generateRandomEmail();
 
@@ -203,7 +206,7 @@ public class CreateNewAccountTest {
     public void checkoutStep1() throws InterruptedException {
 
         pageHeader.clickLoginButton();
-        loginPage.fillLoginFields(email, newPassword);
+        loginPage.fillLoginFields(email, password);
 
         Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
 
@@ -238,13 +241,21 @@ public class CreateNewAccountTest {
 
         Assert.assertEquals(checkoutPage.getConfirmBillingAddressAttribute(), "Nya Bergets Vag 50");
         checkoutPage.compareAddresses();
-        Assert.assertEquals(checkoutPage.getBillingPaymentMethodAttribute(), "Payment Method: Check / Money Order");
-        Assert.assertEquals(checkoutPage.getShippingShippingMethodAttribute(), "Shipping Method: Next Day Air");
+        Assert.assertEquals(checkoutPage.getBillingPaymentMethodAttribute(), "Check / Money Order");
+        Assert.assertEquals(checkoutPage.getShippingShippingMethodAttribute(), "Next Day Air");
         Assert.assertEquals(checkoutPage.getShippingQtyAttribute(), "3");
 
         checkoutPage.clickConfirmButtonOnBottomOfPage();
         Thread.sleep(1000);
 
+        Assert.assertEquals(checkoutPage.getThankYouAttribute(), "Thank you");
+        checkoutPage.clickOrderDetailsLink();
+
+        orderDetails.getOrderInformationAttribute();
+        orderDetails.compareAddresses();
+        Assert.assertEquals(orderDetails.getBillingPaymentMethodAttribute(), "Check / Money Order");
+        Assert.assertEquals(orderDetails.getShippingShippingMethodAttribute(), "Next Day Air");
+        Assert.assertEquals(orderDetails.getShippingQtyAttribute(), "3");
     }
 }
 //    @AfterTest
