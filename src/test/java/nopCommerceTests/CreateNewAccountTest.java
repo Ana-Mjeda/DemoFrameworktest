@@ -21,36 +21,23 @@ public class CreateNewAccountTest {
     private LoginPage loginPage;
     private CustomerPage customerPage;
     private CellPhonesPage cellPhonesPage;
-
     private CheckoutPage checkoutPage;
     private OrderDetails orderDetails;
 
     String name = "Hera";
-
     String lastName = "Syndulla";
-
     String day = "17";
-
     String month = "April";
-
     String year = "1980";
-
-    String email = "hera20230111020250@test.com";
-    //String email;
+    String email = "hera20230111020218@test.com";
     //String email;
     String company = "Phoenix";
-
     String password = "secret";
-
     String confirmPassword = "secret";
-
     String invalidEmail = "test.com";
-
     String invalidPassword = "test";
     String invalidPassword1 = "testiran";
-
     String invalidConfirmPassword = "tostiran";
-
     String newPassword = "ghosty";
 
     @BeforeClass
@@ -67,7 +54,6 @@ public class CreateNewAccountTest {
 
         //DateTimeGenerator.generateRandomEmail();
 
-
         //email = "hera" + DateTimeGenerator.getDateTime() + "@test.com";
         //System.out.println(email);
     }
@@ -75,6 +61,7 @@ public class CreateNewAccountTest {
     @Test(priority = 1)
     public void stepCreateAccount() {
         homePage.clickRegisterButton();
+
         registerPage.clickRegisterButton();
         registerPage.enterInvalidEmail(invalidEmail);
         registerPage.enterInvalidPasswordLessThen(invalidPassword);
@@ -201,6 +188,8 @@ public class CreateNewAccountTest {
 
         Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
 
+        pageHeader.clickLogoutButton();
+
     }
 
     @Test(priority = 5)
@@ -257,6 +246,8 @@ public class CreateNewAccountTest {
         Assert.assertEquals(orderDetails.getBillingPaymentMethodAttribute(), "Check / Money Order");
         Assert.assertEquals(orderDetails.getShippingShippingMethodAttribute(), "Next Day Air");
         Assert.assertEquals(orderDetails.getShippingQtyAttribute(), "3");
+
+        pageHeader.clickLogoutButton();
     }
 
     @AfterTest

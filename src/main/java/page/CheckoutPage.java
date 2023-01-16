@@ -5,6 +5,7 @@ import base.BrowserFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class CheckoutPage extends BrowserFactory {
     BaseUI baseUI;
@@ -169,12 +170,22 @@ public class CheckoutPage extends BrowserFactory {
         return confirmBillingAddress.getText();
     }
 
+    public String getBillingAddressAttributeCheckout() {
+        return billingAddressCheckout.getText();
+    }
+
+    public String getShippingAddressAttributeCheckout() {
+        return shippingAddressCheckout.getText();
+    }
+
     public void compareAddresses() {
-        billingAddressCheckout.getText();
-        shippingAddressCheckout.getText();
-        if (billingAddressCheckout.equals(shippingAddressCheckout)) {
+        String billing = getBillingAddressAttributeCheckout();
+        String shipping = getShippingAddressAttributeCheckout();
+
+        if (billing.equalsIgnoreCase(shipping)) {
             System.out.println("The Billing Address is same as Shipping Address ");
         }
+        Assert.fail("Billing address '" + billing + "' and shipping address '" + shipping + "' do not match.");
     }
 
 

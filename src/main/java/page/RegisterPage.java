@@ -103,6 +103,7 @@ public class RegisterPage extends BrowserFactory {
     @Step("Select date of birth dropdown")
     public void dateOfBirthDay(String day) {
         baseUI.clickDropdown(dateOfBirthDay, day);
+
     }
 
     @Step("Select month of birth dropdown")
@@ -120,6 +121,7 @@ public class RegisterPage extends BrowserFactory {
         baseUI.sendText(emailInputField, invalidEmail);
         emailError.getText();
         System.out.println("Message: " + emailError.getText());
+
     }
 
     @Step("Enter password less then 6 characters")
@@ -148,6 +150,7 @@ public class RegisterPage extends BrowserFactory {
         dateOfBirthDay(day);
         monthOfBirthMonth(month);
         yearOfBirthYear(year);
+
     }
 
     @Step("Get Registration Message")
@@ -160,5 +163,6 @@ public class RegisterPage extends BrowserFactory {
     public void getMessageError() {
         messageError.getText();
         System.out.println("Message: " + messageError.getText());
+
     }
 }

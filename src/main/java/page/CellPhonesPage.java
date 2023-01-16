@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -75,6 +76,7 @@ public class CellPhonesPage extends TemplatePage {
                 buttons.get(i).click();
                 break;
             }
+            Assert.fail("Product name '" + productName + " not found!");
         }
         return this;
     }
