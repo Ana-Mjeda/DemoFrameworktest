@@ -20,8 +20,10 @@ public class PageHeader extends BrowserFactory {
     @FindBy(className = "ico-logout")
     WebElement logoutButton;
 
-    @FindBy(xpath = "//*[@id='topcartlink'] //a //*[@class='cart-label']\n")
+    @FindBy(xpath = "//*[@id='topcartlink'] //a //*[@class='cart-label']")
     WebElement shoppingCart;
+    @FindBy(xpath = "//span[@class='cart-qty']")
+    WebElement shoppingCartQty;
 
     public PageHeader(WebDriver driver) {
         super(driver);
@@ -69,8 +71,6 @@ public class PageHeader extends BrowserFactory {
         System.out.println("Shopping cart clicked");
     }
 
-    @FindBy(xpath = "//span[@class='cart-qty']")
-    WebElement shoppingCartQty;
 
     public String getShoppingCartAttribute() {
         return shoppingCartQty.getText();
