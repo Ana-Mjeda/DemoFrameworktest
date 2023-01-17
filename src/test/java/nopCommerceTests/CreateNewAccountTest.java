@@ -9,6 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import page.*;
+import util.DateTimeGenerator;
 
 import java.io.IOException;
 
@@ -29,8 +30,8 @@ public class CreateNewAccountTest {
     String day = "17";
     String month = "April";
     String year = "1980";
-    String email = "hera20230111020221@test.com";
-    //String email;
+    //String email = "hera20230111020221@test.com";
+    String email;
     String company = "Phoenix";
     String password = "secret";
     String confirmPassword = "secret";
@@ -54,8 +55,8 @@ public class CreateNewAccountTest {
 
         //DateTimeGenerator.generateRandomEmail();
 
-        //email = "hera" + DateTimeGenerator.getDateTime() + "@test.com";
-        //System.out.println(email);
+        email = "hera" + DateTimeGenerator.getDateTime() + "@test.com";
+        System.out.println(email);
     }
 
     @Test(priority = 1)
