@@ -56,15 +56,15 @@ public class CheckoutPage extends BrowserFactory {
     @FindBy(xpath = "//button[@class='button-1 confirm-order-next-step-button']")
     WebElement confirmButtonOnBottomOfPage;
     @FindBy(css = "h1")
-    public WebElement thankYou;
+    WebElement thankYou;
     @FindBy(xpath = "div.title")
-    private WebElement orderCompleteMsg;
+    WebElement orderCompleteMsg;
     @FindBy(linkText = "Click here for order details.")
-    private WebElement orderDetailsLink;
+    WebElement orderDetailsLink;
     @FindBy(xpath = "//div[@class='billing-info'] //li[@class='address1'])")
-    private WebElement billingAddressCheckout;
+    WebElement billingAddressCheckout;
     @FindBy(xpath = "//div[@class='shipping-info'] //li[@class='address1']")
-    private WebElement shippingAddressCheckout;
+    WebElement shippingAddressCheckout;
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
