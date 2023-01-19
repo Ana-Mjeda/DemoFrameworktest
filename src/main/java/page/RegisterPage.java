@@ -62,6 +62,9 @@ public class RegisterPage extends BrowserFactory {
     @FindBy(name = "DateOfBirthYear")
     WebElement yearOfBirthDay;
 
+    @FindBy(id = "gender-male")
+    WebElement genderMale;
+
     @FindBy(id = "gender-female")
     WebElement genderFemale;
 
@@ -78,6 +81,7 @@ public class RegisterPage extends BrowserFactory {
 
     @Step("Register text is displayed")
     public void getH1() {
+        h1.isDisplayed();
         System.out.println(h1.getText());
     }
 
@@ -92,12 +96,6 @@ public class RegisterPage extends BrowserFactory {
     public void clickContinueButton() {
         baseUI.click(continueButton);
         System.out.println("Continue button clicked");
-    }
-
-    @Step("Click Gender Female")
-    public void clickGenderFemale() {
-        genderFemale.click();
-        System.out.println("Gender female is clicked");
     }
 
     @Step("Select date of birth dropdown")
@@ -119,7 +117,6 @@ public class RegisterPage extends BrowserFactory {
     @Step("Enter invalid email")
     public void enterInvalidEmail(String invalidEmail) {
         baseUI.sendText(emailInputField, invalidEmail);
-        emailError.getText();
         System.out.println("Message: " + emailError.getText());
 
     }
@@ -127,19 +124,18 @@ public class RegisterPage extends BrowserFactory {
     @Step("Enter password less then 6 characters")
     public void enterInvalidPasswordLessThen(String invalidPassword) {
         baseUI.sendText(passwordInputField, invalidPassword);
-        passwordError.getText();
         System.out.println("Message: " + passwordError.getText());
     }
 
     @Step("Enter confirm password that is different then password")
     public void enterInvalidConfirmPasswordDifferent(String invalidConfirmPassword) {
         baseUI.sendText(confirmPasswordInputField, invalidConfirmPassword);
-        confirmPasswordError.getText();
         System.out.println("Message: " + confirmPasswordError.getText());
     }
 
     @Step("Fill Form with valid data")
-    public void fillFormWithValidData(String firstName, String lastName, String day, String month, String year, String email, String company, String password, String confirmPassword) {
+    public void fillFormWithValidData(Gender gender, String firstName, String lastName, String day, String month, String year, String email, String company, String password, String confirmPassword) {
+        clickGender(gender);
         baseUI.sendText(firstNameInputField, firstName);
         baseUI.sendText(lastNameInputField, lastName);
         baseUI.sendText(emailInputField, email);
@@ -150,7 +146,16 @@ public class RegisterPage extends BrowserFactory {
         dateOfBirthDay(day);
         monthOfBirthMonth(month);
         yearOfBirthYear(year);
+    }
 
+    private void clickGender(Gender gender) {
+        if (gender == Gender.MALE) {
+            baseUI.click(genderMale);
+        } else if (gender == Gender.FEMALE) {
+            baseUI.click(genderFemale);
+        } else {
+            System.err.println("Gender not selected");
+        }
     }
 
     @Step("Get Registration Message")

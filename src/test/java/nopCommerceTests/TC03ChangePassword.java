@@ -8,6 +8,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import page.CustomerPage;
+import page.Gender;
 import page.LoginPage;
 import page.RegisterPage;
 import util.DateTimeGenerator;
@@ -16,7 +17,7 @@ import java.io.IOException;
 
 import static base.BrowserFactory.driver;
 
-public class ChangePassword {
+public class TC03ChangePassword {
 
     private PageHeader pageHeader;
     private LoginPage loginPage;
@@ -45,7 +46,7 @@ public class ChangePassword {
 
     public void createAccount() {
         pageHeader.clickRegisterButton();
-        registerPage.fillFormWithValidData("test", "test", "17", "April", "1989", email, "company", password, password);
+        registerPage.fillFormWithValidData(Gender.FEMALE, "test", "test", "17", "April", "1989", email, "company", password, password);
         registerPage.clickRegisterButton();
         pageHeader.clickLogoutButton();
 

@@ -40,6 +40,10 @@ public class CellPhonesPage extends TemplatePage {
     WebElement qtyInputField;
     @FindBy(xpath = "//*[@id='termsofservice']")
     WebElement checkbox;
+    @FindBy(xpath = "//h2[@class='product-title'] //a")
+    List<WebElement> productTitle;
+    @FindBy(xpath = "//div[@class='item-box'] //*[@class='button-2 product-box-add-to-cart-button']")
+    List<WebElement> addToCartButton;
 
     public CellPhonesPage(WebDriver driver) {
         super(driver);
@@ -48,16 +52,14 @@ public class CellPhonesPage extends TemplatePage {
 
     public void selectCellPhonesPage() throws InterruptedException {
         Actions action = new Actions(driver);
-        WebElement menu = electronics;
-        action.moveToElement(menu);
+        action.moveToElement(electronics);
 
         WebElement subMenu = cellPhones;
         action.moveToElement(subMenu);
 
-        action.moveToElement(menu).moveToElement(subMenu).click().build().perform();
+        action.moveToElement(electronics).moveToElement(subMenu).click().build().perform();
 
     }
-
 
     public void clickAddToCartButton() {
         baseUI.click(addToCart);
@@ -68,14 +70,12 @@ public class CellPhonesPage extends TemplatePage {
     public CellPhonesPage clickAddToCartHTC(String productName) {
         boolean productFound = false;
 
-        List<WebElement> phones = driver.findElements(By.xpath("//h2[@class='product-title'] //a"));
-        List<WebElement> buttons = driver.findElements(By.xpath("//div[@class='item-box'] //*[@class='button-2 product-box-add-to-cart-button']"));
-        for (int i = 0; i < phones.size(); i++) {
-            WebElement phone = phones.get(i);
+        for (int i = 0; i < productTitle.size(); i++) {
+            WebElement phone = productTitle.get(i);
             if (phone.getText().equals(productName)) {
                 productFound = true;
                 System.out.println("Product name: '" + productName + " found");
-                buttons.get(i).click();
+                addToCartButton.get(i).click();
                 break;
             }
         }

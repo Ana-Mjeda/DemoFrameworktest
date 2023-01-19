@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import page.Gender;
 import page.RegisterPage;
 import util.DateTimeGenerator;
 
@@ -14,10 +15,11 @@ import java.io.IOException;
 
 import static base.BrowserFactory.driver;
 
-public class CreateNewAccountTest {
+public class TC01CreateNewAccountTest {
     private RegisterPage registerPage;
     private PageHeader pageHeader;
 
+    Gender gender = Gender.FEMALE;
     String name = "Hera";
     String lastName = "Syndulla";
     String day = "17";
@@ -50,8 +52,8 @@ public class CreateNewAccountTest {
         registerPage.enterInvalidEmail(invalidEmail);
         registerPage.enterInvalidPasswordLessThen(invalidPassword);
         registerPage.enterInvalidConfirmPasswordDifferent(invalidConfirmPassword);
-        registerPage.clickGenderFemale();
-        registerPage.fillFormWithValidData(name, lastName, day, month, year, email, company, password, password);
+        //registerPage.clickGender(radioButtons,"female");
+        registerPage.fillFormWithValidData(gender, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
         Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/"));
 
@@ -60,12 +62,11 @@ public class CreateNewAccountTest {
 
         Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/");
     }
-
     @Test(priority = 2)
     public void createAccountWithExistingEmail() {
         pageHeader.clickRegisterButton();
-        registerPage.clickGenderFemale();
-        registerPage.fillFormWithValidData(name, lastName, day, month, year, email, company, password, password);
+        //registerPage.clickGender();
+        registerPage.fillFormWithValidData(gender, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
         registerPage.getMessageError();
     }

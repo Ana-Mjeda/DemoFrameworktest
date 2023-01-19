@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import page.Gender;
 import page.LoginPage;
 import page.RegisterPage;
 import util.DateTimeGenerator;
@@ -16,7 +17,7 @@ import java.io.IOException;
 
 import static base.BrowserFactory.driver;
 
-public class LoginWithNewAccount {
+public class TC02LoginWithNewAccount {
     private PageHeader pageHeader;
     private LoginPage loginPage;
     private RegisterPage registerPage;
@@ -41,7 +42,7 @@ public class LoginWithNewAccount {
 
     public void createAccount() {
         pageHeader.clickRegisterButton();
-        registerPage.fillFormWithValidData("test", "test", "17", "April", "1989", email, "company", password, password);
+        registerPage.fillFormWithValidData(Gender.FEMALE, "test", "test", "17", "April", "1989", email, "company", password, password);
         registerPage.clickRegisterButton();
 
     }

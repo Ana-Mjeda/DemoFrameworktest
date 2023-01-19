@@ -8,17 +8,14 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import page.CellPhonesPage;
-import page.CheckoutPage;
-import page.LoginPage;
-import page.RegisterPage;
+import page.*;
 import util.DateTimeGenerator;
 
 import java.io.IOException;
 
 import static base.BrowserFactory.driver;
 
-public class Checkout {
+public class TC04Checkout {
     private PageHeader pageHeader;
     private LoginPage loginPage;
     private RegisterPage registerPage;
@@ -40,14 +37,13 @@ public class Checkout {
         checkoutPage = new CheckoutPage(driver);
         orderDetails = new OrderDetails(driver);
 
-        //DateTimeGenerator.generateRandomEmail();
         email = "hera" + DateTimeGenerator.getDateTime() + "@test.com";
         System.out.println(email);
     }
 
     public void createAccount() throws InterruptedException {
         pageHeader.clickRegisterButton();
-        registerPage.fillFormWithValidData("test", "test", "17", "April", "1989", email, "company", password, password);
+        registerPage.fillFormWithValidData(Gender.FEMALE, "test", "test", "17", "April", "1989", email, "company", password, password);
         registerPage.clickRegisterButton();
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
