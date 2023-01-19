@@ -49,11 +49,11 @@ public class TC01CreateNewAccountTest {
         pageHeader.clickRegisterButton();
 
         registerPage.clickRegisterButton();
+        registerPage.allErrors();
         registerPage.enterInvalidEmail(invalidEmail);
         registerPage.enterInvalidPasswordLessThen(invalidPassword);
         registerPage.enterInvalidConfirmPasswordDifferent(invalidConfirmPassword);
-        //registerPage.clickGender(radioButtons,"female");
-        registerPage.fillFormWithValidData(gender, name, lastName, day, month, year, email, company, password, password);
+        registerPage.fillFormWithValidData(Gender.FEMALE, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
         Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/"));
 
@@ -65,8 +65,7 @@ public class TC01CreateNewAccountTest {
     @Test(priority = 2)
     public void createAccountWithExistingEmail() {
         pageHeader.clickRegisterButton();
-        //registerPage.clickGender();
-        registerPage.fillFormWithValidData(gender, name, lastName, day, month, year, email, company, password, password);
+        registerPage.fillFormWithValidData(Gender.FEMALE, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
         registerPage.getMessageError();
     }

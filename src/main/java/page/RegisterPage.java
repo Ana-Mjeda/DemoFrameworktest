@@ -6,6 +6,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class RegisterPage extends BrowserFactory {
 
@@ -101,7 +102,6 @@ public class RegisterPage extends BrowserFactory {
     @Step("Select date of birth dropdown")
     public void dateOfBirthDay(String day) {
         baseUI.clickDropdown(dateOfBirthDay, day);
-
     }
 
     @Step("Select month of birth dropdown")
@@ -168,6 +168,43 @@ public class RegisterPage extends BrowserFactory {
     public void getMessageError() {
         messageError.getText();
         System.out.println("Message: " + messageError.getText());
+    }
 
+    @Step("Get Invalid First Name Message")
+    public void getNameError() {
+        firstNameError.getText();
+        Assert.assertEquals(firstNameError, "First name error should not be empty");
+    }
+
+    @Step("Get Invalid Last Name Message")
+    public void getLastNameError() {
+        lastNameError.getText();
+        Assert.assertEquals(lastNameError, "Last name error should not be empty");
+    }
+
+    @Step("Get Invalid Email Message")
+    public void getEmailError() {
+        emailError.getText();
+        Assert.assertEquals(emailError, "Email error should not be empty");
+    }
+
+    @Step("Get Password error message")
+    public void getPasswordError() {
+        passwordError.getText();
+        Assert.assertEquals(passwordError, "Password error should not be empty");
+    }
+
+    @Step("Get Confirm Password error message")
+    public void getConfirmPasswordError() {
+        confirmPasswordError.getText();
+        Assert.assertEquals(confirmPasswordError, "Password confirmation error should not be empty");
+    }
+
+    public void allErrors() {
+        getNameError();
+        getLastNameError();
+        getEmailError();
+        getPasswordError();
+        getConfirmPasswordError();
     }
 }
