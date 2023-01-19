@@ -58,7 +58,7 @@ public class TC05AddProduct {
 
         Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/"));
         cellPhonesPage.selectCellPhonesPage();
-        cellPhonesPage.clickAddToCartHTC(htcOneMiniBlue);
+        cellPhonesPage.clickAddToCartIfProductFound(htcOneMiniBlue);
         Assert.assertEquals(cellPhonesPage.barNotificationAttribute(), productAddedToCartText);
 
         cellPhonesPage.clickShoppingCartLink();

@@ -66,8 +66,8 @@ public class CellPhonesPage extends TemplatePage {
         System.out.println("Add To Cart Button clicked");
     }
 
-    @Step("Select add to cart button below HTC One Mini Phone")
-    public CellPhonesPage clickAddToCartHTC(String productName) {
+    @Step("Select add to cart button below a product")
+    public CellPhonesPage clickAddToCartIfProductFound(String productName) {
         boolean productFound = false;
 
         for (int i = 0; i < productTitle.size(); i++) {
@@ -85,15 +85,8 @@ public class CellPhonesPage extends TemplatePage {
         return this;
     }
 
-//    @Step("Select mobile")
-//    public void addMobileToCart(String mobileName) {
-//
-//        By mobileLocator = By.xpath("//h2[@class='product-title'] /a[contains(text()," + mobileName + ")]/parent::h2/following-sibling::div[@class='add-info']//button[@class='button-2 product-box-add-to-cart-button']");
-//
-//        driver.findElement(mobileLocator).click();
-//    }
 
-    @Step("Select mobile")
+    @Step("Select cell phone")
     public void clickMobile(String mobileName) {
 
         By mobileLocator = By.xpath("//h2//a[text()='" + mobileName + "']");
