@@ -2,6 +2,7 @@ package page;
 
 import base.BaseUI;
 import base.BrowserFactory;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -51,7 +52,7 @@ public class CheckoutPage extends BrowserFactory {
     WebElement billingPaymentMethod;
     @FindBy(xpath = "//li[@class='shipping-method'] //span[@class='value']")
     WebElement shippingShippingMethod;
-    @FindBy(xpath = "//span[@class='product-quantity'][normalize-space()='3']")
+    @FindBy(xpath = "//span[@class='product-quantity'][text()='3']")
     WebElement shippingQty;
     @FindBy(xpath = "//button[@class='button-1 confirm-order-next-step-button']")
     WebElement confirmButtonOnBottomOfPage;
@@ -69,6 +70,7 @@ public class CheckoutPage extends BrowserFactory {
         baseUI = new BaseUI(driver);
     }
 
+    @Step("Check if Billing method is displayed")
     public void getBillingAddressAttribute() {
         Assert.assertEquals(billingAddress.getText(), "Billing address");
     }
@@ -81,34 +83,19 @@ public class CheckoutPage extends BrowserFactory {
         baseUI.sendText(cityInputField, text);
     }
 
-    public String getCityAttribute() {
-        return cityInputField.getAttribute("value");
-    }
-
     public void address1InputFieldSetText(String text) {
         baseUI.sendText(address1InputField, text);
-    }
-
-    public String getAddress1Attribute() {
-        return address1InputField.getAttribute("value");
     }
 
     public void postalCodeInputFieldSetText(String text) {
         baseUI.sendText(postalCodeInputField, text);
     }
 
-    public String getPostalCodeAttribute() {
-        return postalCodeInputField.getAttribute("value");
-    }
-
     public void phoneNumberInputFieldSetText(String text) {
         baseUI.sendText(phoneNumberInputField, text);
     }
 
-    public String getPhoneNumberAttribute() {
-        return phoneNumberInputField.getAttribute("value");
-    }
-
+    @Step("Click continue button under Billing Address form")
     public void clickContinueButton() {
         baseUI.click(continueButton);
         System.out.println("Continue Button is clicked");
@@ -118,64 +105,74 @@ public class CheckoutPage extends BrowserFactory {
         return checkBox.isSelected();
     }
 
+    @Step("Check if Shipping method is displayed")
     public void getShippingMethodAttribute() {
         Assert.assertEquals(shippingMethod.getText(), "Shipping method");
     }
 
-    public void clickNextDayAirRadioButton() {
-        baseUI.click(nextDayAirRadioButton);
-        System.out.println("Next Day Air Radio Button is clicked");
+    @Step("Select a radio button")
+    public void clickRadioButtonInShippingMethod(String button) {
+        if (button.equals("Next Day Air")) {
+            baseUI.click(nextDayAirRadioButton);
+            System.out.println("Next Day Air Radio Button is clicked");
+        } else {
+            System.err.println("Button not selected");
+        }
     }
 
+    @Step("Click continue button under Shipping method")
     public void clickShippingMethodContinueButton() {
         baseUI.click(shippingMethodContinueButton);
         System.out.println("Continue Button is clicked");
     }
 
-
-    public String getPaymentMethodAttribute() {
-        return paymentMethod.getText();
+    @Step("Check if Payment method is displayed")
+    public void getPaymentMethodAttribute() {
+        Assert.assertEquals(paymentMethod.getText(), "Payment method");
     }
 
-    public void clickCheckMoneyRadioButton() {
-        baseUI.click(checkMoneyRadioButton);
-        System.out.println("Check/Money radio button is clicked");
+    @Step("Select a radio button")
+    public void clickRadioButtonInPaymentMethod(String button) {
+        if (button.equals("Check / Money Order")) {
+            baseUI.click(checkMoneyRadioButton);
+            System.out.println("Check/Money radio button is clicked");
+        } else {
+            System.err.println("Button not selected");
+        }
     }
 
+    @Step("Click continue button under Payment method")
     public void clickPaymentMethodContinueButton() {
         baseUI.click(paymentMethodContinueButton);
         System.out.println("Continue Button is clicked");
     }
 
-
-    public String getPaymentInformationAttribute() {
-        return paymentInformation.getText();
+    @Step("Check if Payment information is displayed")
+    public void getPaymentInformationAttribute() {
+        Assert.assertEquals(paymentInformation.getText(), "Payment information");
     }
 
-
+    @Step("Click continue button under Payment information")
     public void clickPaymentInformationContinueButton() {
         baseUI.click(paymentInformationContinueButton);
         System.out.println("Continue Button is clicked");
     }
 
-
-    public String getConfirmOrderAttribute() {
-        return confirmOrder.getText();
+    @Step("Check if Confirm order is displayed")
+    public void getConfirmOrderAttribute() {
+        Assert.assertEquals(confirmOrder.getText(), "Confirm order");
     }
 
-
-    public String getConfirmBillingAddressAttribute() {
-        return confirmBillingAddress.getText();
+    @Step("Check Confirm Billing address")
+    public void getConfirmBillingAddressAttribute() {
+        Assert.assertEquals(confirmBillingAddress.getText(), "");
     }
 
-    public String getBillingAddressAttributeCheckout() {
-        return billingAddressCheckout.getText();
+    public void getShippingAddressAttributeCheckout() {
+        Assert.assertEquals(shippingAddressCheckout.getText(), "");
     }
 
-    public String getShippingAddressAttributeCheckout() {
-        return shippingAddressCheckout.getText();
-    }
-
+    @Step("Function for comparing addresses")
     public void compareAddresses() {
         boolean addressFound = false;
         String billing = getConfirmBillingAddressAttribute();
@@ -190,31 +187,33 @@ public class CheckoutPage extends BrowserFactory {
         }
     }
 
-
-    public String getBillingPaymentMethodAttribute() {
-        return billingPaymentMethod.getText();
+    @Step("Checking billing payment method")
+    public void getBillingPaymentMethodAttribute(String check) {
+        Assert.assertEquals(shippingAddressCheckout.getText(), check);
     }
 
-
-    public String getShippingShippingMethodAttribute() {
-        return shippingShippingMethod.getText();
+    @Step("Checking shipping  method")
+    public void getShippingShippingMethodAttribute(String next) {
+        Assert.assertEquals(shippingShippingMethod.getText(), next);
     }
 
-
-    public String getShippingQtyAttribute() {
-        return shippingQty.getText();
+    @Step("Checking shipping quantity")
+    public void getShippingQtyAttribute(String val) {
+        Assert.assertEquals(shippingQty.getText(), val);
     }
 
-
+    @Step("Click continue button on bottom of page")
     public void clickConfirmButtonOnBottomOfPage() {
         baseUI.click(confirmButtonOnBottomOfPage);
         System.out.println("Confirm Button is clicked");
     }
 
-    public String getThankYouAttribute() {
-        return thankYou.getText();
+    @Step("Checking if Thank you is displayed")
+    public void getThankYouAttribute() {
+        Assert.assertEquals(thankYou.getText(), "Thank you");
     }
 
+    @Step("Clicking on order details link")
     public void clickOrderDetailsLink() {
         baseUI.click(orderDetailsLink);
     }

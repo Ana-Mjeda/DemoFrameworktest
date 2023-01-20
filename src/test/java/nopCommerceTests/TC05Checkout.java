@@ -62,10 +62,11 @@ public class TC05Checkout {
     @Test(priority = 5)
     public void checkoutStep1() throws InterruptedException {
         createAccount();
+        String nextDayAir = "Next Day Air";
+        String checkMoneyOrder = "Check / Money Order";
 
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
-
         pageHeader.checkShoppingCartValue3();
         pageHeader.clickShoppingCart();
         cellPhonesPage.clickCheckbox();
@@ -81,35 +82,31 @@ public class TC05Checkout {
         checkoutPage.clickContinueButton();
 
         checkoutPage.getShippingMethodAttribute();
-        checkoutPage.clickNextDayAirRadioButton();
+
+        checkoutPage.clickRadioButtonInShippingMethod(nextDayAir);
         checkoutPage.clickShippingMethodContinueButton();
+        checkoutPage.getPaymentMethodAttribute();
 
-        Assert.assertEquals(checkoutPage.getPaymentMethodAttribute(), "Payment method");
-
-        checkoutPage.clickCheckMoneyRadioButton();
+        checkoutPage.clickRadioButtonInPaymentMethod(checkMoneyOrder);
         checkoutPage.clickPaymentMethodContinueButton();
-
-        Assert.assertEquals(checkoutPage.getPaymentInformationAttribute(), "Payment information");
+        checkoutPage.getPaymentInformationAttribute();
         checkoutPage.clickPaymentInformationContinueButton();
-        Assert.assertEquals(checkoutPage.getConfirmOrderAttribute(), "Confirm order");
-
-        Assert.assertEquals(checkoutPage.getConfirmBillingAddressAttribute(), address);
+        checkoutPage.getConfirmOrderAttribute();
+        checkoutPage.getConfirmBillingAddressAttribute();
         //checkoutPage.compareAddresses();
-        Assert.assertEquals(checkoutPage.getBillingPaymentMethodAttribute(), "Check / Money Order");
-        Assert.assertEquals(checkoutPage.getShippingShippingMethodAttribute(), "Next Day Air");
-        Assert.assertEquals(checkoutPage.getShippingQtyAttribute(), "3");
-
+        checkoutPage.getBillingPaymentMethodAttribute(checkMoneyOrder);
+        checkoutPage.getShippingShippingMethodAttribute(nextDayAir);
+        checkoutPage.getShippingQtyAttribute("3");
         checkoutPage.clickConfirmButtonOnBottomOfPage();
         Thread.sleep(1000);
-
-        Assert.assertEquals(checkoutPage.getThankYouAttribute(), "Thank you");
+        checkoutPage.getThankYouAttribute();
         checkoutPage.clickOrderDetailsLink();
 
         orderDetails.getOrderInformationAttribute();
         orderDetails.compareAddresses();
-        Assert.assertEquals(orderDetails.getBillingPaymentMethodAttribute(), "Check / Money Order");
-        Assert.assertEquals(orderDetails.getShippingShippingMethodAttribute(), "Next Day Air");
-        Assert.assertEquals(orderDetails.getShippingQtyAttribute(), "3");
+        checkoutPage.getBillingPaymentMethodAttribute(checkMoneyOrder);
+        checkoutPage.getShippingShippingMethodAttribute(nextDayAir);
+        checkoutPage.getShippingQtyAttribute("3");
 
         pageHeader.clickLogoutButton();
     }

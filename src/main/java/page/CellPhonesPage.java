@@ -99,11 +99,8 @@ public class CellPhonesPage extends TemplatePage {
 
     @Step("Select cell phone")
     public void clickMobile(String mobileName) {
-
         By mobileLocator = By.xpath("//h2//a[text()='" + mobileName + "']");
-
         driver.findElement(mobileLocator).click();
-
     }
 
     @Step("Get Notification Message on green bar")
