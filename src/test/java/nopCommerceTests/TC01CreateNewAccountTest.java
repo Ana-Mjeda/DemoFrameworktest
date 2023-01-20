@@ -3,7 +3,6 @@ package nopCommerceTests;
 import base.BrowserFactory;
 import base.PageHeader;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -59,13 +58,13 @@ public class TC01CreateNewAccountTest {
         registerPage.enterInvalidConfirmPasswordDifferent(invalidConfirmPassword);
         registerPage.fillFormWithValidData(Gender.FEMALE, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
-        Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/"));
+        registerPage.urlCheck();
 
         registerPage.getRegistrationMessage();
         registerPage.clickContinueButton();
-
-        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/");
+        registerPage.urlCheck();
     }
+
     @Test(priority = 2)
     public void createAccountWithExistingEmail() {
         pageHeader.clickRegisterButton();
