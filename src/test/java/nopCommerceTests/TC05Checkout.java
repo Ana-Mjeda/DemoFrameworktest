@@ -92,8 +92,8 @@ public class TC05Checkout {
         checkoutPage.getPaymentInformationAttribute();
         checkoutPage.clickPaymentInformationContinueButton();
         checkoutPage.getConfirmOrderAttribute();
-        checkoutPage.getConfirmBillingAddressAttribute();
-        //checkoutPage.compareAddresses();
+        checkoutPage.getConfirmBillingAddressAttribute(address);
+        checkoutPage.getShippingAddressAttributeCheckout(address);
         checkoutPage.getBillingPaymentMethodAttribute(checkMoneyOrder);
         checkoutPage.getShippingShippingMethodAttribute(nextDayAir);
         checkoutPage.getShippingQtyAttribute("3");

@@ -164,32 +164,18 @@ public class CheckoutPage extends BrowserFactory {
     }
 
     @Step("Check Confirm Billing address")
-    public void getConfirmBillingAddressAttribute() {
-        Assert.assertEquals(confirmBillingAddress.getText(), "");
+    public void getConfirmBillingAddressAttribute(String address) {
+        Assert.assertEquals(confirmBillingAddress.getText(), address);
     }
 
-    public void getShippingAddressAttributeCheckout() {
-        Assert.assertEquals(shippingAddressCheckout.getText(), "");
-    }
-
-    @Step("Function for comparing addresses")
-    public void compareAddresses() {
-        boolean addressFound = false;
-        String billing = getConfirmBillingAddressAttribute();
-        String shipping = getShippingAddressAttributeCheckout();
-
-        if (billing.equalsIgnoreCase(shipping)) {
-            addressFound = true;
-            System.out.println("The Billing Address is same as Shipping Address ");
-        }
-        if (!addressFound) {
-            Assert.fail("Billing address '" + billing + "' and shipping address '" + shipping + "' do not match.");
-        }
+    @Step("Check Shipping Billing address")
+    public void getShippingAddressAttributeCheckout(String address) {
+        Assert.assertEquals(shippingAddressCheckout.getText(), address);
     }
 
     @Step("Checking billing payment method")
     public void getBillingPaymentMethodAttribute(String check) {
-        Assert.assertEquals(shippingAddressCheckout.getText(), check);
+        Assert.assertEquals(billingPaymentMethod.getText(), check);
     }
 
     @Step("Checking shipping  method")
