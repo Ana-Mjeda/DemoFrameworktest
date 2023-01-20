@@ -52,7 +52,16 @@ public class TC04Checkout {
         cellPhonesPage.numberInputFieldSetText("3");
         cellPhonesPage.clickAddToCartButtonInSelectedPhone();
         pageHeader.clickLogoutButton();
+
+
     }
+
+    String country = "Sweden";
+    String city = "Gothenburg";
+    String address = "Nya Bergets Vag 50";
+    String postalCode = "412 76";
+    String phoneNumber = "+46 31 55 83 00";
+
 
     @Test(priority = 5)
     public void checkoutStep1() throws InterruptedException {
@@ -69,11 +78,11 @@ public class TC04Checkout {
 
         Assert.assertEquals(checkoutPage.getBillingAddressAttribute(), "Billing address");
 
-        checkoutPage.selectCountryFromDropdown("Sweden");
-        checkoutPage.cityInputFieldSetText("Gothenburg");
-        checkoutPage.address1InputFieldSetText("Nya Bergets Vag 50");
-        checkoutPage.postalCodeInputFieldSetText("412 76");
-        checkoutPage.phoneNumberInputFieldSetText("+46 31 55 83 00");
+        checkoutPage.selectCountryFromDropdown(country);
+        checkoutPage.cityInputFieldSetText(city);
+        checkoutPage.address1InputFieldSetText(address);
+        checkoutPage.postalCodeInputFieldSetText(postalCode);
+        checkoutPage.phoneNumberInputFieldSetText(phoneNumber);
 
         Assert.assertTrue(checkoutPage.getCheckBoxValue());
         checkoutPage.clickContinueButton();
@@ -92,7 +101,7 @@ public class TC04Checkout {
         checkoutPage.clickPaymentInformationContinueButton();
         Assert.assertEquals(checkoutPage.getConfirmOrderAttribute(), "Confirm order");
 
-        Assert.assertEquals(checkoutPage.getConfirmBillingAddressAttribute(), "Nya Bergets Vag 50");
+        Assert.assertEquals(checkoutPage.getConfirmBillingAddressAttribute(), address);
         //checkoutPage.compareAddresses();
         Assert.assertEquals(checkoutPage.getBillingPaymentMethodAttribute(), "Check / Money Order");
         Assert.assertEquals(checkoutPage.getShippingShippingMethodAttribute(), "Next Day Air");
