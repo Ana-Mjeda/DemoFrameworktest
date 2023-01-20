@@ -172,32 +172,27 @@ public class RegisterPage extends BrowserFactory {
 
     @Step("Get Invalid First Name Message")
     public void getNameError() {
-        firstNameError.getText();
-        Assert.assertEquals(firstNameError, "First name error should not be empty");
+        Assert.assertEquals(firstNameError.getText(), "First name is required.");
     }
 
     @Step("Get Invalid Last Name Message")
     public void getLastNameError() {
-        lastNameError.getText();
-        Assert.assertEquals(lastNameError, "Last name error should not be empty");
+        Assert.assertEquals(lastNameError.getText(), "Last name is required.");
     }
 
     @Step("Get Invalid Email Message")
     public void getEmailError() {
-        emailError.getText();
-        Assert.assertEquals(emailError, "Email error should not be empty");
+        Assert.assertEquals(emailError.getText(), "Email is required.");
     }
 
     @Step("Get Password error message")
     public void getPasswordError() {
-        passwordError.getText();
-        Assert.assertEquals(passwordError, "Password error should not be empty");
+        Assert.assertEquals(passwordError.getText(), "Password is required.");
     }
 
     @Step("Get Confirm Password error message")
     public void getConfirmPasswordError() {
-        confirmPasswordError.getText();
-        Assert.assertEquals(confirmPasswordError, "Password confirmation error should not be empty");
+        Assert.assertEquals(confirmPasswordError.getText(), "Password is required.");
     }
 
     public void allErrors() {

@@ -49,7 +49,11 @@ public class TC01CreateNewAccountTest {
         pageHeader.clickRegisterButton();
 
         registerPage.clickRegisterButton();
-        registerPage.allErrors();
+        registerPage.getNameError();
+        registerPage.getLastNameError();
+        registerPage.getEmailError();
+        registerPage.getPasswordError();
+
         registerPage.enterInvalidEmail(invalidEmail);
         registerPage.enterInvalidPasswordLessThen(invalidPassword);
         registerPage.enterInvalidConfirmPasswordDifferent(invalidConfirmPassword);
