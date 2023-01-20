@@ -17,9 +17,9 @@ public class CellPhonesPage extends TemplatePage {
     BaseUI baseUI;
 
 
-    @FindBy(xpath = "//a[text()='Electronics']")
+    @FindBy(xpath = "//a[text()='Electronics ']")
     WebElement electronics;
-    @FindBy(xpath = "//a[text()='Cell phones']")
+    @FindBy(xpath = "//a[text()='Cell phones ']")
     WebElement cellPhones;
 
     @FindBy(xpath = "//*[@class='button-2 product-box-add-to-cart-button']")
@@ -53,7 +53,7 @@ public class CellPhonesPage extends TemplatePage {
     public void hoverMenuCategory(String menuHover) {
         if (menuHover.equals("Electronics")) {
             Actions action = new Actions(driver);
-            action.moveToElement(electronics);
+            action.moveToElement(electronics).perform();
         } else {
             System.out.println("Unsupported hover menu " + menuHover);
         }

@@ -51,7 +51,7 @@ public class TC04AddProduct {
 
         String htcOneMiniBlue = "HTC One Mini Blue";
         String electronics = "Electronics";
-        String cellPhones = "Cell phone";
+        String cellPhones = "Cell phones";
 
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);

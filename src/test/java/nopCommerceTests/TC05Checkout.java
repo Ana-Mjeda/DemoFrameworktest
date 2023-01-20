@@ -52,7 +52,7 @@ public class TC05Checkout {
         registerPage.clickRegisterButton();
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
-        cellPhonesPage.chooseCategory();
+        cellPhonesPage.chooseCategory("Electronics", "Cell phones");
         cellPhonesPage.clickMobile("HTC One Mini Blue");
         cellPhonesPage.numberInputFieldSetText("3");
         cellPhonesPage.clickAddToCartButtonInSelectedPhone();
