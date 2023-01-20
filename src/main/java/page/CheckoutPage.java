@@ -69,8 +69,8 @@ public class CheckoutPage extends BrowserFactory {
         baseUI = new BaseUI(driver);
     }
 
-    public String getBillingAddressAttribute() {
-        return billingAddress.getText();
+    public void getBillingAddressAttribute() {
+        Assert.assertEquals(billingAddress.getText(), "Billing address");
     }
 
     public void selectCountryFromDropdown(String text) {
@@ -118,8 +118,8 @@ public class CheckoutPage extends BrowserFactory {
         return checkBox.isSelected();
     }
 
-    public String getShippingMethodAttribute() {
-        return shippingMethod.getText();
+    public void getShippingMethodAttribute() {
+        Assert.assertEquals(shippingMethod.getText(), "Shipping method");
     }
 
     public void clickNextDayAirRadioButton() {

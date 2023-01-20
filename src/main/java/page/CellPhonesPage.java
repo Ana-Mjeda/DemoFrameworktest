@@ -17,11 +17,11 @@ public class CellPhonesPage extends TemplatePage {
     BaseUI baseUI;
 
 
-    @FindBy(xpath = "//a[normalize-space()='Electronics']")
+    @FindBy(xpath = "//a[text()='Electronics']")
     WebElement electronics;
-
-    @FindBy(xpath = "//a[normalize-space()='Cell phones']")
+    @FindBy(xpath = "//a[text()='Cell phones']")
     WebElement cellPhones;
+
     @FindBy(xpath = "//*[@class='button-2 product-box-add-to-cart-button']")
     WebElement addToCart;
     @FindBy(xpath = "//*[@class='bar-notification success']")
@@ -50,15 +50,23 @@ public class CellPhonesPage extends TemplatePage {
         baseUI = new BaseUI(driver);
     }
 
-    public void selectCellPhonesPage() throws InterruptedException {
-        Actions action = new Actions(driver);
-        action.moveToElement(electronics);
+    public void hoverMenuCategory(String menuHover) {
+        if (menuHover.equals("Electronics")) {
+            Actions action = new Actions(driver);
+            action.moveToElement(electronics);
+        } else {
+            System.out.println("Unsupported hover menu " + menuHover);
+        }
+    }
 
-        WebElement subMenu = cellPhones;
-        action.moveToElement(subMenu);
+    public void chooseCategory(String menuHover, String category) throws InterruptedException {
+        hoverMenuCategory(menuHover);
 
-        action.moveToElement(electronics).moveToElement(subMenu).click().build().perform();
-
+        if (category.equals("Cell phones")) {
+            baseUI.click(cellPhones);
+        } else {
+            System.out.println("Unsupported category " + category);
+        }
     }
 
     public void clickAddToCartButton() {

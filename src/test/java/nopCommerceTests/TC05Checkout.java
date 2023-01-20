@@ -52,7 +52,7 @@ public class TC05Checkout {
         registerPage.clickRegisterButton();
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
-        cellPhonesPage.selectCellPhonesPage();
+        cellPhonesPage.chooseCategory();
         cellPhonesPage.clickMobile("HTC One Mini Blue");
         cellPhonesPage.numberInputFieldSetText("3");
         cellPhonesPage.clickAddToCartButtonInSelectedPhone();
@@ -66,14 +66,11 @@ public class TC05Checkout {
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
 
-        Assert.assertEquals(pageHeader.getShoppingCartAttribute(), "(3)");
-
+        pageHeader.checkShoppingCartValue3();
         pageHeader.clickShoppingCart();
         cellPhonesPage.clickCheckbox();
         cellPhonesPage.clickCheckoutButton();
-
-        Assert.assertEquals(checkoutPage.getBillingAddressAttribute(), "Billing address");
-
+        checkoutPage.getBillingAddressAttribute();
         checkoutPage.selectCountryFromDropdown(country);
         checkoutPage.cityInputFieldSetText(city);
         checkoutPage.address1InputFieldSetText(address);
@@ -83,8 +80,7 @@ public class TC05Checkout {
         Assert.assertTrue(checkoutPage.getCheckBoxValue());
         checkoutPage.clickContinueButton();
 
-        Assert.assertEquals(checkoutPage.getShippingMethodAttribute(), "Shipping method");
-
+        checkoutPage.getShippingMethodAttribute();
         checkoutPage.clickNextDayAirRadioButton();
         checkoutPage.clickShippingMethodContinueButton();
 

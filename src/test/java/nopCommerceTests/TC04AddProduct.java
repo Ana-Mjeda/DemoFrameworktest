@@ -50,22 +50,25 @@ public class TC04AddProduct {
         createAccount();
 
         String htcOneMiniBlue = "HTC One Mini Blue";
+        String electronics = "Electronics";
+        String cellPhones = "Cell phone";
 
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
 
         pageHeader.urlCheck();
-        cellPhonesPage.selectCellPhonesPage();
+        cellPhonesPage.chooseCategory(electronics, cellPhones);
         cellPhonesPage.clickAddToCartIfProductFound(htcOneMiniBlue);
         cellPhonesPage.barNotificationAttribute();
         cellPhonesPage.clickShoppingCartLink();
         pageHeader.urlCheck();
-        cellPhonesPage.selectCellPhonesPage();
+
+        cellPhonesPage.chooseCategory(electronics, cellPhones);
         cellPhonesPage.clickMobile(htcOneMiniBlue);
         pageHeader.urlCheck();
         cellPhonesPage.numberInputFieldSetText("2");
         cellPhonesPage.clickAddToCartButtonInSelectedPhone();
-        cellPhonesPage.barNotificationAttribute()
+        cellPhonesPage.barNotificationAttribute();
         cellPhonesPage.clickCloseButton();
         Thread.sleep(2000);
         pageHeader.clickShoppingCart();
