@@ -70,7 +70,7 @@ public class TC01CreateNewAccountTest {
         pageHeader.clickRegisterButton();
         registerPage.fillFormWithValidData(Gender.FEMALE, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
-        registerPage.getMessageError();
+        registerPage.getSameEmailMessage();
     }
 
     @AfterTest

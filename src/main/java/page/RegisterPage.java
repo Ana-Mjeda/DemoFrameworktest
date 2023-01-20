@@ -73,7 +73,7 @@ public class RegisterPage extends BrowserFactory {
     WebElement registrationMessage;
 
     @FindBy(xpath = "//li[.='The specified email already exists']")
-    WebElement messageError;
+    WebElement emailMessageError;
 
     public RegisterPage(WebDriver driver) {
         super(driver);
@@ -88,7 +88,6 @@ public class RegisterPage extends BrowserFactory {
 
     @Step("Click Register Button")
     public void clickRegisterButton() {
-        //registerButton.click();
         baseUI.click(registerButton);
         System.out.println("Register button on bottom of the page clicked");
     }
@@ -115,21 +114,20 @@ public class RegisterPage extends BrowserFactory {
     }
 
     @Step("Enter invalid email")
-    public void enterInvalidEmail(String invalidEmail) {
-        baseUI.sendText(emailInputField, invalidEmail);
+    public void enterInvalidEmail(String email) {
+        baseUI.sendText(emailInputField, email);
         System.out.println("Message: " + emailError.getText());
-
     }
 
     @Step("Enter password less then 6 characters")
-    public void enterInvalidPasswordLessThen(String invalidPassword) {
-        baseUI.sendText(passwordInputField, invalidPassword);
+    public void enterInvalidPasswordLessThen(String password) {
+        baseUI.sendText(passwordInputField, password);
         System.out.println("Message: " + passwordError.getText());
     }
 
     @Step("Enter confirm password that is different then password")
-    public void enterInvalidConfirmPasswordDifferent(String invalidConfirmPassword) {
-        baseUI.sendText(confirmPasswordInputField, invalidConfirmPassword);
+    public void enterInvalidConfirmPasswordDifferent(String password) {
+        baseUI.sendText(confirmPasswordInputField, password);
         System.out.println("Message: " + confirmPasswordError.getText());
     }
 
@@ -164,12 +162,6 @@ public class RegisterPage extends BrowserFactory {
         System.out.println("Message: " + registrationMessage.getText());
     }
 
-    @Step("Get Invalid Email Message")
-    public void getMessageError() {
-        messageError.getText();
-        System.out.println("Message: " + messageError.getText());
-    }
-
     @Step("Get Invalid First Name Message")
     public void getNameError() {
         Assert.assertEquals(firstNameError.getText(), "First name is required.");
@@ -190,10 +182,10 @@ public class RegisterPage extends BrowserFactory {
         Assert.assertEquals(passwordError.getText(), "Password is required.");
     }
 
-    @Step("Get Confirm Password error message")
-    public void getConfirmPasswordError() {
-        Assert.assertEquals(confirmPasswordError.getText(), "Password is required.");
-    }
+    @Step("Get Same Email Message")
+    public void getSameEmailMessage() {
+        Assert.assertEquals(emailMessageError.getText(), "The specified email already exists");
 
+    }
 
 }

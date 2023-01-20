@@ -47,7 +47,6 @@ public class TC03ChangePassword {
         pageHeader.clickRegisterButton();
         registerPage.fillFormWithValidData(Gender.FEMALE, "test", "test", "17", "April", "1989", email, "company", password, password);
         registerPage.clickRegisterButton();
-        pageHeader.clickLogoutButton();
 
     }
 
@@ -66,7 +65,7 @@ public class TC03ChangePassword {
 
         driver.navigate().refresh();
         customerPage.fillFieldsWithPassword(invalidPassword, invalidPassword, invalidPassword);
-        customerPage.getSamePasswordError();
+        customerPage.getOldPasswordError();
 
         driver.navigate().refresh();
         customerPage.fillFieldsWithPassword(password, invalidPassword, invalidConfirmPassword);

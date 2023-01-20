@@ -31,7 +31,8 @@ public class CustomerPage extends BrowserFactory {
     WebElement getPasswordChangedSuccessfulMessage;
     @FindBy(xpath = "//span[@class='close']")
     WebElement getCloseButtonOnBar;
-
+    @FindBy(xpath = "//div[@class='message-error validation-summary-errors'] //li")
+    WebElement oldPasswordError;
     @FindBy(xpath = "//*[@class='message-error validation-summary-errors']")
     WebElement samePasswordError;
 
@@ -77,6 +78,11 @@ public class CustomerPage extends BrowserFactory {
     @Step("Get Same Password Error Message")
     public void getSamePasswordError() {
         Assert.assertEquals(samePasswordError.getText(), "You entered the password that is the same as one of the last passwords you used. Please create a new password.");
+    }
+
+    @Step("Get Old Password Error Message")
+    public void getOldPasswordError() {
+        Assert.assertEquals(oldPasswordError.getText(), "Old password doesn't match");
     }
 
     @Step("Get Confirm New Password Error Message")
