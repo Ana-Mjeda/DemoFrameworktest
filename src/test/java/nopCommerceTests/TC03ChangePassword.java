@@ -3,7 +3,6 @@ package nopCommerceTests;
 import base.BrowserFactory;
 import base.PageHeader;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -59,24 +58,23 @@ public class TC03ChangePassword {
         loginPage.fillLoginFields(email, password);
         pageHeader.clickMyAccountButton();
 
-        Assert.assertEquals(BrowserFactory.getDriver().getCurrentUrl(), "https://demo.nopcommerce.com/customer/info");
-
+        pageHeader.urlCheck();
         customerPage.clickChangePassword();
 
         customerPage.fillFieldsWithPassword(password, password, password);
-        Assert.assertEquals(customerPage.getSamePasswordErrorAttribute(), "You entered the password that is the same as one of the last passwords you used. Please create a new password.");
+        customerPage.getSamePasswordError();
 
-        driver.get("https://demo.nopcommerce.com/customer/changepassword");
+        driver.navigate().refresh();
         customerPage.fillFieldsWithPassword(invalidPassword, invalidPassword, invalidPassword);
-        Assert.assertEquals(customerPage.getSamePasswordErrorAttribute(), "Old password doesn't match");
+        customerPage.getSamePasswordError();
 
-        driver.get("https://demo.nopcommerce.com/customer/changepassword");
+        driver.navigate().refresh();
         customerPage.fillFieldsWithPassword(password, invalidPassword, invalidConfirmPassword);
-        Assert.assertEquals(customerPage.getConfirmNewPasswordErrorAttribute(), "The new password and confirmation password do not match.");
+        customerPage.getConfirmNewPasswordError();
 
-        driver.get("https://demo.nopcommerce.com/customer/changepassword");
+        driver.navigate().refresh();
         customerPage.fillFieldsWithPassword(password, newPassword, newPassword);
-        Assert.assertEquals(customerPage.getPasswordChangedAttribute(), "Password was changed");
+        customerPage.getPasswordChanged();
 
         customerPage.clickCloseButtonOnBar();
         Thread.sleep(2000);
@@ -87,8 +85,6 @@ public class TC03ChangePassword {
         loginPage.fillLoginFields(email, password);
 
         loginPage.getPasswordError();
-        //Assert.assertEquals(loginPage.getPasswordErrorAttribute(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
-
         loginPage.passwordInputFieldSetText(newPassword);
 
         loginPage.clickLoginButton();

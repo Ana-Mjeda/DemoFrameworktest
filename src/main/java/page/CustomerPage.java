@@ -6,6 +6,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class CustomerPage extends BrowserFactory {
     BaseUI baseUI;
@@ -53,37 +54,12 @@ public class CustomerPage extends BrowserFactory {
         baseUI.sendText(oldPasswordInputField, text);
     }
 
-    public String getOldPasswordAttribute() {
-        return oldPasswordInputField.getText();
-    }
-
     public void newPasswordInputFieldSetText(String text) {
         baseUI.sendText(newPasswordInputField, text);
     }
 
-    public String getNewPasswordAttribute() {
-        return newPasswordInputField.getText();
-    }
-
     public void confirmNewPasswordInputFieldSetText(String text) {
         baseUI.sendText(confirmNewPasswordInputField, text);
-    }
-
-    public String getConfirmNewPasswordAttribute() {
-        return confirmNewPasswordInputField.getText();
-    }
-
-
-    public String getSamePasswordErrorAttribute() {
-        return samePasswordError.getText();
-    }
-
-    public String getConfirmNewPasswordErrorAttribute() {
-        return getConfirmNewPasswordError.getText();
-    }
-
-    public String getPasswordChangedAttribute() {
-        return getPasswordChangedSuccessfulMessage.getText();
     }
 
     @Step("Fill all fields with same password")
@@ -96,6 +72,21 @@ public class CustomerPage extends BrowserFactory {
 
     public void clickCloseButtonOnBar() {
         baseUI.click(getCloseButtonOnBar);
+    }
+
+    @Step("Get Same Password Error Message")
+    public void getSamePasswordError() {
+        Assert.assertEquals(samePasswordError.getText(), "You entered the password that is the same as one of the last passwords you used. Please create a new password.");
+    }
+
+    @Step("Get Confirm New Password Error Message")
+    public void getConfirmNewPasswordError() {
+        Assert.assertEquals(getConfirmNewPasswordError.getText(), "The new password and confirmation password do not match.");
+    }
+
+    @Step("Get Password Changed Message")
+    public void getPasswordChanged() {
+        Assert.assertEquals(getPasswordChangedSuccessfulMessage.getText(), "Password was changed");
     }
 }
 
