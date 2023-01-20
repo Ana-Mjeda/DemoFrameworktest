@@ -1,8 +1,10 @@
 package base;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 public class PageHeader extends BrowserFactory {
 
@@ -71,8 +73,22 @@ public class PageHeader extends BrowserFactory {
         System.out.println("Shopping cart clicked");
     }
 
-
     public String getShoppingCartAttribute() {
         return shoppingCartQty.getText();
+    }
+
+    public void urlCheck() {
+        String URL = driver.getCurrentUrl();
+        Assert.assertTrue(URL.startsWith("https://demo.nopcommerce.com/"));
+    }
+
+    @Step("Check if My account is displayed")
+    public void checkMyaccount() {
+        Assert.assertEquals(myAccountButton.getText(), "My account");
+    }
+
+    @Step("Check if Logout is displayed")
+    public void checkLogout() {
+        Assert.assertEquals(logoutButton.getText(), "Log out");
     }
 }

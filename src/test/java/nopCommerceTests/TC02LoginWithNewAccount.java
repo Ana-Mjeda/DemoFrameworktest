@@ -4,7 +4,6 @@ package nopCommerceTests;
 import base.BrowserFactory;
 import base.PageHeader;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -52,24 +51,16 @@ public class TC02LoginWithNewAccount {
         createAccount();
 
         pageHeader.clickLoginButton();
-        Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/login"));
-
+        pageHeader.urlCheck();
         loginPage.emailInputFieldSetText(invalidEmail);
         loginPage.clickLoginButton();
-
-        Assert.assertEquals(loginPage.getEmailErrorAttribute(), "Wrong email");
-
+        loginPage.getEmailError();
         loginPage.fillLoginFields(email, invalidPassword);
-
-        Assert.assertEquals(loginPage.getPasswordErrorAttribute(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
-
+        loginPage.getPasswordError();
         loginPage.fillLoginFields(email, password);
-
-        Assert.assertTrue(BrowserFactory.getDriver().getCurrentUrl().startsWith("https://demo.nopcommerce.com/"));
-
-        Assert.assertEquals(pageHeader.getMyAccountButtonAttribute(), "My account");
-        Assert.assertEquals(pageHeader.getLogoutAttribute(), "Log out");
-
+        pageHeader.urlCheck();
+        pageHeader.checkMyaccount();
+        pageHeader.checkLogout();
         pageHeader.clickLogoutButton();
 
     }

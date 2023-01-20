@@ -195,9 +195,5 @@ public class RegisterPage extends BrowserFactory {
         Assert.assertEquals(confirmPasswordError.getText(), "Password is required.");
     }
 
-    public void urlCheck() {
-        String URL = driver.getCurrentUrl();
-        Assert.assertTrue(URL.startsWith("https://demo.nopcommerce.com/"));
-    }
 
 }

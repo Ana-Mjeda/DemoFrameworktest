@@ -58,11 +58,11 @@ public class TC01CreateNewAccountTest {
         registerPage.enterInvalidConfirmPasswordDifferent(invalidConfirmPassword);
         registerPage.fillFormWithValidData(Gender.FEMALE, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
-        registerPage.urlCheck();
+        pageHeader.urlCheck();
 
         registerPage.getRegistrationMessage();
         registerPage.clickContinueButton();
-        registerPage.urlCheck();
+        pageHeader.urlCheck();
     }
 
     @Test(priority = 2)
