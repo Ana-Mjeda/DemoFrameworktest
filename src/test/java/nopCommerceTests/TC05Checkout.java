@@ -15,7 +15,7 @@ import java.io.IOException;
 
 import static base.BrowserFactory.driver;
 
-public class TC04Checkout {
+public class TC05Checkout {
     private PageHeader pageHeader;
     private LoginPage loginPage;
     private RegisterPage registerPage;
@@ -25,6 +25,11 @@ public class TC04Checkout {
 
     String email;
     String password = "secret";
+    String country = "Sweden";
+    String city = "Gothenburg";
+    String address = "Nya Bergets Vag 50";
+    String postalCode = "412 76";
+    String phoneNumber = "+46 31 55 83 00";
 
     @BeforeClass
     void prepare() throws IOException {
@@ -52,16 +57,7 @@ public class TC04Checkout {
         cellPhonesPage.numberInputFieldSetText("3");
         cellPhonesPage.clickAddToCartButtonInSelectedPhone();
         pageHeader.clickLogoutButton();
-
-
     }
-
-    String country = "Sweden";
-    String city = "Gothenburg";
-    String address = "Nya Bergets Vag 50";
-    String postalCode = "412 76";
-    String phoneNumber = "+46 31 55 83 00";
-
 
     @Test(priority = 5)
     public void checkoutStep1() throws InterruptedException {

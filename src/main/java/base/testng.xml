@@ -6,8 +6,8 @@
             <class name="nopCommerceTests.TC01CreateNewAccountTest"/>
             <class name="nopCommerceTests.TC02LoginWithNewAccount"/>
             <class name="nopCommerceTests.TC03ChangePassword"/>
-            <class name="nopCommerceTests.TC04Checkout"/>
-            <class name="nopCommerceTests.TC05AddProduct"/>
+            <class name="nopCommerceTests.TC04AddProduct"/>
+            <class name="nopCommerceTests.TC05Checkout"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

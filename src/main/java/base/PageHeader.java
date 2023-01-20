@@ -46,15 +46,10 @@ public class PageHeader extends BrowserFactory {
         System.out.println("My account button clicked");
     }
 
-    public String getMyAccountButtonAttribute() {
-        return myAccountButton.getText();
-    }
-
     public void clickLoginButton() {
         baseUI.click(loginButton);
         System.out.println("Login button clicked");
     }
-
     public WebElement logoutButton() {
         return logoutButton;
     }
@@ -64,17 +59,9 @@ public class PageHeader extends BrowserFactory {
         System.out.println("Logout button clicked");
     }
 
-    public String getLogoutAttribute() {
-        return logoutButton().getText();
-    }
-
     public void clickShoppingCart() {
         baseUI.click(shoppingCart);
         System.out.println("Shopping cart clicked");
-    }
-
-    public String getShoppingCartAttribute() {
-        return shoppingCartQty.getText();
     }
 
     public void urlCheck() {
@@ -90,5 +77,15 @@ public class PageHeader extends BrowserFactory {
     @Step("Check if Logout is displayed")
     public void checkLogout() {
         Assert.assertEquals(logoutButton.getText(), "Log out");
+    }
+
+    @Step("Check if Shopping cart has value of 3")
+    public void checkShoppingCartValue3() {
+        Assert.assertEquals(shoppingCartQty.getText(), "(3)");
+    }
+
+    @Step("Check if Shopping cart has value of 0")
+    public void checkShoppingCartValue0() {
+        Assert.assertEquals(shoppingCartQty.getText(), "(0)");
     }
 }

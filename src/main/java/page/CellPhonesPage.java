@@ -95,8 +95,9 @@ public class CellPhonesPage extends TemplatePage {
 
     }
 
-    public String barNotificationAttribute() {
-        return barNotification.getText();
+    @Step("Get Notification Message on green bar")
+    public void barNotificationAttribute() {
+        Assert.assertEquals(barNotification.getText(), "The product has been added to your shopping cart");
     }
 
 

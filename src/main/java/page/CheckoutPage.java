@@ -57,8 +57,6 @@ public class CheckoutPage extends BrowserFactory {
     WebElement confirmButtonOnBottomOfPage;
     @FindBy(css = "h1")
     WebElement thankYou;
-    @FindBy(xpath = "div.title")
-    WebElement orderCompleteMsg;
     @FindBy(linkText = "Click here for order details.")
     WebElement orderDetailsLink;
     @FindBy(xpath = "//div[@class='billing-info'] //li[@class='address1'])")
