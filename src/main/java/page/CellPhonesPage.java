@@ -50,6 +50,7 @@ public class CellPhonesPage extends TemplatePage {
         baseUI = new BaseUI(driver);
     }
 
+    @Step("Method to hover over menu category")
     public void hoverMenuCategory(String menuHover) {
         if (menuHover.equals("Electronics")) {
             Actions action = new Actions(driver);
@@ -59,6 +60,7 @@ public class CellPhonesPage extends TemplatePage {
         }
     }
 
+    @Step("Method to click category after hover category ")
     public void chooseCategory(String menuHover, String category) throws InterruptedException {
         hoverMenuCategory(menuHover);
 
@@ -69,6 +71,7 @@ public class CellPhonesPage extends TemplatePage {
         }
     }
 
+    @Step("Click add to cart button")
     public void clickAddToCartButton() {
         baseUI.click(addToCart);
         System.out.println("Add To Cart Button clicked");
@@ -108,22 +111,23 @@ public class CellPhonesPage extends TemplatePage {
         Assert.assertEquals(barNotification.getText(), "The product has been added to your shopping cart");
     }
 
-
+    @Step("Click shopping cart link in green bar")
     public void clickShoppingCartLink() {
         shoppingCartLink.click();
         System.out.println("Shopping Cart link clicked");
     }
 
+    @Step("Click x button in green bar")
     public void clickCloseButton() {
         baseUI.click(closeButton);
     }
 
-
+    @Step("Setting number in input field")
     public void numberInputFieldSetText(String text) {
         baseUI.sendText(numberInputField, text);
     }
 
-
+    @Step("Select add to cart button in product page")
     public void clickAddToCartButtonInSelectedPhone() {
         baseUI.click(addToCartButtonInSelectedPhone);
         System.out.println("Add To Cart Button clicked");
@@ -134,12 +138,13 @@ public class CellPhonesPage extends TemplatePage {
         return qtyInputField.getAttribute("value");
     }
 
-
+    @Step("Click Checkbox")
     public void clickCheckbox() {
         baseUI.click(checkbox);
         System.out.println("Checkbox clicked");
     }
 
+    @Step("Click checkout button")
     public void clickCheckoutButton() {
         WebElement checkoutButton = driver.findElement(By.id("checkout"));
         checkoutButton.click();

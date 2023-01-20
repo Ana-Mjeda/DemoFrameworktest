@@ -62,7 +62,6 @@ public class TC04AddProduct {
         cellPhonesPage.barNotificationAttribute();
         cellPhonesPage.clickShoppingCartLink();
         pageHeader.urlCheck();
-
         cellPhonesPage.chooseCategory(electronics, cellPhones);
         cellPhonesPage.clickMobile(htcOneMiniBlue);
         pageHeader.urlCheck();
