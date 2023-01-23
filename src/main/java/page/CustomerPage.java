@@ -22,11 +22,11 @@ public class CustomerPage extends BrowserFactory {
     @FindBy(id = "NewPassword-error")
     WebElement confirmNewPasswordInputField;
     @FindBy(id = "ConfirmNewPassword-error")
-    WebElement getConfirmNewPasswordError;
+    WebElement confirmNewPasswordError;
     @FindBy(xpath = "//*[@id=\"bar-notification\"]")
-    WebElement getPasswordChangedSuccessfulMessage;
+    WebElement passwordChangedSuccessfulMessage;
     @FindBy(xpath = "//span[@class='close']")
-    WebElement getCloseButtonOnBar;
+    WebElement closeButtonOnBar;
     @FindBy(xpath = "//*[@class='message-error validation-summary-errors']")
     WebElement passwordErrorAboveFields;
 
@@ -66,7 +66,7 @@ public class CustomerPage extends BrowserFactory {
     }
 
     public void clickCloseButtonOnBar() {
-        baseUI.click(getCloseButtonOnBar);
+        baseUI.click(closeButtonOnBar);
     }
 
     @Step("Get Password Error Message")
@@ -76,12 +76,12 @@ public class CustomerPage extends BrowserFactory {
 
     @Step("Get Confirm New Password Error Message")
     public void confirmNewPasswordError() {
-        Assert.assertEquals(getConfirmNewPasswordError.getText(), "The new password and confirmation password do not match.");
+        Assert.assertEquals(confirmNewPasswordError.getText(), "The new password and confirmation password do not match.");
     }
 
     @Step("Get Password Changed Message")
     public void passwordChangedMessage() {
-        Assert.assertEquals(getPasswordChangedSuccessfulMessage.getText(), "Password was changed");
+        Assert.assertEquals(passwordChangedSuccessfulMessage.getText(), "Password was changed");
     }
 }
 
