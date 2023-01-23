@@ -156,36 +156,35 @@ public class RegisterPage extends BrowserFactory {
         }
     }
 
-    @Step("Get Registration Message")
+    @Step("Verify Registration Message")
     public void registrationMessage() {
         registrationMessage.getText();
         System.out.println("Message: " + registrationMessage.getText());
     }
 
-    @Step("Get Invalid First Name Message")
+    @Step("Verify Invalid First Name Message")
     public void nameError() {
         Assert.assertEquals(firstNameError.getText(), "First name is required.");
     }
 
-    @Step("Get Invalid Last Name Message")
+    @Step("Verify Invalid Last Name Message")
     public void lastNameError() {
         Assert.assertEquals(lastNameError.getText(), "Last name is required.");
     }
 
-    @Step("Get Invalid Email Message")
+    @Step("Verify Invalid Email Message")
     public void emailError() {
         Assert.assertEquals(emailError.getText(), "Email is required.");
     }
 
-    @Step("Get Password error message")
+    @Step("Verify Password error message")
     public void passwordError() {
         Assert.assertEquals(passwordError.getText(), "Password is required.");
     }
 
-    @Step("Get Same Email Message")
+    @Step("Verify Same Email Message")
     public void sameEmailMessage() {
         Assert.assertEquals(emailMessageError.getText(), "The specified email already exists");
 
     }
-
 }

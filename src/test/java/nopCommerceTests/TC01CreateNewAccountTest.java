@@ -53,7 +53,7 @@ public class TC01CreateNewAccountTest {
         registerPage.emailError();
         registerPage.passwordError();
 
-        registerPage.enterInvalidEmail(invalidEmail);
+        registerPage.enterEmail(invalidEmail);
         registerPage.enterPassword(invalidPassword);
         registerPage.enterConfirmPassword(invalidConfirmPassword);
         registerPage.fillFormWithValidData(Gender.FEMALE, name, lastName, day, month, year, email, company, password, password);
