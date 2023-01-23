@@ -101,7 +101,7 @@ public class CheckoutPage extends BrowserFactory {
         System.out.println("Continue Button is clicked");
     }
 
-    public boolean getCheckBoxValue() {
+    public boolean verifyTermsOfServiceCheckbox() {
         return checkBox.isSelected();
     }
 

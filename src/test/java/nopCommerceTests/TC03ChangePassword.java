@@ -83,7 +83,7 @@ public class TC03ChangePassword {
 
         loginPage.fillLoginFields(email, password);
 
-        loginPage.getPasswordError();
+        loginPage.verifyPasswordError();
         loginPage.passwordInputFieldSetText(newPassword);
 
         loginPage.clickLoginButton();

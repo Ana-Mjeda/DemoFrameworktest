@@ -54,9 +54,9 @@ public class TC02LoginWithNewAccount {
         pageHeader.urlCheck();
         loginPage.emailInputFieldSetText(invalidEmail);
         loginPage.clickLoginButton();
-        loginPage.getEmailError();
+        loginPage.verifyEmailError();
         loginPage.fillLoginFields(email, invalidPassword);
-        loginPage.getPasswordError();
+        loginPage.verifyPasswordError();
         loginPage.fillLoginFields(email, password);
         pageHeader.urlCheck();
         pageHeader.checkMyAccount();

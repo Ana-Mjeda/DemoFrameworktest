@@ -109,19 +109,19 @@ public class RegisterPage extends BrowserFactory {
     }
 
     @Step("Enter invalid email")
-    public void enterEmail(String email) {
+    public void fillEmailField(String email) {
         baseUI.sendText(emailInputField, email);
         System.out.println("Message: " + emailError.getText());
     }
 
     @Step("Enter password less then 6 characters")
-    public void enterPassword(String password) {
+    public void fillPasswordField(String password) {
         baseUI.sendText(passwordInputField, password);
         System.out.println("Message: " + passwordError.getText());
     }
 
     @Step("Enter confirm password that is different then password")
-    public void enterConfirmPassword(String password) {
+    public void fillConfirmPasswordField(String password) {
         baseUI.sendText(confirmPasswordInputField, password);
         System.out.println("Message: " + confirmPasswordError.getText());
     }

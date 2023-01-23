@@ -76,7 +76,7 @@ public class TC05Checkout {
         checkoutPage.address1InputFieldSetText(address);
         checkoutPage.postalCodeInputFieldSetText(postalCode);
         checkoutPage.phoneNumberInputFieldSetText(phoneNumber);
-        checkoutPage.getCheckBoxValue();
+        checkoutPage.verifyTermsOfServiceCheckbox();
         checkoutPage.clickContinueButton();
 
         checkoutPage.shippingMethodAttribute();

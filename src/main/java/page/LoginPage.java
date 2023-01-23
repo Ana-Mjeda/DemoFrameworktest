@@ -55,12 +55,12 @@ public class LoginPage extends BrowserFactory {
     }
 
     @Step("Get Wrong Email Message")
-    public void getEmailError() {
+    public void verifyEmailError() {
         Assert.assertEquals(emailError.getText(), "Wrong email");
     }
 
     @Step("Get Password Error Message")
-    public void getPasswordError() {
+    public void verifyPasswordError() {
         Assert.assertEquals(passwordError.getText(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
     }
 }
