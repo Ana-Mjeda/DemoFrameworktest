@@ -18,12 +18,8 @@ public class CustomerPage extends BrowserFactory {
     @FindBy(id = "OldPassword")
     WebElement oldPasswordInputField;
     @FindBy(id = "OldPassword-error")
-    WebElement getOldPasswordError;
-    @FindBy(id = "NewPassword")
     WebElement newPasswordInputField;
     @FindBy(id = "NewPassword-error")
-    WebElement getNewPasswordError;
-    @FindBy(id = "ConfirmNewPassword")
     WebElement confirmNewPasswordInputField;
     @FindBy(id = "ConfirmNewPassword-error")
     WebElement getConfirmNewPasswordError;
@@ -31,10 +27,8 @@ public class CustomerPage extends BrowserFactory {
     WebElement getPasswordChangedSuccessfulMessage;
     @FindBy(xpath = "//span[@class='close']")
     WebElement getCloseButtonOnBar;
-    @FindBy(xpath = "//div[@class='message-error validation-summary-errors'] //li")
-    WebElement oldPasswordError;
     @FindBy(xpath = "//*[@class='message-error validation-summary-errors']")
-    WebElement samePasswordError;
+    WebElement passwordErrorAboveFields;
 
     public CustomerPage(WebDriver driver) {
         super(driver);
@@ -75,23 +69,18 @@ public class CustomerPage extends BrowserFactory {
         baseUI.click(getCloseButtonOnBar);
     }
 
-    @Step("Get Same Password Error Message")
-    public void getSamePasswordError() {
-        Assert.assertEquals(samePasswordError.getText(), "You entered the password that is the same as one of the last passwords you used. Please create a new password.");
-    }
-
-    @Step("Get Old Password Error Message")
-    public void getOldPasswordError() {
-        Assert.assertEquals(oldPasswordError.getText(), "Old password doesn't match");
+    @Step("Get Password Error Message")
+    public void passwordErrorThatAppearsAboveFields(String error) {
+        Assert.assertEquals(passwordErrorAboveFields.getText(), error);
     }
 
     @Step("Get Confirm New Password Error Message")
-    public void getConfirmNewPasswordError() {
+    public void confirmNewPasswordError() {
         Assert.assertEquals(getConfirmNewPasswordError.getText(), "The new password and confirmation password do not match.");
     }
 
     @Step("Get Password Changed Message")
-    public void getPasswordChanged() {
+    public void passwordChangedMessage() {
         Assert.assertEquals(getPasswordChangedSuccessfulMessage.getText(), "Password was changed");
     }
 }

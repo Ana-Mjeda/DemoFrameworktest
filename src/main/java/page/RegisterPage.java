@@ -177,7 +177,7 @@ public class RegisterPage extends BrowserFactory {
     }
 
     @Step("Verify Same Email Message")
-    public void sameEmailMessage() {
+    public void sameEmailMessageThatAppearsUnderRegisterText() {
         Assert.assertEquals(emailMessageError.getText(), "The specified email already exists");
 
     }

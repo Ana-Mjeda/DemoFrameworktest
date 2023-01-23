@@ -61,19 +61,19 @@ public class TC03ChangePassword {
         customerPage.clickChangePassword();
 
         customerPage.fillFieldsWithPassword(password, password, password);
-        customerPage.getSamePasswordError();
+        customerPage.passwordErrorThatAppearsAboveFields("You entered the password that is the same as one of the last passwords you used. Please create a new password.");
 
         driver.navigate().refresh();
         customerPage.fillFieldsWithPassword(invalidPassword, invalidPassword, invalidPassword);
-        customerPage.getOldPasswordError();
+        customerPage.passwordErrorThatAppearsAboveFields("Old password doesn't match");
 
         driver.navigate().refresh();
         customerPage.fillFieldsWithPassword(password, invalidPassword, invalidConfirmPassword);
-        customerPage.getConfirmNewPasswordError();
+        customerPage.confirmNewPasswordError();
 
         driver.navigate().refresh();
         customerPage.fillFieldsWithPassword(password, newPassword, newPassword);
-        customerPage.getPasswordChanged();
+        customerPage.passwordChangedMessage();
 
         customerPage.clickCloseButtonOnBar();
         Thread.sleep(2000);

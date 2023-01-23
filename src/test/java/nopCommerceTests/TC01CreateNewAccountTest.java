@@ -3,6 +3,7 @@ package nopCommerceTests;
 import base.BrowserFactory;
 import base.PageHeader;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import page.Gender;
@@ -10,6 +11,8 @@ import page.RegisterPage;
 import util.DateTimeGenerator;
 
 import java.io.IOException;
+
+import static base.BrowserFactory.driver;
 
 public class TC01CreateNewAccountTest {
     private RegisterPage registerPage;
@@ -67,12 +70,12 @@ public class TC01CreateNewAccountTest {
         pageHeader.clickRegisterButton();
         registerPage.fillFormWithValidData(Gender.FEMALE, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
-        registerPage.sameEmailMessage();
+        registerPage.sameEmailMessageThatAppearsUnderRegisterText();
     }
 
-//    @AfterTest
-//    public void closeDriver() {
-//        //closes the browser instance
-//        driver.close();
-//    }
+    @AfterTest
+    public void closeDriver() {
+        //closes the browser instance
+        driver.close();
+    }
 }
