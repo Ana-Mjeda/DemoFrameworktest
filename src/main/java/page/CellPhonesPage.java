@@ -35,7 +35,8 @@ public class CellPhonesPage extends TemplatePage {
     WebElement numberInputField;
     @FindBy(xpath = "//*[@id='add-to-cart-button-19']")
     WebElement addToCartButtonInSelectedPhone;
-
+    @FindBy(xpath = "//*[@id='checkout']")
+    WebElement checkoutButton;
     @FindBy(xpath = "//*[@class='qty-input']")
     WebElement qtyInputField;
     @FindBy(xpath = "//*[@id='termsofservice']")
@@ -131,7 +132,7 @@ public class CellPhonesPage extends TemplatePage {
     }
 
 
-    public String getQtyAttribute() {
+    public String qtyAttribute() {
         return qtyInputField.getAttribute("value");
     }
 
@@ -143,7 +144,6 @@ public class CellPhonesPage extends TemplatePage {
 
     @Step("Click checkout button")
     public void clickCheckoutButton() {
-        WebElement checkoutButton = driver.findElement(By.id("checkout"));
         checkoutButton.click();
         System.out.println("Checkout button clicked");
     }

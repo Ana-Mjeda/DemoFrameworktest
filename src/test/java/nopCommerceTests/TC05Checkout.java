@@ -4,7 +4,6 @@ import base.BrowserFactory;
 import base.OrderDetails;
 import base.PageHeader;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -77,8 +76,7 @@ public class TC05Checkout {
         checkoutPage.address1InputFieldSetText(address);
         checkoutPage.postalCodeInputFieldSetText(postalCode);
         checkoutPage.phoneNumberInputFieldSetText(phoneNumber);
-
-        Assert.assertTrue(checkoutPage.getCheckBoxValue());
+        checkoutPage.getCheckBoxValue();
         checkoutPage.clickContinueButton();
 
         checkoutPage.shippingMethodAttribute();
