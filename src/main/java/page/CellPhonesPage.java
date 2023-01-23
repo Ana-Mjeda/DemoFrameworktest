@@ -45,38 +45,48 @@ public class CellPhonesPage extends TemplatePage {
     List<WebElement> productTitle;
     @FindBy(xpath = "//div[@class='item-box'] //*[@class='button-2 product-box-add-to-cart-button']")
     List<WebElement> addToCartButton;
+    @FindBy(xpath = "//ul[@class='top-menu notmobile']//li")
+    List<WebElement> topMenuCategories;
+    @FindBy(xpath = "//ul[@class='sublist first-level']//li")
+    List<WebElement> subMenuCategories;
 
     public CellPhonesPage(WebDriver driver) {
         super(driver);
         baseUI = new BaseUI(driver);
     }
 
-    @Step("Method to hover over menu category")
-    public void hoverMenuCategory(String menuHover) {
-        if (menuHover.equals("Electronics")) {
-            Actions action = new Actions(driver);
-            action.moveToElement(electronics).perform();
-        } else {
-            System.out.println("Unsupported hover menu " + menuHover);
-        }
-    }
-
     @Step("Method to click category after hover category ")
-    public void chooseCategory(String menuHover, String category) throws InterruptedException {
-        hoverMenuCategory(menuHover);
+    public CellPhonesPage chooseCategory(String menuName, String category) throws InterruptedException {
+        boolean productFound = false;
 
-        if (category.equals("Cell phones")) {
-            baseUI.click(cellPhones);
-        } else {
-            System.out.println("Unsupported category " + category);
+        System.out.println(topMenuCategories.size());
+        first:
+        for (int i = 0; i < topMenuCategories.size(); i++) {
+            WebElement li = topMenuCategories.get(i);
+            WebElement menu = li.findElement(By.xpath(".//a"));
+//            System.out.println(menu.getText());
+            if (menu.getText().equals(menuName)) {
+                productFound = true;
+                Actions action = new Actions(driver);
+                action.moveToElement(menu).perform();
+                System.out.println("Menu category: '" + menuName + " found");
+
+                List<WebElement> elements = li.findElements(By.xpath("//ul[@class='sublist first-level']//li//a"));
+                for (WebElement element : elements) {
+                    if (category.equals(element.getText())) {
+                        baseUI.click(element);
+                        break first;
+                    }
+                    System.out.println(element.getText());
+                }
+            }
         }
+        if (!productFound) {
+            Assert.fail("Unsupported category " + category);
+        }
+        return this;
     }
 
-    @Step("Click add to cart button")
-    public void clickAddToCartButton() {
-        baseUI.click(addToCart);
-        System.out.println("Add To Cart Button clicked");
-    }
 
     @Step("Select add to cart button below a product")
     public CellPhonesPage clickAddToCartIfProductFound(String productName) {
