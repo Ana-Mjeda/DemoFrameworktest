@@ -66,7 +66,7 @@ public class TC05Checkout {
 
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
-        pageHeader.checkShoppingCartValue3();
+        pageHeader.checkShoppingCartValue("(3)");
         pageHeader.clickShoppingCart();
         cellPhonesPage.clickCheckbox();
         cellPhonesPage.clickCheckoutButton();

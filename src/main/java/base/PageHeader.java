@@ -70,7 +70,7 @@ public class PageHeader extends BrowserFactory {
     }
 
     @Step("Check if My account is displayed")
-    public void checkMyaccount() {
+    public void checkMyAccount() {
         Assert.assertEquals(myAccountButton.getText(), "My account");
     }
 
@@ -79,13 +79,8 @@ public class PageHeader extends BrowserFactory {
         Assert.assertEquals(logoutButton.getText(), "Log out");
     }
 
-    @Step("Check if Shopping cart has value of 3")
-    public void checkShoppingCartValue3() {
-        Assert.assertEquals(shoppingCartQty.getText(), "(3)");
-    }
-
-    @Step("Check if Shopping cart has value of 0")
-    public void checkShoppingCartValue0() {
-        Assert.assertEquals(shoppingCartQty.getText(), "(0)");
+    @Step("Check if Shopping cart has inserted value")
+    public void checkShoppingCartValue(String number) {
+        Assert.assertEquals(shoppingCartQty.getText(), number);
     }
 }

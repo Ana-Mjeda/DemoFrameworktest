@@ -55,7 +55,6 @@ public class TC04AddProduct {
 
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
-
         pageHeader.urlCheck();
         cellPhonesPage.chooseCategory(electronics, cellPhones);
         cellPhonesPage.clickAddToCartIfProductFound(htcOneMiniBlue);
@@ -71,13 +70,13 @@ public class TC04AddProduct {
         cellPhonesPage.clickCloseButton();
         Thread.sleep(2000);
         pageHeader.clickShoppingCart();
-        pageHeader.checkShoppingCartValue3();
+        pageHeader.checkShoppingCartValue("(3)");
         pageHeader.clickLogoutButton();
-        pageHeader.checkShoppingCartValue0();
+        pageHeader.checkShoppingCartValue("(0)");
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
         Thread.sleep(1000);
-        pageHeader.checkShoppingCartValue3();
+        pageHeader.checkShoppingCartValue("(3)");
         pageHeader.clickLogoutButton();
 
     }

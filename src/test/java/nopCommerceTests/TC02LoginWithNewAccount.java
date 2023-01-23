@@ -59,7 +59,7 @@ public class TC02LoginWithNewAccount {
         loginPage.getPasswordError();
         loginPage.fillLoginFields(email, password);
         pageHeader.urlCheck();
-        pageHeader.checkMyaccount();
+        pageHeader.checkMyAccount();
         pageHeader.checkLogout();
         pageHeader.clickLogoutButton();
 
