@@ -80,11 +80,6 @@ public class RegisterPage extends BrowserFactory {
         baseUI = new BaseUI(driver);
     }
 
-    @Step("Register text is displayed")
-    public void getH1() {
-        h1.isDisplayed();
-        System.out.println(h1.getText());
-    }
 
     @Step("Click Register Button")
     public void clickRegisterButton() {
@@ -158,8 +153,7 @@ public class RegisterPage extends BrowserFactory {
 
     @Step("Verify Registration Message")
     public void registrationMessage() {
-        registrationMessage.getText();
-        System.out.println("Message: " + registrationMessage.getText());
+        Assert.assertEquals(registrationMessage.getText(), "Your registration completed");
     }
 
     @Step("Verify Invalid First Name Message")
