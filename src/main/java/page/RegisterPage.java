@@ -114,19 +114,19 @@ public class RegisterPage extends BrowserFactory {
     }
 
     @Step("Enter invalid email")
-    public void enterInvalidEmail(String email) {
+    public void enterEmail(String email) {
         baseUI.sendText(emailInputField, email);
         System.out.println("Message: " + emailError.getText());
     }
 
     @Step("Enter password less then 6 characters")
-    public void enterInvalidPasswordLessThen(String password) {
+    public void enterPassword(String password) {
         baseUI.sendText(passwordInputField, password);
         System.out.println("Message: " + passwordError.getText());
     }
 
     @Step("Enter confirm password that is different then password")
-    public void enterInvalidConfirmPasswordDifferent(String password) {
+    public void enterConfirmPassword(String password) {
         baseUI.sendText(confirmPasswordInputField, password);
         System.out.println("Message: " + confirmPasswordError.getText());
     }
@@ -157,33 +157,33 @@ public class RegisterPage extends BrowserFactory {
     }
 
     @Step("Get Registration Message")
-    public void getRegistrationMessage() {
+    public void registrationMessage() {
         registrationMessage.getText();
         System.out.println("Message: " + registrationMessage.getText());
     }
 
     @Step("Get Invalid First Name Message")
-    public void getNameError() {
+    public void nameError() {
         Assert.assertEquals(firstNameError.getText(), "First name is required.");
     }
 
     @Step("Get Invalid Last Name Message")
-    public void getLastNameError() {
+    public void lastNameError() {
         Assert.assertEquals(lastNameError.getText(), "Last name is required.");
     }
 
     @Step("Get Invalid Email Message")
-    public void getEmailError() {
+    public void emailError() {
         Assert.assertEquals(emailError.getText(), "Email is required.");
     }
 
     @Step("Get Password error message")
-    public void getPasswordError() {
+    public void passwordError() {
         Assert.assertEquals(passwordError.getText(), "Password is required.");
     }
 
     @Step("Get Same Email Message")
-    public void getSameEmailMessage() {
+    public void sameEmailMessage() {
         Assert.assertEquals(emailMessageError.getText(), "The specified email already exists");
 
     }

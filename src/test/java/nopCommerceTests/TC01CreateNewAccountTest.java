@@ -48,19 +48,19 @@ public class TC01CreateNewAccountTest {
         pageHeader.clickRegisterButton();
 
         registerPage.clickRegisterButton();
-        registerPage.getNameError();
-        registerPage.getLastNameError();
-        registerPage.getEmailError();
-        registerPage.getPasswordError();
+        registerPage.nameError();
+        registerPage.lastNameError();
+        registerPage.emailError();
+        registerPage.passwordError();
 
         registerPage.enterInvalidEmail(invalidEmail);
-        registerPage.enterInvalidPasswordLessThen(invalidPassword);
-        registerPage.enterInvalidConfirmPasswordDifferent(invalidConfirmPassword);
+        registerPage.enterPassword(invalidPassword);
+        registerPage.enterConfirmPassword(invalidConfirmPassword);
         registerPage.fillFormWithValidData(Gender.FEMALE, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
         pageHeader.urlCheck();
 
-        registerPage.getRegistrationMessage();
+        registerPage.registrationMessage();
         registerPage.clickContinueButton();
         pageHeader.urlCheck();
     }
@@ -70,7 +70,7 @@ public class TC01CreateNewAccountTest {
         pageHeader.clickRegisterButton();
         registerPage.fillFormWithValidData(Gender.FEMALE, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
-        registerPage.getSameEmailMessage();
+        registerPage.sameEmailMessage();
     }
 
     @AfterTest
