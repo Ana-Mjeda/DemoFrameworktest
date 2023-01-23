@@ -71,7 +71,7 @@ public class TC05Checkout {
         pageHeader.clickShoppingCart();
         cellPhonesPage.clickCheckbox();
         cellPhonesPage.clickCheckoutButton();
-        checkoutPage.getBillingAddressAttribute();
+        checkoutPage.billingAddressAttribute();
         checkoutPage.selectCountryFromDropdown(country);
         checkoutPage.cityInputFieldSetText(city);
         checkoutPage.address1InputFieldSetText(address);
@@ -81,32 +81,32 @@ public class TC05Checkout {
         Assert.assertTrue(checkoutPage.getCheckBoxValue());
         checkoutPage.clickContinueButton();
 
-        checkoutPage.getShippingMethodAttribute();
+        checkoutPage.shippingMethodAttribute();
 
         checkoutPage.clickRadioButtonInShippingMethod(nextDayAir);
         checkoutPage.clickShippingMethodContinueButton();
-        checkoutPage.getPaymentMethodAttribute();
+        checkoutPage.paymentMethodAttribute();
 
         checkoutPage.clickRadioButtonInPaymentMethod(checkMoneyOrder);
         checkoutPage.clickPaymentMethodContinueButton();
-        checkoutPage.getPaymentInformationAttribute();
+        checkoutPage.paymentInformationAttribute();
         checkoutPage.clickPaymentInformationContinueButton();
-        checkoutPage.getConfirmOrderAttribute();
-        checkoutPage.getConfirmBillingAddressAttribute(address);
-        checkoutPage.getShippingAddressAttributeCheckout(address);
-        checkoutPage.getBillingPaymentMethodAttribute(checkMoneyOrder);
-        checkoutPage.getShippingShippingMethodAttribute(nextDayAir);
-        checkoutPage.getShippingQtyAttribute("3");
+        checkoutPage.confirmOrderAttribute();
+        checkoutPage.confirmBillingAddressAttribute(address);
+        checkoutPage.shippingAddressAttributeCheckout(address);
+        checkoutPage.billingPaymentMethodAttribute(checkMoneyOrder);
+        checkoutPage.shippingShippingMethodAttribute(nextDayAir);
+        checkoutPage.shippingQtyAttribute("3");
         checkoutPage.clickConfirmButtonOnBottomOfPage();
         Thread.sleep(1000);
-        checkoutPage.getThankYouAttribute();
+        checkoutPage.thankYouAttribute();
         checkoutPage.clickOrderDetailsLink();
 
         orderDetails.getOrderInformationAttribute();
         orderDetails.compareAddresses();
-        checkoutPage.getBillingPaymentMethodAttribute(checkMoneyOrder);
-        checkoutPage.getShippingShippingMethodAttribute(nextDayAir);
-        checkoutPage.getShippingQtyAttribute("3");
+        checkoutPage.billingPaymentMethodAttribute(checkMoneyOrder);
+        checkoutPage.shippingShippingMethodAttribute(nextDayAir);
+        checkoutPage.shippingQtyAttribute("3");
 
         pageHeader.clickLogoutButton();
     }

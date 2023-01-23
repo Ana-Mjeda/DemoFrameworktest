@@ -71,7 +71,7 @@ public class CheckoutPage extends BrowserFactory {
     }
 
     @Step("Check if Billing method is displayed")
-    public void getBillingAddressAttribute() {
+    public void billingAddressAttribute() {
         Assert.assertEquals(billingAddress.getText(), "Billing address");
     }
 
@@ -106,7 +106,7 @@ public class CheckoutPage extends BrowserFactory {
     }
 
     @Step("Check if Shipping method is displayed")
-    public void getShippingMethodAttribute() {
+    public void shippingMethodAttribute() {
         Assert.assertEquals(shippingMethod.getText(), "Shipping method");
     }
 
@@ -127,7 +127,7 @@ public class CheckoutPage extends BrowserFactory {
     }
 
     @Step("Check if Payment method is displayed")
-    public void getPaymentMethodAttribute() {
+    public void paymentMethodAttribute() {
         Assert.assertEquals(paymentMethod.getText(), "Payment method");
     }
 
@@ -148,7 +148,7 @@ public class CheckoutPage extends BrowserFactory {
     }
 
     @Step("Check if Payment information is displayed")
-    public void getPaymentInformationAttribute() {
+    public void paymentInformationAttribute() {
         Assert.assertEquals(paymentInformation.getText(), "Payment information");
     }
 
@@ -159,32 +159,32 @@ public class CheckoutPage extends BrowserFactory {
     }
 
     @Step("Check if Confirm order is displayed")
-    public void getConfirmOrderAttribute() {
+    public void confirmOrderAttribute() {
         Assert.assertEquals(confirmOrder.getText(), "Confirm order");
     }
 
     @Step("Check Confirm Billing address")
-    public void getConfirmBillingAddressAttribute(String address) {
+    public void confirmBillingAddressAttribute(String address) {
         Assert.assertEquals(confirmBillingAddress.getText(), address);
     }
 
     @Step("Check Shipping Billing address")
-    public void getShippingAddressAttributeCheckout(String address) {
+    public void shippingAddressAttributeCheckout(String address) {
         Assert.assertEquals(shippingAddressCheckout.getText(), address);
     }
 
     @Step("Checking billing payment method")
-    public void getBillingPaymentMethodAttribute(String check) {
+    public void billingPaymentMethodAttribute(String check) {
         Assert.assertEquals(billingPaymentMethod.getText(), check);
     }
 
     @Step("Checking shipping  method")
-    public void getShippingShippingMethodAttribute(String next) {
+    public void shippingShippingMethodAttribute(String next) {
         Assert.assertEquals(shippingShippingMethod.getText(), next);
     }
 
     @Step("Checking shipping quantity")
-    public void getShippingQtyAttribute(String val) {
+    public void shippingQtyAttribute(String val) {
         Assert.assertEquals(shippingQty.getText(), val);
     }
 
@@ -195,7 +195,7 @@ public class CheckoutPage extends BrowserFactory {
     }
 
     @Step("Checking if Thank you is displayed")
-    public void getThankYouAttribute() {
+    public void thankYouAttribute() {
         Assert.assertEquals(thankYou.getText(), "Thank you");
     }
 
