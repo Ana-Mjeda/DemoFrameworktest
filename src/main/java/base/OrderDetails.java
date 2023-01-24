@@ -1,17 +1,16 @@
 package base;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import static com.google.common.base.Ascii.equalsIgnoreCase;
-
 public class OrderDetails extends BrowserFactory {
     BaseUI baseUI;
 
     @FindBy(css = "h1")
-    public WebElement orderInformation;
+    WebElement orderInformation;
     @FindBy(xpath = "//li[@class='payment-method'] //span[@class='value']")
     WebElement billingPaymentMethod;
     @FindBy(xpath = "//li[@class='shipping-method'] //span[@class='value']")
@@ -26,43 +25,35 @@ public class OrderDetails extends BrowserFactory {
     public OrderDetails(WebDriver driver) {
         super(driver);
         baseUI = new BaseUI(driver);
-
     }
 
-    public String shippingAddressAttribute() {
-        return shippingAddress.getText();
+    @Step("Check Shipping address")
+    public void shippingAddressAttribute(String shipping) {
+        Assert.assertEquals(shippingAddress.getText(), shipping);
     }
 
-    public String billingAddressAttribute() {
-        return billingAddress.getText();
+    @Step("Check Billing address")
+    public void billingAddressAttribute(String billing) {
+        Assert.assertEquals(billingAddress.getText(), billing);
     }
 
-    public void compareAddresses() {
-        boolean addressFound = false;
-        
-        if (equalsIgnoreCase(billingAddressAttribute(), shippingAddressAttribute())) {
-            addressFound = true;
-            System.out.println("The Billing Address is same as Shipping Address ");
-        }
-        if (!addressFound) {
-            Assert.fail("Billing address '" + billingAddress + "' and shipping address '" + shippingAddress + "' do not match.");
-        }
+    @Step("Check if order information is displayed")
+    public void orderInformationAttribute() {
+        Assert.assertEquals(orderInformation.getText(), "Order information");
     }
 
-    public void getOrderInformationAttribute() {
-        orderInformation.getText();
+    @Step("Check payment method")
+    public void billingPaymentMethodAttribute(String method) {
+        Assert.assertEquals(billingPaymentMethod.getText(), method);
     }
 
-    public String getBillingPaymentMethodAttribute() {
-        return billingPaymentMethod.getText();
+    @Step("Check Shipping method")
+    public void shippingMethodAttribute(String method) {
+        Assert.assertEquals(shippingShippingMethod.getText(), method);
     }
 
-    public String getShippingShippingMethodAttribute() {
-        return shippingShippingMethod.getText();
-    }
-
-
-    public String getShippingQtyAttribute() {
-        return shippingQty.getText();
+    @Step("Check quantity")
+    public void shippingQtyAttribute(String val) {
+        Assert.assertEquals(shippingQty.getText(), val);
     }
 }

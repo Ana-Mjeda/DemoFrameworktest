@@ -88,17 +88,18 @@ public class TC05Checkout extends BaseTest {
         checkoutPage.shippingAddressAttributeCheckout(address);
         checkoutPage.billingPaymentMethodAttribute(checkMoneyOrder);
         checkoutPage.shippingShippingMethodAttribute(nextDayAir);
-        checkoutPage.shippingQtyAttribute("3");
+        checkoutPage.shippingQtyAttribute("(3)");
         checkoutPage.clickConfirmButtonOnBottomOfPage();
         Thread.sleep(1000);
         checkoutPage.thankYouAttribute();
         checkoutPage.clickOrderDetailsLink();
 
-        orderDetails.getOrderInformationAttribute();
-        orderDetails.compareAddresses();
-        checkoutPage.billingPaymentMethodAttribute(checkMoneyOrder);
-        checkoutPage.shippingShippingMethodAttribute(nextDayAir);
-        checkoutPage.shippingQtyAttribute("3");
+        orderDetails.orderInformationAttribute();
+        orderDetails.billingAddressAttribute(address);
+        orderDetails.shippingAddressAttribute(address);
+        orderDetails.billingPaymentMethodAttribute(checkMoneyOrder);
+        orderDetails.shippingMethodAttribute(nextDayAir);
+        orderDetails.shippingQtyAttribute("(3)");
 
         pageHeader.clickLogoutButton();
     }

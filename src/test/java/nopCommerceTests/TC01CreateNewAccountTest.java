@@ -50,7 +50,7 @@ public class TC01CreateNewAccountTest extends BaseTest {
         registerPage.fillEmailField(invalidEmail);
         registerPage.fillPasswordField(invalidPassword);
         registerPage.fillConfirmPasswordField(invalidConfirmPassword);
-        registerPage.fillFormWithValidData(Gender.FEMALE, name, lastName, day, month, year, email, company, password, password);
+        registerPage.fillFormWithValidData(gender, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
         checkUrl();
 
@@ -62,7 +62,7 @@ public class TC01CreateNewAccountTest extends BaseTest {
     @Test(priority = 2)
     public void createAccountWithExistingEmail() {
         pageHeader.clickRegisterButton();
-        registerPage.fillFormWithValidData(Gender.FEMALE, name, lastName, day, month, year, email, company, password, password);
+        registerPage.fillFormWithValidData(gender, name, lastName, day, month, year, email, company, password, password);
         registerPage.clickRegisterButton();
         registerPage.sameEmailMessageThatAppearsUnderRegisterText();
     }
