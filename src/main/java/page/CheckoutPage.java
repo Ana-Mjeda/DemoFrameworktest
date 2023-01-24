@@ -75,22 +75,27 @@ public class CheckoutPage extends BrowserFactory {
         Assert.assertEquals(billingAddress.getText(), "Billing address");
     }
 
+    @Step("Select country from dropdowm menu")
     public void selectCountryFromDropdown(String text) {
         baseUI.clickDropdown(country, text);
     }
 
+    @Step("Input City")
     public void cityInputFieldSetText(String text) {
         baseUI.sendText(cityInputField, text);
     }
 
+    @Step("Input Address")
     public void address1InputFieldSetText(String text) {
         baseUI.sendText(address1InputField, text);
     }
 
+    @Step("Input postal code")
     public void postalCodeInputFieldSetText(String text) {
         baseUI.sendText(postalCodeInputField, text);
     }
 
+    @Step("Input phone number")
     public void phoneNumberInputFieldSetText(String text) {
         baseUI.sendText(phoneNumberInputField, text);
     }
@@ -101,6 +106,7 @@ public class CheckoutPage extends BrowserFactory {
         System.out.println("Continue Button is clicked");
     }
 
+    @Step("Verify if terms of service checkbox is selected")
     public boolean verifyTermsOfServiceCheckbox() {
         return checkBox.isSelected();
     }

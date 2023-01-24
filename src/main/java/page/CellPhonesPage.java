@@ -47,8 +47,7 @@ public class CellPhonesPage extends TemplatePage {
     List<WebElement> addToCartButton;
     @FindBy(xpath = "//ul[@class='top-menu notmobile']//li")
     List<WebElement> topMenuCategories;
-    @FindBy(xpath = "//ul[@class='sublist first-level']//li")
-    List<WebElement> subMenuCategories;
+
 
     public CellPhonesPage(WebDriver driver) {
         super(driver);

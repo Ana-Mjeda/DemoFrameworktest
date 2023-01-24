@@ -53,13 +53,10 @@ public class PageHeader extends BrowserFactory {
         System.out.println("Login button clicked");
     }
 
-    public WebElement logoutButton() {
-        return logoutButton;
-    }
 
     @Step("Click logout button")
     public void clickLogoutButton() {
-        baseUI.click(logoutButton());
+        baseUI.click(logoutButton);
         System.out.println("Logout button clicked");
     }
 
