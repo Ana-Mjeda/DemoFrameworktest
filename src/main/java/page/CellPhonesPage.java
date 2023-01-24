@@ -141,13 +141,8 @@ public class CellPhonesPage extends TemplatePage {
         System.out.println("Add To Cart Button clicked");
     }
 
-
-    public String qtyAttribute() {
-        return qtyInputField.getAttribute("value");
-    }
-
-    @Step("Click Checkbox")
-    public void clickCheckbox() {
+    @Step("Click  I agree with the terms of service checkbox")
+    public void termsOfServiceCheckbox() {
         baseUI.click(checkbox);
         System.out.println("Checkbox clicked");
     }
