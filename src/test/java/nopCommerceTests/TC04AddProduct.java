@@ -1,8 +1,6 @@
 package nopCommerceTests;
 
-import base.BrowserFactory;
 import base.PageHeader;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,11 +10,7 @@ import page.LoginPage;
 import page.RegisterPage;
 import util.DateTimeGenerator;
 
-import java.io.IOException;
-
-import static base.BrowserFactory.driver;
-
-public class TC04AddProduct {
+public class TC04AddProduct extends BaseTest {
     private PageHeader pageHeader;
     private LoginPage loginPage;
     private RegisterPage registerPage;
@@ -26,8 +20,8 @@ public class TC04AddProduct {
     String password = "secret";
 
     @BeforeClass
-    void prepare() throws IOException {
-        WebDriver driver = BrowserFactory.startBrowser("https://demo.nopcommerce.com/");
+    public void beforeClass() {
+        super.beforeClass();
 
         registerPage = new RegisterPage(driver);
         pageHeader = new PageHeader(driver);
@@ -55,15 +49,15 @@ public class TC04AddProduct {
 
         pageHeader.clickLoginButton();
         loginPage.fillLoginFields(email, password);
-        pageHeader.urlCheck();
+        checkUrl();
         cellPhonesPage.chooseCategory(electronics, cellPhones);
         cellPhonesPage.clickAddToCartIfProductFound(htcOneMiniBlue);
         cellPhonesPage.barNotificationAttribute();
         cellPhonesPage.clickShoppingCartLink();
-        pageHeader.urlCheck();
+        checkUrl();
         cellPhonesPage.chooseCategory(electronics, cellPhones);
         cellPhonesPage.clickMobile(htcOneMiniBlue);
-        pageHeader.urlCheck();
+        checkUrl();
         cellPhonesPage.numberInputFieldSetText("2");
         cellPhonesPage.clickAddToCartButtonInSelectedPhone();
         cellPhonesPage.barNotificationAttribute();

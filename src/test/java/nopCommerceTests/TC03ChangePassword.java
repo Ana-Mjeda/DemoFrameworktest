@@ -1,8 +1,6 @@
 package nopCommerceTests;
 
-import base.BrowserFactory;
 import base.PageHeader;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -12,11 +10,7 @@ import page.LoginPage;
 import page.RegisterPage;
 import util.DateTimeGenerator;
 
-import java.io.IOException;
-
-import static base.BrowserFactory.driver;
-
-public class TC03ChangePassword {
+public class TC03ChangePassword extends BaseTest {
 
     private PageHeader pageHeader;
     private LoginPage loginPage;
@@ -30,8 +24,8 @@ public class TC03ChangePassword {
     String newPassword = "ghosty";
 
     @BeforeClass
-    void prepare() throws IOException {
-        WebDriver driver = BrowserFactory.startBrowser("https://demo.nopcommerce.com/");
+    public void beforeClass() {
+        super.beforeClass();
 
         registerPage = new RegisterPage(driver);
         pageHeader = new PageHeader(driver);
@@ -57,7 +51,7 @@ public class TC03ChangePassword {
         loginPage.fillLoginFields(email, password);
         pageHeader.clickMyAccountButton();
 
-        pageHeader.urlCheck();
+        checkUrl();
         customerPage.clickChangePassword();
 
         customerPage.fillFieldsWithPassword(password, password, password);

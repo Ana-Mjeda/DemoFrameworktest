@@ -1,20 +1,14 @@
 package nopCommerceTests;
 
-import base.BrowserFactory;
 import base.OrderDetails;
 import base.PageHeader;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import page.*;
 import util.DateTimeGenerator;
 
-import java.io.IOException;
-
-import static base.BrowserFactory.driver;
-
-public class TC05Checkout {
+public class TC05Checkout extends BaseTest {
     private PageHeader pageHeader;
     private LoginPage loginPage;
     private RegisterPage registerPage;
@@ -31,8 +25,8 @@ public class TC05Checkout {
     String phoneNumber = "+46 31 55 83 00";
 
     @BeforeClass
-    void prepare() throws IOException {
-        WebDriver driver = BrowserFactory.startBrowser("https://demo.nopcommerce.com/");
+    public void beforeClass() {
+        super.beforeClass();
 
         registerPage = new RegisterPage(driver);
         pageHeader = new PageHeader(driver);
@@ -68,7 +62,7 @@ public class TC05Checkout {
         loginPage.fillLoginFields(email, password);
         pageHeader.checkShoppingCartValue("(3)");
         pageHeader.clickShoppingCart();
-        cellPhonesPage.clickCheckbox();
+        cellPhonesPage.termsOfServiceCheckbox();
         cellPhonesPage.clickCheckoutButton();
         checkoutPage.billingAddressAttribute();
         checkoutPage.selectCountryFromDropdown(country);
