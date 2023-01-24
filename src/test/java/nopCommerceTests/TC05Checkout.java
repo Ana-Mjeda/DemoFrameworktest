@@ -1,6 +1,5 @@
 package nopCommerceTests;
 
-import base.OrderDetails;
 import base.PageHeader;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -14,7 +13,7 @@ public class TC05Checkout extends BaseTest {
     private RegisterPage registerPage;
     private CellPhonesPage cellPhonesPage;
     private CheckoutPage checkoutPage;
-    private OrderDetails orderDetails;
+    private OrderDetailsPage orderDetailsPage;
 
     String email;
     String password = "secret";
@@ -33,7 +32,7 @@ public class TC05Checkout extends BaseTest {
         loginPage = new LoginPage(driver);
         cellPhonesPage = new CellPhonesPage(driver);
         checkoutPage = new CheckoutPage(driver);
-        orderDetails = new OrderDetails(driver);
+        orderDetailsPage = new OrderDetailsPage(driver);
 
         email = "hera" + DateTimeGenerator.getDateTime() + "@test.com";
         System.out.println(email);
@@ -91,12 +90,12 @@ public class TC05Checkout extends BaseTest {
         checkoutPage.thankYouAttribute();
         checkoutPage.clickOrderDetailsLink();
 
-        orderDetails.orderInformationAttribute();
-        orderDetails.billingAddressAttribute(address);
-        orderDetails.shippingAddressAttribute(address);
-        orderDetails.billingPaymentMethodAttribute(checkMoneyOrder);
-        orderDetails.shippingMethodAttribute(nextDayAir);
-        orderDetails.shippingQtyAttribute("3");
+        orderDetailsPage.orderInformationAttribute();
+        orderDetailsPage.billingAddressAttribute(address);
+        orderDetailsPage.shippingAddressAttribute(address);
+        orderDetailsPage.billingPaymentMethodAttribute(checkMoneyOrder);
+        orderDetailsPage.shippingMethodAttribute(nextDayAir);
+        orderDetailsPage.shippingQtyAttribute("3");
 
         pageHeader.clickLogoutButton();
     }
