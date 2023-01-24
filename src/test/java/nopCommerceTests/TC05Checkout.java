@@ -70,15 +70,12 @@ public class TC05Checkout extends BaseTest {
         checkoutPage.address1InputFieldSetText(address);
         checkoutPage.postalCodeInputFieldSetText(postalCode);
         checkoutPage.phoneNumberInputFieldSetText(phoneNumber);
-        checkoutPage.verifyTermsOfServiceCheckbox();
+        checkoutPage.shipToTheSameAddressCheckbox();
         checkoutPage.clickContinueButton();
-
         checkoutPage.shippingMethodAttribute();
-
         checkoutPage.clickRadioButtonInShippingMethod(nextDayAir);
         checkoutPage.clickShippingMethodContinueButton();
         checkoutPage.paymentMethodAttribute();
-
         checkoutPage.clickRadioButtonInPaymentMethod(checkMoneyOrder);
         checkoutPage.clickPaymentMethodContinueButton();
         checkoutPage.paymentInformationAttribute();
@@ -88,7 +85,7 @@ public class TC05Checkout extends BaseTest {
         checkoutPage.shippingAddressAttributeCheckout(address);
         checkoutPage.billingPaymentMethodAttribute(checkMoneyOrder);
         checkoutPage.shippingShippingMethodAttribute(nextDayAir);
-        checkoutPage.shippingQtyAttribute("(3)");
+        checkoutPage.shippingQtyAttribute("3");
         checkoutPage.clickConfirmButtonOnBottomOfPage();
         Thread.sleep(1000);
         checkoutPage.thankYouAttribute();
@@ -99,7 +96,7 @@ public class TC05Checkout extends BaseTest {
         orderDetails.shippingAddressAttribute(address);
         orderDetails.billingPaymentMethodAttribute(checkMoneyOrder);
         orderDetails.shippingMethodAttribute(nextDayAir);
-        orderDetails.shippingQtyAttribute("(3)");
+        orderDetails.shippingQtyAttribute("3");
 
         pageHeader.clickLogoutButton();
     }

@@ -46,7 +46,6 @@ public class TC01CreateNewAccountTest extends BaseTest {
         registerPage.lastNameError();
         registerPage.emailError();
         registerPage.passwordError();
-
         registerPage.fillEmailField(invalidEmail);
         registerPage.fillPasswordField(invalidPassword);
         registerPage.fillConfirmPasswordField(invalidConfirmPassword);

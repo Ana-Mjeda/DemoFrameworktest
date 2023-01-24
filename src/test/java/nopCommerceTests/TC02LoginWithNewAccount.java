@@ -56,7 +56,6 @@ public class TC02LoginWithNewAccount extends BaseTest {
         pageHeader.checkMyAccount();
         pageHeader.checkLogout();
         pageHeader.clickLogoutButton();
-
     }
 
     @AfterTest

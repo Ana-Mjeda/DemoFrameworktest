@@ -106,8 +106,8 @@ public class CheckoutPage extends BrowserFactory {
         System.out.println("Continue Button is clicked");
     }
 
-    @Step("Verify if terms of service checkbox is selected")
-    public boolean verifyTermsOfServiceCheckbox() {
+    @Step("Verify if  Ship to the same address checkbox is selected")
+    public boolean shipToTheSameAddressCheckbox() {
         return checkBox.isSelected();
     }
 

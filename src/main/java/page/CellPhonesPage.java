@@ -140,7 +140,7 @@ public class CellPhonesPage extends TemplatePage {
         System.out.println("Add To Cart Button clicked");
     }
 
-    @Step("Click  I agree with the terms of service checkbox")
+    @Step("Click I agree with the terms of service checkbox")
     public void termsOfServiceCheckbox() {
         baseUI.click(checkbox);
         System.out.println("Checkbox clicked");
